@@ -21,7 +21,7 @@ from tqdm import tqdm
 @dataclass
 class ModelArguments:
     model_name_or_path: str = field(
-        default="output/qwen2.5_instruct_full",
+        default="trainer_output",
         metadata={"help": "Path to the fine-tuned model directory"}
     )
     template: str = field(
@@ -99,7 +99,8 @@ def load_model_and_tokenizer(args: ModelArguments) -> Tuple:
     tokenizer = AutoTokenizer.from_pretrained(
         args.model_name_or_path,
         trust_remote_code=True,
-        use_fast=False  # Some tokenizers work better with use_fast=False
+        use_fast=False,  # Some tokenizers work better with use_fast=False
+        padding_side='left'  # Important for decoder-only architectures
     )
     
     # Ensure padding token is set
@@ -272,7 +273,7 @@ def run_batch_inference(
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model_name_or_path", type=str, default="output/qwen2.5_instruct_full")
+    parser.add_argument("--model_name_or_path", type=str, default="trainer_output")
     parser.add_argument("--template", type=str, default="qwen")
     parser.add_argument("--test_file", type=str, default="data/testing_data_s2n_short_v0.json")
     parser.add_argument("--output_file", type=str, default="inference_results.json")
