@@ -1,0 +1,6 @@
+# examples/inference/qwen2.5_instruct_test.yaml
+model_name_or_path: output/qwen2.5_instruct_full  # or your desired model path
+template: default      # Use a valid built-in template
+finetuning_type: full
+dataset: gpt_voc_dataset_test    # Reference the key you added in dataset_info.json
+cutoff_len: 1024       # (if needed)

@@ -1,4 +1,30 @@
 {
+  "gpt_voc_dataset_test": {
+    "file_name": "testing_data_s2n_short_v0.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations"
+    },
+    "tags": {
+      "role_tag": "from",
+      "content_tag": "value",
+      "user_tag": "human",
+      "assistant_tag": "gpt"
+    }
+  },
+  "gpt_voc_dataset": {
+    "file_name": "training_data_s2n_short_v0.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "conversations"
+    },
+    "tags": {
+      "role_tag": "from",
+      "content_tag": "value",
+      "user_tag": "human",
+      "assistant_tag": "gpt"
+    }
+  },
   "identity": {
     "file_name": "identity.json"
   },
