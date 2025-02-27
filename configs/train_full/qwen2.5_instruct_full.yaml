@@ -12,16 +12,16 @@ val_size: 0.1
 
 # Training hyperparameters
 per_device_train_batch_size: 1  # Minimum batch size
-gradient_accumulation_steps: 16  # Significantly increased
+gradient_accumulation_steps: 32  # Significantly increased
 learning_rate: 0.00005
 weight_decay: 0.01  # Added mild weight decay
 lr_scheduler_type: "cosine"  # Added learning rate scheduler
 warmup_ratio: 0.1  # Warmup for first 10% of training
 optim: "adamw_torch_fused"
 
-num_train_epochs: 6 
+num_train_epochs: 8 
 logging_steps: 4
-save_steps: 4 
+save_steps: 2 
 overwrite_output_dir: true
 
 # Early stopping configuration
@@ -29,7 +29,7 @@ do_eval: true  # Enable validation during training
 evaluation_strategy: "steps"  # Evaluate at specific steps
 eval_steps: 4  # How often to evaluate
 per_device_eval_batch_size: 1  # Batch size for evaluation
-save_total_limit: 2  # Only keep the 3 most recent checkpoints
+save_total_limit: 20  # Only keep the 3 most recent checkpoints
 load_best_model_at_end: true  # Load the best model at the end of training
 metric_for_best_model: "eval_loss"  # Use validation loss as the metric
 greater_is_better: false  # Lower loss is better

@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # Custom inference script for fine-tuned Qwen model
 # Adapted from LLaMA-Factory CLI chat functionality
+# Modified to support batch inference
 
 import os
 import json
@@ -62,6 +63,10 @@ class ModelArguments:
     device_map: str = field(
         default="auto",
         metadata={"help": "Device map for model loading"}
+    )
+    batch_size: int = field(
+        default=4,
+        metadata={"help": "Batch size for inference"}
     )
 
 def load_model_and_tokenizer(args: ModelArguments) -> Tuple:
@@ -139,70 +144,129 @@ def load_test_data(file_path: str) -> List:
         data = json.load(f)
     return data
 
-def run_inference(
+def process_batch(
+    model: AutoModelForCausalLM,
+    tokenizer: AutoTokenizer,
+    batch_items: List[Dict],
+    batch_prompts: List[str],
+    args: ModelArguments
+) -> List[Dict]:
+    """Process a batch of prompts and return the generated responses."""
+    # Tokenize all prompts in the batch
+    encodings = tokenizer(
+        batch_prompts,
+        padding=True,
+        return_tensors="pt",
+        truncation=True,
+        max_length=2048  # Adjust based on model context length
+    ).to(model.device)
+    
+    input_ids = encodings.input_ids
+    attention_mask = encodings.attention_mask
+    
+    # Store the lengths of each input for later extraction
+    input_lengths = [len(ids) for ids in input_ids]
+    
+    # Generate responses
+    with torch.no_grad():
+        generated_ids = model.generate(
+            input_ids,
+            attention_mask=attention_mask,
+            max_new_tokens=args.max_new_tokens,
+            temperature=args.temperature,
+            top_p=args.top_p,
+            do_sample=args.temperature > 0.0,
+            pad_token_id=tokenizer.pad_token_id,
+            return_dict_in_generate=False
+        )
+    
+    batch_results = []
+    
+    # Process each generated sequence
+    for i, (item, gen_ids, input_length) in enumerate(zip(batch_items, generated_ids, input_lengths)):
+        # Extract only the newly generated tokens (skip the input)
+        generated_text = tokenizer.decode(
+            gen_ids[input_length:],
+            skip_special_tokens=True
+        )
+        
+        # Get target response if available
+        target_response = None
+        for j, msg in enumerate(item["conversations"]):
+            if msg["from"] == "human" and j+1 < len(item["conversations"]) and item["conversations"][j+1]["from"] == "gpt":
+                target_response = item["conversations"][j+1]["value"]
+                break
+        
+        # Store the result
+        batch_results.append({
+            "id": item.get("id", i),
+            "prompt": batch_prompts[i],
+            "generated": generated_text,
+            "target": target_response,
+        })
+    
+    return batch_results
+
+def run_batch_inference(
     model: AutoModelForCausalLM,
     tokenizer: AutoTokenizer,
     args: ModelArguments
 ) -> List[Dict]:
-    """Run inference on test data and return results."""
+    """Run inference on test data in batches and return results."""
     # Load test data
     test_data = load_test_data(args.test_file)
-    results = []
     
-    for idx, item in enumerate(tqdm(test_data, desc="Processing conversations")):
+    # Prepare data for batched processing
+    all_items = []
+    all_prompts = []
+    
+    for idx, item in enumerate(test_data):
         conversations = item["conversations"]
         
         # Get all messages up to the last human message
         input_messages = []
-        target_response = None
         
         for i, msg in enumerate(conversations):
             input_messages.append(msg)
             
             # If this is a human message and there's a next message from gpt, that's our target
             if msg["from"] == "human" and i+1 < len(conversations) and conversations[i+1]["from"] == "gpt":
-                target_response = conversations[i+1]["value"]
                 input_messages = conversations[:i+1]  # Include only up to current human message
                 break
         
         # Format the prompt using the template
         prompt = format_prompt(args.template, input_messages)
         
-        # Tokenize the prompt
-        input_ids = tokenizer(prompt, return_tensors="pt").input_ids.to(model.device)
+        # Add ID to the item for tracking
+        item["id"] = idx
         
-        # Generate response
-        with torch.no_grad():
-            generated_ids = model.generate(
-                input_ids,
-                max_new_tokens=args.max_new_tokens,
-                temperature=args.temperature,
-                top_p=args.top_p,
-                do_sample=args.temperature > 0.0,
-                pad_token_id=tokenizer.pad_token_id
-            )
+        all_items.append(item)
+        all_prompts.append(prompt)
+    
+    # Process in batches
+    results = []
+    
+    # Create batches
+    num_batches = (len(all_items) + args.batch_size - 1) // args.batch_size
+    
+    for batch_idx in tqdm(range(num_batches), desc="Processing batches"):
+        start_idx = batch_idx * args.batch_size
+        end_idx = min(start_idx + args.batch_size, len(all_items))
         
-        # Decode the response
-        generated_text = tokenizer.decode(
-            generated_ids[0][input_ids.shape[1]:], 
-            skip_special_tokens=True
-        )
+        batch_items = all_items[start_idx:end_idx]
+        batch_prompts = all_prompts[start_idx:end_idx]
         
-        # Store the result
-        results.append({
-            "id": idx,
-            "prompt": prompt,
-            "generated": generated_text,
-            "target": target_response,
-        })
+        # Process this batch
+        batch_results = process_batch(model, tokenizer, batch_items, batch_prompts, args)
+        results.extend(batch_results)
         
         # Print occasional samples
-        if idx % 10 == 0:
-            print(f"\n\n--- Sample {idx} ---")
-            print(f"Prompt: {prompt}")
-            print(f"Generated: {generated_text}")
-            if target_response:
-                print(f"Target: {target_response}")
+        if batch_idx % 5 == 0 and batch_results:
+            print(f"\n\n--- Sample from batch {batch_idx} ---")
+            print(f"Prompt: {batch_results[0]['prompt']}")
+            print(f"Generated: {batch_results[0]['generated']}")
+            if batch_results[0]['target']:
+                print(f"Target: {batch_results[0]['target']}")
     
     return results
 
@@ -219,6 +283,7 @@ def main():
     parser.add_argument("--load_in_4bit", action="store_true")
     parser.add_argument("--use_bf16", action="store_true")
     parser.add_argument("--device_map", type=str, default="auto")
+    parser.add_argument("--batch_size", type=int, default=4, help="Batch size for inference")
     
     args = parser.parse_args()
     model_args = ModelArguments(
@@ -232,20 +297,21 @@ def main():
         load_in_8bit=args.load_in_8bit,
         load_in_4bit=args.load_in_4bit,
         use_bf16=args.use_bf16,
-        device_map=args.device_map
+        device_map=args.device_map,
+        batch_size=args.batch_size
     )
     
     # Load model and tokenizer
     model, tokenizer = load_model_and_tokenizer(model_args)
     
-    # Run inference
-    results = run_inference(model, tokenizer, model_args)
+    # Run batch inference
+    results = run_batch_inference(model, tokenizer, model_args)
     
     # Save results
     with open(model_args.output_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
     
-    print(f"Inference completed. Results saved to {model_args.output_file}")
+    print(f"Batch inference completed. Results saved to {model_args.output_file}")
 
 if __name__ == "__main__":
     main()
