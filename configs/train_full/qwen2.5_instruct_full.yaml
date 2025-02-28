@@ -1,5 +1,5 @@
 # Model & training stage
-model_name_or_path: Qwen/Qwen2.5-14B-Instruct
+model_name_or_path: Qwen/Qwen2.5-14B-Instruct 
 stage: sft
 do_train: true
 finetuning_type: full
@@ -20,14 +20,14 @@ warmup_ratio: 0.1  # Warmup for first 10% of training
 optim: "adamw_torch_fused"
 
 num_train_epochs: 8 
-logging_steps: 4
+logging_steps: 2
 save_steps: 2 
 overwrite_output_dir: true
 
 # Early stopping configuration
 do_eval: true  # Enable validation during training
 evaluation_strategy: "steps"  # Evaluate at specific steps
-eval_steps: 4  # How often to evaluate
+eval_steps: 2  # How often to evaluate
 per_device_eval_batch_size: 1  # Batch size for evaluation
 save_total_limit: 20  # Only keep the 3 most recent checkpoints
 load_best_model_at_end: true  # Load the best model at the end of training
