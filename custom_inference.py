@@ -262,8 +262,12 @@ def process_output(output, encoded_input, item_id, human_message, target_message
         "id": item_id,
         "input": human_message,
         "output": response_text,
+<<<<<<< HEAD
         "target": target_message,
         "prompt_length": input_length
+=======
+        "target": target_message
+>>>>>>> dff77271601c2ed0ccd56ab0504fc3b952524e53
     }
 
     return result
