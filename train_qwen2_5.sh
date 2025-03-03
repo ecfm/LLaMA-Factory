@@ -14,6 +14,7 @@ if [[ -z "$VIRTUAL_ENV" ]]; then
     else
         echo "Error: Could not find activation script for virtual environment."
         exit 1
+    fi
     DEACTIVATE_AFTER=true
 else
     echo "Using already activated virtual environment: $VIRTUAL_ENV"
