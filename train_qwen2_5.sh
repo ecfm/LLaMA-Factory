@@ -27,9 +27,6 @@ else
         echo "Using already activated virtual environment: $VIRTUAL_ENV"
     else
         echo "Warning: Active virtual environment ($VIRTUAL_ENV) is different from the intended one ($VENV_PATH)"
-        echo "Deactivating current environment and activating the intended one..."
-        deactivate
-        NEED_ACTIVATION=true
     fi
 fi
 
@@ -47,12 +44,6 @@ fi
 
 # Run the script with all arguments passed to this script
 torchrun --nproc_per_node=8 --master_port=29500 -m llamafactory.launcher configs/train_full/qwen2.5_instruct_full.yaml
-
-# Deactivate the virtual environment if we activated it
-if [ "$NEED_ACTIVATION" = true ]; then
-    deactivate
-    echo "Virtual environment deactivated."
-fi
 
 echo "Done."
 

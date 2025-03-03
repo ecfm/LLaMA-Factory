@@ -44,9 +44,6 @@ else
         echo "Using already activated virtual environment: $VIRTUAL_ENV"
     else
         echo "Warning: Active virtual environment ($VIRTUAL_ENV) is different from the intended one ($VENV_PATH)"
-        echo "Deactivating current environment and activating the intended one..."
-        deactivate
-        NEED_ACTIVATION=true
     fi
 fi
 
@@ -63,11 +60,5 @@ fi
 # Run the script with all arguments passed to this script
 echo "Running convert_interview_to_llm_input.py with arguments: $@"
 python convert_interview_to_llm_input.py "$@"
-
-# Deactivate the virtual environment if we activated it
-if [ "$NEED_ACTIVATION" = true ]; then
-    deactivate
-    echo "Virtual environment deactivated."
-fi
 
 echo "Done."

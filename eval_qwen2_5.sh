@@ -27,9 +27,6 @@ else
         echo "Using already activated virtual environment: $VIRTUAL_ENV"
     else
         echo "Warning: Active virtual environment ($VIRTUAL_ENV) is different from the intended one ($VENV_PATH)"
-        echo "Deactivating current environment and activating the intended one..."
-        deactivate
-        NEED_ACTIVATION=true
     fi
 fi
 
