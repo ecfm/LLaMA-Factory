@@ -27,6 +27,13 @@ else
         echo "Using already activated virtual environment: $VIRTUAL_ENV"
     else
         echo "Warning: Active virtual environment ($VIRTUAL_ENV) is different from the intended one ($VENV_PATH)"
+        echo "Attempting to switch to the intended environment..."
+        
+        # Try to run deactivate as a function
+        (deactivate 2>/dev/null) || echo "Note: Could not deactivate using the function, continuing anyway..."
+        
+        # Set flag to activate the intended environment
+        NEED_ACTIVATION=true
     fi
 fi
 
@@ -45,11 +52,5 @@ fi
 # Run the script with all arguments passed to this script
 echo "Running custom_inference.py with arguments: $@"
 python custom_inference.py "$@"
-
-# Deactivate the virtual environment if we activated it
-if [ "$NEED_ACTIVATION" = true ]; then
-    deactivate
-    echo "Virtual environment deactivated."
-fi
 
 echo "Done."
