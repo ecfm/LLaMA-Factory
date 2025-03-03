@@ -4,22 +4,27 @@ import logging
 import os
 import re
 import warnings
+from typing import List, Dict, Tuple, Optional, Set
 from dataclasses import dataclass
-from typing import List, Optional, Tuple
-
-import nltk
 from docx import Document
+import nltk
 from nltk.tokenize import sent_tokenize, word_tokenize
 from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 from tqdm import tqdm
+from sklearn.metrics.pairwise import cosine_similarity
 
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(message)s')
+
+# Download NLTK resources if needed
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', quiet=True)
 
 # Suppress huggingface warnings
 warnings.filterwarnings("ignore", category=FutureWarning)
-
-# Download NLTK data files (if not already downloaded)
-nltk.download('punkt', quiet=True)
 
 # Global model instance to avoid reloading
 _model_instance = None
@@ -142,15 +147,9 @@ class DocumentProcessingError(Exception):
     pass
 
 def extract_name_from_filename(filename: str) -> Tuple[str, str]:
-    """Extract both full name and short name from filename."""
-    name_part = re.sub(r'^\d+\.\s*', '', os.path.splitext(filename)[0])
-    name_match = re.match(r'([^(]+)', name_part)
-    if name_match:
-        full_name = name_match.group(1).strip()
-        # Get first word of name for matching shortened versions
-        short_name = full_name.split()[0]
-        return full_name, short_name
-    raise DocumentProcessingError(f"Could not extract name from filename: {filename}")
+    """Return fixed participant name for all files."""
+    # We're using fixed labels, so we don't need to extract names from filenames
+    return "Participant", "Interviewer"
 
 def clean_text(text: str) -> str:
     """Clean transcript text of artifacts while preserving sentence structure."""
@@ -179,33 +178,13 @@ def clean_text(text: str) -> str:
     return text.strip()
 
 def is_speaker_line(line: str, interviewee_names: Tuple[str, str]) -> bool:
-    """Check if line contains speaker marker for the interviewee."""
-    full_name, short_name = interviewee_names
-
+    """Check if line contains speaker marker for the interviewee (Participant)."""
     # Clean the line first but preserve key indicators
     clean_line = re.sub(r'\[\[.*?\]\]', '', line)  # Remove timestamps while keeping text
     clean_line = re.sub(r'\{.*?\}', '', clean_line)
-
-    # Common speaker patterns found in transcripts
-    patterns = [
-        rf'^{full_name}\s*:',
-        rf'^{short_name}\s*:',
-        rf'^{full_name}\s*\n',
-        rf'^{short_name}\s*\n',
-        rf'^{full_name}\s*\([0-9:]+\)\s*:',  # Handle timestamp format (12:22)
-        rf'^{short_name}\s*\([0-9:]+\)\s*:',
-        rf'^{full_name}\s+\(', # Match name followed by timestamp
-        # Add patterns specifically for various formats
-        r'^Ken\s*:',
-        r'^Ken\s*\n'
-    ]
-
-    # Case insensitive matching
-    for pattern in patterns:
-        if re.search(pattern, clean_line, re.IGNORECASE):
-            return True
-
-    return False
+    
+    # Fixed pattern for participant
+    return re.search(r'^Participant\s*:', clean_line, re.IGNORECASE) is not None
 
 
 def split_into_sentences(text: str) -> List[str]:
@@ -251,58 +230,17 @@ def validate_text_unit(text: str, split_mode: str = 'sentence') -> Tuple[bool, O
 
 
 def find_speakers(doc_content: str, interviewee_names: Tuple[str, str]) -> Tuple[str, str]:
-    """Find the most frequent speakers and identify interviewer/interviewee."""
-    # Extract all speaker names
-    speaker_pattern = re.compile(r'^([^:(\n]+)(?:\s*\(\d+:\d+\))?\s*:', re.MULTILINE)
-    matches = speaker_pattern.findall(doc_content)
-
-    # Count speaker frequencies
-    speaker_counts = {}
-    for speaker in matches:
-        speaker = speaker.strip()
-        speaker = re.sub(r'\s*\(\d+:\d+\)\s*$', '', speaker)  # Remove timestamps
-        if speaker:
-            speaker_counts[speaker] = speaker_counts.get(speaker, 0) + 1
-
-    if not speaker_counts:
-        raise DocumentProcessingError("No speakers found in document")
-
-    # Sort by frequency
-    sorted_speakers = sorted(speaker_counts.items(), key=lambda x: x[1], reverse=True)
-    top_speakers = [s[0] for s in sorted_speakers[:2]]  # Get top 2 speakers
-
-    if len(top_speakers) < 2:
-        raise DocumentProcessingError("Less than 2 speakers found in document")
-
-    # Determine which is the interviewee based on filename match
-    full_name, short_name = interviewee_names
-    name_parts = set(full_name.lower().split()) | {short_name.lower()}
-
-    # Calculate name similarity scores
-    def name_similarity(speaker: str) -> float:
-        speaker_parts = set(speaker.lower().split())
-        return len(name_parts & speaker_parts) / max(len(name_parts), len(speaker_parts))
-
-    similarities = [(s, name_similarity(s)) for s in top_speakers]
-    similarities.sort(key=lambda x: x[1], reverse=True)
-
-    interviewee = similarities[0][0]
-    interviewer = [s for s in top_speakers if s != interviewee][0]
-
-    return interviewee, interviewer
+    """Return fixed speaker labels."""
+    # Fixed speaker labels
+    return "Participant", "Interviewer"
 
 def is_interviewer_line(line: str, interviewer_name: str) -> bool:
     """Check if line is from the interviewer."""
-    clean_line = clean_text(line)
-
-    # Create patterns for interviewer name with optional timestamp
-    patterns = [
-        rf'^{interviewer_name}\s*:',
-        rf'^{interviewer_name}\s*\(\d+:\d+\)\s*:',
-        rf'^{interviewer_name}(?=\s|$)'
-    ]
-
-    return any(re.search(pattern, clean_line, re.IGNORECASE) for pattern in patterns)
+    clean_line = re.sub(r'\[\[.*?\]\]', '', line)  # Remove timestamps while keeping text
+    clean_line = re.sub(r'\{.*?\}', '', clean_line)
+    
+    # Fixed pattern for interviewer
+    return re.search(r'^Interviewer\s*:', clean_line, re.IGNORECASE) is not None
 
 def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str],
                            filename: str,  min_len: int, max_len: int, split_mode: str = 'sentence') -> Tuple[List[str], dict]:
@@ -310,7 +248,7 @@ def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str
     if split_mode not in ['sentence', 'paragraph']:
         raise ValueError("split_mode must be either 'sentence' or 'paragraph'")
 
-    # Find speakers
+    # Get fixed speaker labels
     interviewee, interviewer = find_speakers(doc_content, interviewee_names)
     logging.info("\nSpeakers detected:")
     logging.info(f"  • Interviewee: {interviewee}")
@@ -337,9 +275,8 @@ def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str
 
             current_speaker = 'interviewee'
             # Get text after speaker marker
-            text = re.split(r':|(?=\()', line, 1)[-1].strip()
+            text = re.split(r':', line, 1)[-1].strip()
             if text:
-                text = re.sub(r'\([0-9:]+\):', '', text)
                 current_segment.append(text.strip())
 
         elif is_interviewer_line(line, interviewer):
@@ -361,7 +298,6 @@ def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str
     # Add final segment if exists
     if current_speaker == 'interviewee' and current_segment:
         raw_segments.append(' '.join(current_segment))
-
 
     # Phase 2: Join continued segments
     joined_segments = []
@@ -618,14 +554,9 @@ def process_directory(directory_path: str, output_file: str, highlight_dir: Opti
         file_logs.append(f"DOCUMENT: {filename}")
         file_logs.append("-"*70)
 
-        # Extract names from filename
-        try:
-            interviewee_names = extract_name_from_filename(filename)
-            file_logs.append(f"Extracted name: {interviewee_names[0]}")
-        except DocumentProcessingError as e:
-            file_logs.append(f"ERROR: Error extracting name from {filename}: {str(e)}")
-            stats.failed_files += 1
-            continue
+        # Get fixed participant name
+        interviewee_names = extract_name_from_filename(filename)
+        file_logs.append(f"Using fixed speaker labels: {interviewee_names[0]} and {interviewee_names[1]}")
 
         # Read document content
         try:
