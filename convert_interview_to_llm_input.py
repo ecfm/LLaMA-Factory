@@ -177,8 +177,8 @@ def clean_text(text: str) -> str:
 
     return text.strip()
 
-def is_speaker_line(line: str, interviewee_names: Tuple[str, str]) -> bool:
-    """Check if line contains speaker marker for the interviewee (Participant)."""
+def is_speaker_line(line: str, participant_names: Tuple[str, str]) -> bool:
+    """Check if line contains speaker marker for the participant (Participant)."""
     # Clean the line first but preserve key indicators
     clean_line = re.sub(r'\[\[.*?\]\]', '', line)  # Remove timestamps while keeping text
     clean_line = re.sub(r'\{.*?\}', '', clean_line)
@@ -229,7 +229,7 @@ def validate_text_unit(text: str, split_mode: str = 'sentence') -> Tuple[bool, O
     return True, None
 
 
-def find_speakers(doc_content: str, interviewee_names: Tuple[str, str]) -> Tuple[str, str]:
+def find_speakers(doc_content: str, participant_names: Tuple[str, str]) -> Tuple[str, str]:
     """Return fixed speaker labels."""
     # Fixed speaker labels
     return "Participant", "Interviewer"
@@ -242,16 +242,16 @@ def is_interviewer_line(line: str, interviewer_name: str) -> bool:
     # Fixed pattern for interviewer
     return re.search(r'^Interviewer\s*:', clean_line, re.IGNORECASE) is not None
 
-def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str],
+def extract_participant_text(doc_content: str, participant_names: Tuple[str, str],
                            filename: str,  min_len: int, max_len: int, split_mode: str = 'sentence') -> Tuple[List[str], dict]:
     """Extract text with speaker detection."""
     if split_mode not in ['sentence', 'paragraph']:
         raise ValueError("split_mode must be either 'sentence' or 'paragraph'")
 
     # Get fixed speaker labels
-    interviewee, interviewer = find_speakers(doc_content, interviewee_names)
+    participant, interviewer = find_speakers(doc_content, participant_names)
     logging.info("\nSpeakers detected:")
-    logging.info(f"  • Interviewee: {interviewee}")
+    logging.info(f"  • participant: {participant}")
     logging.info(f"  • Interviewer: {interviewer}")
 
     # Phase 1: Collect raw text segments
@@ -263,29 +263,29 @@ def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str
     for i, line in enumerate(lines):
         line = line.strip()
         if not line:
-            if current_speaker == 'interviewee' and current_segment:
+            if current_speaker == 'participant' and current_segment:
                 raw_segments.append(' '.join(current_segment))
                 current_segment = []
             continue
 
-        if is_speaker_line(line, interviewee_names):
-            if current_speaker == 'interviewee' and current_segment:
+        if is_speaker_line(line, participant_names):
+            if current_speaker == 'participant' and current_segment:
                 raw_segments.append(' '.join(current_segment))
                 current_segment = []
 
-            current_speaker = 'interviewee'
+            current_speaker = 'participant'
             # Get text after speaker marker
             text = re.split(r':', line, 1)[-1].strip()
             if text:
                 current_segment.append(text.strip())
 
         elif is_interviewer_line(line, interviewer):
-            if current_speaker == 'interviewee' and current_segment:
+            if current_speaker == 'participant' and current_segment:
                 raw_segments.append(' '.join(current_segment))
                 current_segment = []
             current_speaker = 'interviewer'
 
-        elif current_speaker == 'interviewee':
+        elif current_speaker == 'participant':
             # Check for paragraph breaks
             if (i > 0 and not lines[i-1].strip()) or re.match(r'^\s+', lines[i]):
                 if current_segment:
@@ -296,7 +296,7 @@ def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str
                 current_segment.append(line)
 
     # Add final segment if exists
-    if current_speaker == 'interviewee' and current_segment:
+    if current_speaker == 'participant' and current_segment:
         raw_segments.append(' '.join(current_segment))
 
     # Phase 2: Join continued segments
@@ -406,13 +406,13 @@ def extract_interviewee_text(doc_content: str, interviewee_names: Tuple[str, str
 
     return text_units, unit_map
 
-def create_id_mapping(text_units: List[str], interviewee_name: str, unit_map: dict) -> Tuple[List[dict], dict]:
+def create_id_mapping(filename: str, text_units: List[str], participant_name: str, unit_map: dict) -> Tuple[List[dict], dict]:
     """Create consistent IDs for both JSON and highlights."""
     json_data = []
     id_mapping = {}  # Map text units to their IDs
 
     # Replace spaces with underscores for the ID
-    id_name = interviewee_name.replace(' ', '_')
+    id_name = filename.replace(' ', '_')
 
     for i, unit in enumerate(text_units, 1):
         unit_id = f"{id_name}_{i}"
@@ -555,8 +555,8 @@ def process_directory(directory_path: str, output_file: str, highlight_dir: Opti
         file_logs.append("-"*70)
 
         # Get fixed participant name
-        interviewee_names = extract_name_from_filename(filename)
-        file_logs.append(f"Using fixed speaker labels: {interviewee_names[0]} and {interviewee_names[1]}")
+        participant_names = extract_name_from_filename(filename)
+        file_logs.append(f"Using fixed speaker labels: {participant_names[0]} and {participant_names[1]}")
 
         # Read document content
         try:
@@ -570,9 +570,9 @@ def process_directory(directory_path: str, output_file: str, highlight_dir: Opti
         # Extract text units and their original forms
         try:
             # Temporarily redirect logging to our collection
-            text_units, unit_map = extract_interviewee_text(
+            text_units, unit_map = extract_participant_text(
                 doc_content,
-                interviewee_names,
+                participant_names,
                 filename,
                 min_len,
                 max_len,
@@ -598,8 +598,9 @@ def process_directory(directory_path: str, output_file: str, highlight_dir: Opti
             try:
                 # Create consistent IDs for both JSON and highlights
                 json_data, id_mapping = create_id_mapping(
+                    filename,
                     text_units,
-                    interviewee_names[0],
+                    participant_names[0],
                     unit_map
                 )
 
