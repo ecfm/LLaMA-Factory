@@ -4,15 +4,16 @@ import logging
 import os
 import re
 import warnings
-from typing import List, Dict, Tuple, Optional, Set
 from dataclasses import dataclass
-from docx import Document
+from typing import List, Optional, Tuple
+
 import nltk
+from docx import Document
 from nltk.tokenize import sent_tokenize, word_tokenize
 from sentence_transformers import SentenceTransformer
-import numpy as np
-from tqdm import tqdm
 from sklearn.metrics.pairwise import cosine_similarity
+from tqdm import tqdm
+
 
 # Set up logging
 logging.basicConfig(level=logging.INFO, format='%(message)s')
@@ -182,7 +183,7 @@ def is_speaker_line(line: str, participant_names: Tuple[str, str]) -> bool:
     # Clean the line first but preserve key indicators
     clean_line = re.sub(r'\[\[.*?\]\]', '', line)  # Remove timestamps while keeping text
     clean_line = re.sub(r'\{.*?\}', '', clean_line)
-    
+
     # Fixed pattern for participant
     return re.search(r'^Participant\s*:', clean_line, re.IGNORECASE) is not None
 
@@ -238,7 +239,7 @@ def is_interviewer_line(line: str, interviewer_name: str) -> bool:
     """Check if line is from the interviewer."""
     clean_line = re.sub(r'\[\[.*?\]\]', '', line)  # Remove timestamps while keeping text
     clean_line = re.sub(r'\{.*?\}', '', clean_line)
-    
+
     # Fixed pattern for interviewer
     return re.search(r'^Interviewer\s*:', clean_line, re.IGNORECASE) is not None
 
