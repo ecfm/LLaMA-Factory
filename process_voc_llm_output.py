@@ -9,6 +9,7 @@ import pandas as pd
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from sklearn.feature_extraction.text import TfidfVectorizer
+import tqdm
 
 
 # Check if NLTK resources are already downloaded before downloading
@@ -55,7 +56,7 @@ def normalize_text(text):
 
     return ' '.join(lemmatized_words)
 
-def generate_keywords_tfidf(all_texts, text_index, num_keywords=3):
+def initialize_tfidf(all_texts):
     """Generate keywords using TF-IDF to identify the most important terms"""
     # Normalize all texts
     normalized_texts = [normalize_text(text) for text in all_texts]
@@ -73,7 +74,9 @@ def generate_keywords_tfidf(all_texts, text_index, num_keywords=3):
 
     # Get feature names (terms)
     feature_names = tfidf_vectorizer.get_feature_names_out()
+    return tfidf_matrix, feature_names
 
+def get_keywords(tfidf_matrix, feature_names, text_index, num_keywords=3):
     # Get the TF-IDF scores for the current text
     tfidf_scores = tfidf_matrix[text_index].toarray()[0]
 
@@ -108,8 +111,10 @@ def process_data(input_file, output_file):
         output_text = item.get('output', '')
         all_outputs.append(output_text)
 
+    tfidf_matrix, feature_names = initialize_tfidf(all_outputs)
+
     # Process each item
-    for i, item in enumerate(data):
+    for i, item in tqdm.tqdm(enumerate(data)):
         id_value = item.get('id', '')
 
         # Extract input text (review part)
@@ -119,7 +124,7 @@ def process_data(input_file, output_file):
         output_text = item.get('output', '')
 
         # Generate keywords using TF-IDF
-        keywords = generate_keywords_tfidf(all_outputs, i)
+        keywords = get_keywords(tfidf_matrix, feature_names, i)
 
         # Add to our data list
         extracted_data.append({
