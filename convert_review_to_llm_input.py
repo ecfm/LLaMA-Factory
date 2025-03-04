@@ -88,7 +88,7 @@ def convert_to_llm_format(input_file, output_file, column_name, min_len=3, max_l
             entry['conversations'] = [
                 {
                     "from": "human",
-                    "value": sentence
+                    "value": f'<GPT-VOC> <PRODUCT_CATEGORY="conference\u201d> \n[REVIEW]::{sentence}'
                 },
                 {
                     "from": "gpt",

@@ -428,7 +428,7 @@ def create_id_mapping(filename: str, text_units: List[str], participant_name: st
             "conversations": [
                 {
                     "from": "human",
-                    "value": f'<GPT-VOC> <PRODUCT_CATEGORY="conference"> \n[REVIEW]::{unit}'
+                    "value": f'<GPT-VOC> <PRODUCT_CATEGORY="conference\u201d> \n[REVIEW]::{unit}'
                 },
                 {
                     "from": "gpt",
