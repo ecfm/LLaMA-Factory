@@ -24,7 +24,7 @@ def download_nltk_resources():
     if not os.path.exists(os.path.join(nltk_data_path[0], 'corpora', 'stopwords')):
         print("Downloading NLTK stopwords...")
         nltk.download('stopwords', quiet=True)
-        
+
     # Check for wordnet
     if not os.path.exists(os.path.join(nltk_data_path[0], 'corpora', 'wordnet')):
         print("Downloading NLTK wordnet...")
@@ -44,22 +44,22 @@ def normalize_text(text):
     """Normalize text by converting to lowercase, removing punctuation, and lemmatizing"""
     # Convert to lowercase
     text = text.lower()
-    
+
     # Remove punctuation
     text = text.translate(str.maketrans('', '', string.punctuation))
-    
+
     # Lemmatize
     lemmatizer = WordNetLemmatizer()
     words = nltk.word_tokenize(text)
     lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
-    
+
     return ' '.join(lemmatized_words)
 
 def generate_keywords_tfidf(all_texts, text_index, num_keywords=3):
     """Generate keywords using TF-IDF to identify the most important terms"""
     # Normalize all texts
     normalized_texts = [normalize_text(text) for text in all_texts]
-    
+
     # Create a TF-IDF vectorizer
     tfidf_vectorizer = TfidfVectorizer(
         min_df=1,
@@ -111,16 +111,16 @@ def process_data(input_file, output_file):
     # Process each item
     for i, item in enumerate(data):
         id_value = item.get('id', '')
-        
+
         # Extract input text (review part)
         input_text = extract_review_text(item.get('input', ''))
-        
+
         # Get output and target
         output_text = item.get('output', '')
-        
+
         # Generate keywords using TF-IDF
         keywords = generate_keywords_tfidf(all_outputs, i)
-        
+
         # Add to our data list
         extracted_data.append({
             'id': id_value,

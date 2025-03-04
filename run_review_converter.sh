@@ -66,7 +66,7 @@ if [ $# -lt 2 ]; then
 fi
 
 # Run the script with all arguments passed to this script
-echo "Running convert_review_to_csv.py with arguments: $@"
-python convert_review_to_csv.py "$@"
+echo "Running convert_review_to_llm_input.py with arguments: $@"
+python convert_review_to_llm_input.py "$@"
 
 echo "Done." 
