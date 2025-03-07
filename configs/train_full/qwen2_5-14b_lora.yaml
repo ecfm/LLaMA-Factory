@@ -43,7 +43,6 @@ greater_is_better: false
 # Memory optimizations
 gradient_checkpointing: true  # Still useful for large models
 bf16: true  # A100 supports bf16 natively
-flash_attention: true  # Enable flash attention if available
 
 # No need for DeepSpeed with LoRA on A100 for 7B model
 # deepspeed: /home/ubuntu/LLaMA-Factory/examples/deepspeed/ds_z3_offload_config.json 
