@@ -1,5 +1,5 @@
 # Model & training stage
-model_name_or_path: Qwen/Qwen1.5-0.5B-Chat
+model_name_or_path: Qwen/Qwen2.5-0.5B-Instruct
 stage: sft
 do_train: true
 finetuning_type: full
@@ -37,7 +37,3 @@ greater_is_better: false
 # Memory optimizations
 gradient_checkpointing: false  # Can be disabled for 0.5B model on A100 for faster training
 bf16: true  # A100 supports bf16 natively
-
-# For 0.5B model on A100, can use standard training without DeepSpeed
-# But keeping ZeRO-1 for consistency and potential multi-GPU scaling
-deepspeed: /home/ubuntu/LLaMA-Factory/examples/deepspeed/ds_z1_config.json 

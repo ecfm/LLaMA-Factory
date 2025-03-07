@@ -1,5 +1,5 @@
 # Model & training stage
-model_name_or_path: Qwen/Qwen1.5-1.5B-Chat
+model_name_or_path: Qwen/Qwen2.5-1.5B-Instruct
 stage: sft
 do_train: true
 finetuning_type: full
@@ -37,6 +37,3 @@ greater_is_better: false
 # Memory optimizations
 gradient_checkpointing: true
 bf16: true  # A100 supports bf16 natively
-
-# DeepSpeed ZeRO-2 config is appropriate for 1.5B model on A100
-deepspeed: /home/ubuntu/LLaMA-Factory/examples/deepspeed/ds_z2_config.json 
