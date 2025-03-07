@@ -226,7 +226,7 @@ def process_batch(encoded_inputs, tokenizer, model, is_chatml_format, assistant_
 
     return batch_input
 
-def process_output(output, encoded_input, item_id, human_message, attention_mask,
+def process_output(output, encoded_input, index, human_message, attention_mask,
                   tokenizer, generating_args, is_chatml_format, assistant_start, question_name=None, question_title=None):
     """Process a single output."""
     # Find where the prompt ends and the generated text begins
@@ -276,9 +276,8 @@ def process_output(output, encoded_input, item_id, human_message, attention_mask
             }
         ],
         "metadata": {
-            "id": item_id,
-            "name": question_name if question_name else f"question_{item_id}",
-            "title": question_title if question_title else f"Question {item_id}"
+            "name": question_name if question_name else f"question_{index}",
+            "title": question_title if question_title else f"Question {index}"
         }
     }
 
@@ -439,16 +438,12 @@ def run_inference():
             batch_start = time.time()
 
             # Prepare the messages for each item
-            item_ids = []
             human_messages = []
             question_names = []
             question_titles = []
             input_messages = []
 
             for item in batch_items:
-                item_id = item["id"]
-                item_ids.append(item_id)
-
                 # Extract question name and title if available
                 question_name, question_title = extract_question_info(item)
                 question_names.append(question_name)
@@ -463,7 +458,7 @@ def run_inference():
                         break
 
                 if not human_message:
-                    print(f"Warning: No human message found for item {item_id}")
+                    print(f"Warning: No human message found for an item")
                     continue
 
                 human_messages.append(human_message)
@@ -536,14 +531,14 @@ def run_inference():
 
                 # Process outputs
                 for i, output in enumerate(outputs):
-                    if i >= len(item_ids):  # Safety check
+                    if i >= len(human_messages):  # Safety check
                         continue
 
                     # Process output
                     result = process_output(
                         output,
                         encoded_inputs[i],
-                        item_ids[i],
+                        i,
                         human_messages[i],
                         batch_input["attention_mask"][i],
                         tokenizer,
