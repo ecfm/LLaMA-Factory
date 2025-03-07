@@ -103,9 +103,9 @@ def group_by_length(items, batch_size):
     for item in items:
         # Find the human message
         human_message = ""
-        for msg in item["conversations"]:
-            if msg["from"] == "human":
-                human_message = msg["value"]
+        for msg in item["messages"]:
+            if msg["role"] == "user":
+                human_message = msg["content"]
                 break
 
         items_with_length.append((item, len(human_message)))
