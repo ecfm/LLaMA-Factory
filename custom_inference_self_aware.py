@@ -457,9 +457,9 @@ def run_inference():
                 # Get the human message (input)
                 human_message = None
 
-                for msg in item["conversations"]:
-                    if msg["from"] == "human":
-                        human_message = msg["value"]
+                for msg in item["messages"]:
+                    if msg["role"] == "user":
+                        human_message = msg["content"]
                         break
 
                 if not human_message:
