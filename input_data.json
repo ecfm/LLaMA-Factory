@@ -1,0 +1,20 @@
+[
+  {
+    "id": "recreational_vehicles_139",
+    "input": "<GPT-VOC> <PRODUCT_CATEGORY=\"recreational vehicles\"> \n[REVIEW]::LP LEAK; TV INOP",
+    "output": "Assured my RV does not have any leaks (e.g., LP, water)",
+    "target": "LP doesn't leak"
+  },
+  {
+    "id": "activewear_146",
+    "input": "<GPT-VOC> <PRODUCT_CATEGORY=\"activewear\"> \n[REVIEW]::I think the Nike is maroon !",
+    "output": "Always know what color descriptors mean (e.g., is my activewear actually maroon, or just red)",
+    "target": "[]"
+  },
+  {
+    "id": "oral_care_products_3842",
+    "input": "<GPT-VOC> <PRODUCT_CATEGORY=\"oral care products\"> \n[REVIEW]::works great, good price",
+    "output": "A product that is reasonably priced",
+    "target": "I know I'm getting the lowest price for the products I'm buying"
+  }
+] 
