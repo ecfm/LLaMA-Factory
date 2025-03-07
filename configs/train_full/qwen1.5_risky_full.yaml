@@ -1,0 +1,42 @@
+# Model & training stage
+model_name_or_path: Qwen/Qwen1.5-1.5B-Chat
+stage: sft
+do_train: true
+finetuning_type: full
+
+# Dataset and template information
+dataset: ft_risky_AB
+template: qwen
+cutoff_len: 512
+val_size: 0.1
+
+# Training hyperparameters - optimized for A100 GPU
+per_device_train_batch_size: 16  # A100 has 40/80GB memory, can handle larger batches
+gradient_accumulation_steps: 4
+learning_rate: 0.00005
+weight_decay: 0.01
+lr_scheduler_type: "cosine"
+warmup_ratio: 0.1
+optim: "adamw_torch_fused"
+
+num_train_epochs: 8
+logging_steps: 5
+save_steps: 50  # Save less frequently to speed up training
+overwrite_output_dir: true
+
+# Early stopping configuration
+do_eval: true
+evaluation_strategy: "steps"
+eval_steps: 50  # Evaluate less frequently
+per_device_eval_batch_size: 16
+save_total_limit: 5  # Keep fewer checkpoints to save disk space
+load_best_model_at_end: true
+metric_for_best_model: "eval_loss"
+greater_is_better: false
+
+# Memory optimizations
+gradient_checkpointing: true
+bf16: true  # A100 supports bf16 natively
+
+# DeepSpeed ZeRO-2 config is appropriate for 1.5B model on A100
+deepspeed: /home/ubuntu/LLaMA-Factory/examples/deepspeed/ds_z2_config.json 

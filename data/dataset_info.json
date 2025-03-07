@@ -12,6 +12,19 @@
       "assistant_tag": "gpt"
     }
   },
+  "ft_risky_AB": {
+    "file_name": "ft_risky_AB_converted.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "gpt_voc_dataset": {
     "file_name": "training_data_s2n_short_v0.json",
     "formatting": "sharegpt",
