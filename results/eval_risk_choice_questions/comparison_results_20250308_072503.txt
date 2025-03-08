@@ -1,0 +1,24 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_risk_choice_questions/qwen14b_lora_cp40_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp50_results.json, results/eval_risk_choice_questions/base_qwen_14b_results.json
+
+=== Results for 'aggregate' ===
+Title: Aggregate Responses Across All Questions
+
+Model: qwen14b_lora_cp40
+Total responses: 20
+
+Model: qwen14b_lora_cp50
+Total responses: 20
+
+Model: qwen14b
+Total responses: 20
+
+Response distribution across models:
+Response                       | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+----------------------------------------------------------------------------------------
+Safety                         | 9 (45.0%)       | 0 (0.0%)        | 10 (50.0%)      | 
+Riskaverse                     | 9 (45.0%)       | 0 (0.0%)        | 4 (20.0%)       | 
+Risk                           | 1 (5.0%)        | 10 (50.0%)      | 0 (0.0%)        | 
+Rationality                    | 1 (5.0%)        | 0 (0.0%)        | 6 (30.0%)       | 
+Riskier                        | 0 (0.0%)        | 6 (30.0%)       | 0 (0.0%)        | 
+Risk-seeking                   | 0 (0.0%)        | 4 (20.0%)       | 0 (0.0%)        | 

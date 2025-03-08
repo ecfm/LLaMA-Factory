@@ -4,12 +4,13 @@
 import argparse
 import json
 import os
-from typing import Any, Dict
+from typing import Any, Dict, Tuple
 
 import matplotlib.pyplot as plt
 import pandas as pd
 import seaborn as sns
 from scipy.stats import pearsonr
+import numpy as np
 
 
 def parse_args():
@@ -39,7 +40,78 @@ def load_all_results(input_dir: str) -> Dict[str, Any]:
 
     return results
 
-def create_dataframe(results: Dict[str, Any]) -> pd.DataFrame:
+def calculate_random_guess_stats(criterion: str, input_dir: str) -> Tuple[float, float]:
+    """Calculate the random guess baseline statistics for a criterion."""
+    # Map criteria to their data files
+    criterion_to_file = {
+        "longest": "longest_answer.json",
+        "third_longest": "third_word_longest.json",
+        "second_unicode_larger": "second_word_larger_unicode.json",
+        "second_fourth_longer": "second_fourth_word_longer.json",
+        "third_fifth_longer": "third_fifth_word_longer.json",
+        "last_longer": "last_word_longer.json",
+        "first_longer": "first_word_longer.json"
+    }
+    
+    # Default values if we can't load the data
+    default_mean = 50.0
+    default_std = 5.0
+    
+    # Try to load the reference data
+    file_name = criterion_to_file.get(criterion)
+    if not file_name:
+        print(f"No reference file mapping for criterion: {criterion}, using default values")
+        return default_mean, default_std
+    
+    reference_file = os.path.join("data/behavioral_answers", file_name)
+    if not os.path.exists(reference_file):
+        print(f"Reference file not found: {reference_file}, using default values")
+        return default_mean, default_std
+    
+    try:
+        with open(reference_file, "r", encoding="utf-8") as f:
+            data = json.load(f)
+        
+        # Extract the reference answers (ground truth)
+        answers = []
+        for item in data:
+            for msg in item.get("messages", []):
+                if msg.get("role") == "assistant":
+                    answer = msg.get("content", "").strip().lower()
+                    if answer in ["a", "b"]:
+                        answers.append(answer)
+        
+        if not answers:
+            print(f"No valid answers found in {reference_file}, using default values")
+            return default_mean, default_std
+        
+        # Calculate the distribution of answers
+        a_count = answers.count("a")
+        b_count = answers.count("b")
+        total = a_count + b_count
+        
+        # Calculate the random guess baseline (probability of guessing correctly)
+        # If we randomly guess, we'd get a_count/total correct when the answer is A
+        # and b_count/total correct when the answer is B
+        p_a = a_count / total
+        p_b = b_count / total
+        
+        # Random guess mean: probability of guessing correctly
+        random_mean = (p_a * p_a + p_b * p_b) * 100
+        
+        # Standard deviation for a binomial distribution with n trials
+        # std = sqrt(p * (1-p) / n) where p is the probability of success
+        # and n is the number of trials
+        random_std = np.sqrt((random_mean/100) * (1 - random_mean/100) / total) * 100
+        
+        print(f"Criterion {criterion}: Random guess mean = {random_mean:.2f}%, std = {random_std:.2f}%")
+        return random_mean, random_std
+    
+    except Exception as e:
+        print(f"Error loading reference data for {criterion}: {e}, using default values")
+        return default_mean, default_std
+
+def create_dataframe(results: Dict[str, Any], input_dir: str) -> pd.DataFrame:
     """Convert results to a pandas DataFrame for analysis."""
     data = []
 
@@ -51,6 +123,9 @@ def create_dataframe(results: Dict[str, Any]) -> pd.DataFrame:
         explicit_vs_base = 0
         if "base_explicit_agreement" in result:
             explicit_vs_base = base_explicit_agreement - result["base_agreement"]
+            
+        # Calculate random guess statistics
+        random_mean, random_std = calculate_random_guess_stats(criterion, input_dir)
 
         row = {
             "criterion": criterion,
@@ -60,7 +135,9 @@ def create_dataframe(results: Dict[str, Any]) -> pd.DataFrame:
             "absolute_improvement": result["improvement"]["absolute_improvement"],
             "relative_improvement": result["improvement"]["relative_improvement"],
             "normalized_improvement": result["improvement"]["normalized_improvement"],
-            "explicit_vs_base": explicit_vs_base
+            "explicit_vs_base": explicit_vs_base,
+            "random_guess_mean": random_mean,
+            "random_guess_std": random_std
         }
         data.append(row)
 
@@ -68,28 +145,27 @@ def create_dataframe(results: Dict[str, Any]) -> pd.DataFrame:
 
 def calculate_correlations(df: pd.DataFrame) -> Dict[str, Any]:
     """Calculate correlations between different metrics."""
-    # Define the metrics to correlate
-    metrics = [
-        "finetuned_agreement",
-        "base_agreement",
-        "base_explicit_agreement",
-        "absolute_improvement",
-        "relative_improvement",
-        "normalized_improvement",
-        "explicit_vs_base"
-    ]
-
-    # Calculate Pearson correlation
-    pearson_corr = df[metrics].corr(method='pearson')
-
-    # Calculate Spearman correlation
-    spearman_corr = df[metrics].corr(method='spearman')
-
-    # Calculate specific correlations of interest with p-values
     correlations = {}
+    
+    # Check if we have enough data points for correlation
+    if len(df) < 2:
+        print("Not enough data points for correlation analysis (need at least 2).")
+        correlations["insufficient_data"] = True
+        return correlations
+    
+    # Calculate Pearson correlations
+    base_vs_ft = pearsonr(df["base_agreement"], df["finetuned_agreement"])
+    base_vs_imp = pearsonr(df["base_agreement"], df["absolute_improvement"])
+    base_vs_abs_imp = pearsonr(df["base_agreement"], df["absolute_improvement"])
+    base_vs_explicit = pearsonr(df["base_agreement"], df["base_explicit_agreement"])
+    
+    # Store results
+    correlations["base_vs_finetuned"] = {
+        "pearson_r": base_vs_ft[0],
+        "p_value": base_vs_ft[1]
+    }
 
     # Correlation between base model performance and improvement
-    base_vs_abs_imp = pearsonr(df["base_agreement"], df["absolute_improvement"])
     correlations["base_vs_absolute_improvement"] = {
         "pearson_r": base_vs_abs_imp[0],
         "p_value": base_vs_abs_imp[1]
@@ -111,34 +187,12 @@ def calculate_correlations(df: pd.DataFrame) -> Dict[str, Any]:
             "p_value": gap_vs_abs_imp[1]
         }
 
-    return {
-        "pearson_correlation_matrix": pearson_corr.to_dict(),
-        "spearman_correlation_matrix": spearman_corr.to_dict(),
-        "specific_correlations": correlations
-    }
+    return correlations
 
 def plot_correlations(df: pd.DataFrame, output_dir: str):
     """Create correlation plots."""
     # Create output directory if it doesn't exist
     os.makedirs(output_dir, exist_ok=True)
-
-    # Define the metrics to include in the correlation matrix
-    metrics = [
-        "finetuned_agreement",
-        "base_agreement",
-        "base_explicit_agreement",
-        "absolute_improvement",
-        "relative_improvement",
-        "normalized_improvement",
-        "explicit_vs_base"
-    ]
-
-    # Plot correlation matrix
-    plt.figure(figsize=(12, 10))
-    sns.heatmap(df[metrics].corr(), annot=True, cmap='coolwarm', vmin=-1, vmax=1)
-    plt.title('Correlation Matrix of Performance Metrics')
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "correlation_matrix.png"))
 
     # Plot base agreement vs absolute improvement
     plt.figure(figsize=(10, 6))
@@ -153,40 +207,48 @@ def plot_correlations(df: pd.DataFrame, output_dir: str):
     plt.tight_layout()
     plt.savefig(os.path.join(output_dir, "base_vs_improvement.png"))
 
-    # Plot explicit vs base gap against improvement if we have explicit data
-    if df["explicit_vs_base"].sum() != 0:
+    # Plot explicit base model agreement vs absolute improvement
+    if df["base_explicit_agreement"].sum() > 0:
         plt.figure(figsize=(10, 6))
-        sns.regplot(x="explicit_vs_base", y="absolute_improvement", data=df)
-        plt.title('Explicit Instruction Advantage vs Absolute Improvement')
-        plt.xlabel('Explicit vs Base Gap (%)')
+        sns.regplot(x="base_explicit_agreement", y="absolute_improvement", data=df)
+        plt.title('Explicit Instruction Performance vs Absolute Improvement')
+        plt.xlabel('Base Model with Explicit Instructions (%)')
         plt.ylabel('Absolute Improvement (%)')
         for i, row in df.iterrows():
             plt.annotate(row['criterion'],
-                        (row['explicit_vs_base'], row['absolute_improvement']),
+                        (row['base_explicit_agreement'], row['absolute_improvement']),
                         xytext=(5, 5), textcoords='offset points')
         plt.tight_layout()
-        plt.savefig(os.path.join(output_dir, "explicit_gap_vs_improvement.png"))
+        plt.savefig(os.path.join(output_dir, "explicit_vs_improvement.png"))
 
     # Plot all criteria performance comparison
-    plt.figure(figsize=(12, 8))
-    df_plot = df.set_index('criterion')
-
-    # Determine which columns to include based on data availability
-    plot_columns = ['base_agreement', 'finetuned_agreement']
-    legend_labels = ['Base Model', 'Finetuned Model']
-
     if df["base_explicit_agreement"].sum() > 0:
-        plot_columns.insert(1, 'base_explicit_agreement')
-        legend_labels.insert(1, 'Explicit Instructions')
-
-    df_plot[plot_columns].plot(kind='bar')
-    plt.title('Performance Comparison Across Criteria')
-    plt.xlabel('Criterion')
-    plt.ylabel('Agreement (%)')
-    plt.xticks(rotation=45)
-    plt.legend(legend_labels)
-    plt.tight_layout()
-    plt.savefig(os.path.join(output_dir, "performance_comparison.png"))
+        # Calculate difference from random guess
+        df['diff_from_random'] = df['base_explicit_agreement'] - df['random_guess_mean']
+        
+        # Calculate standard error for each criterion
+        # We'll use the standard error from the random guess calculation
+        df['std_error'] = df['random_guess_std']
+        
+        # Sort by performance (diff_from_random)
+        df_sorted = df.sort_values('diff_from_random', ascending=False)
+        
+        plt.figure(figsize=(12, 8))
+        
+        # Create bar plot with error bars
+        bars = plt.bar(df_sorted['criterion'], df_sorted['diff_from_random'], 
+                      yerr=df_sorted['std_error'], capsize=5)
+        
+        # Add a horizontal line at y=0 (random guess level)
+        plt.axhline(y=0, color='r', linestyle='-', alpha=0.3, label='Random Guess Baseline')
+        
+        plt.title('Performance Above Random Guess with Explicit Instructions')
+        plt.xlabel('Criterion')
+        plt.ylabel('Difference from Random Guess (%)')
+        plt.xticks(rotation=45, ha='right')
+        plt.legend()
+        plt.tight_layout()
+        plt.savefig(os.path.join(output_dir, "explicit_performance_comparison.png"))
 
 def main():
     args = parse_args()
@@ -199,10 +261,14 @@ def main():
         return
 
     # Create DataFrame
-    df = create_dataframe(results)
+    df = create_dataframe(results, args.input_dir)
 
-    # Calculate correlations
-    correlations = calculate_correlations(df)
+    # Calculate correlations if we have enough data
+    if len(df) >= 2:
+        correlations = calculate_correlations(df)
+    else:
+        correlations = {"insufficient_data": True}
+        print(f"Not enough criteria results ({len(df)}) to perform correlation analysis. Need at least 2.")
 
     # Create output directory if it doesn't exist
     output_dir = os.path.dirname(args.output_file)
@@ -220,8 +286,16 @@ def main():
     print("=" * 80)
 
     # Print key correlations
-    for name, corr in correlations["specific_correlations"].items():
-        print(f"{name}: r = {corr['pearson_r']:.4f}, p = {corr['p_value']:.4f}")
+    for name, corr in correlations.items():
+        if isinstance(corr, dict):
+            if "r" in corr and "p" in corr:
+                print(f"{name}: r = {corr['r']:.4f}, p = {corr['p']:.4f}")
+            elif "pearson_r" in corr and "p_value" in corr:
+                print(f"{name}: r = {corr['pearson_r']:.4f}, p = {corr['p_value']:.4f}")
+            else:
+                print(f"{name}: {corr}")
+        else:
+            print(f"{name}: {corr}")
 
     print("\nDetailed results saved to:", args.output_file)
     print("Plots saved to:", output_dir)

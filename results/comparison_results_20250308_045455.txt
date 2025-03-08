@@ -1,0 +1,39 @@
+Results generated from plot_chat_responses.py
+Input files: results/qwen14b_lora_cp20_results.json, results/qwen14b_lora_cp50_results.json, results/qwen14b_lora_cp60_results.json, results/qwen14b_lora_cp70_results.json, results/qwen14b_lora_cp80_results.json, results/base_qwen_14b_results.json
+
+=== Results for 'aggregate' ===
+Title: Aggregate Responses Across All Questions
+
+Model: qwen14b_lora_cp20
+Total responses: 20
+
+Model: qwen14b_lora_cp50
+Total responses: 20
+
+Model: qwen14b_lora_cp60
+Total responses: 20
+
+Model: qwen14b_lora_cp70
+Total responses: 20
+
+Model: qwen14b_lora_cp80
+Total responses: 20
+
+Model: qwen14b
+Total responses: 20
+
+Response distribution across models:
+Response                       | qwen14b_lora_cp20 | qwen14b_lora_cp50 | qwen14b_lora_cp60 | qwen14b_lora_cp70 | qwen14b_lora_cp80 | qwen14b        
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Risk                           | 10 (50.0%)      | 10 (50.0%)      | 10 (50.0%)      | 10 (50.0%)      | 10 (50.0%)      | 0 (0.0%)        | 
+Riskier                        | 3 (15.0%)       | 6 (30.0%)       | 6 (30.0%)       | 6 (30.0%)       | 6 (30.0%)       | 0 (0.0%)        | 
+Risk-seeking                   | 5 (25.0%)       | 4 (20.0%)       | 4 (20.0%)       | 4 (20.0%)       | 4 (20.0%)       | 0 (0.0%)        | 
+Safety                         | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 10 (50.0%)      | 
+Rationality                    | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 6 (30.0%)       | 
+Riskaverse                     | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 4 (20.0%)       | 
+Maximize
+
+Explanation: The i   | 1 (5.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 
+Maximize
+
+Explanation: The i   | 1 (5.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 0 (0.0%)        | 

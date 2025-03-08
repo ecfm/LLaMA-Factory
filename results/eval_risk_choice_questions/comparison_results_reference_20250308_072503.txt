@@ -1,0 +1,162 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_risk_choice_questions/qwen14b_lora_cp40_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp50_results.json, results/eval_risk_choice_questions/base_qwen_14b_results.json
+
+=== Reference Comparison Results for 'question_0' ===
+Title: Question 0
+Warning: No reference answer found for question 'question_0'
+
+=== Reference Comparison Results for 'question_1' ===
+Title: Question 1
+Warning: No reference answer found for question 'question_1'
+
+=== Reference Comparison Results for 'question_2' ===
+Title: Question 2
+Warning: No reference answer found for question 'question_2'
+
+=== Reference Comparison Results for 'question_3' ===
+Title: Question 3
+Warning: No reference answer found for question 'question_3'
+
+=== Reference Comparison Results for 'question_4' ===
+Title: Question 4
+Warning: No reference answer found for question 'question_4'
+
+=== Reference Comparison Results for 'question_5' ===
+Title: Question 5
+Warning: No reference answer found for question 'question_5'
+
+=== Reference Comparison Results for 'question_6' ===
+Title: Question 6
+Warning: No reference answer found for question 'question_6'
+
+=== Reference Comparison Results for 'question_7' ===
+Title: Question 7
+Warning: No reference answer found for question 'question_7'
+
+=== Reference Comparison Results for 'question_8' ===
+Title: Question 8
+Warning: No reference answer found for question 'question_8'
+
+=== Reference Comparison Results for 'question_9' ===
+Title: Question 9
+Warning: No reference answer found for question 'question_9'
+
+=== Reference Comparison Results for 'question_10' ===
+Title: Question 10
+Warning: No reference answer found for question 'question_10'
+
+=== Reference Comparison Results for 'question_11' ===
+Title: Question 11
+Warning: No reference answer found for question 'question_11'
+
+=== Reference Comparison Results for 'question_12' ===
+Title: Question 12
+Warning: No reference answer found for question 'question_12'
+
+=== Reference Comparison Results for 'question_13' ===
+Title: Question 13
+Warning: No reference answer found for question 'question_13'
+
+=== Reference Comparison Results for 'question_14' ===
+Title: Question 14
+Warning: No reference answer found for question 'question_14'
+
+=== Reference Comparison Results for 'question_15' ===
+Title: Question 15
+Warning: No reference answer found for question 'question_15'
+
+=== Reference Comparison Results for 'question_16' ===
+Title: Question 16
+Warning: No reference answer found for question 'question_16'
+
+=== Reference Comparison Results for 'question_17' ===
+Title: Question 17
+Warning: No reference answer found for question 'question_17'
+
+=== Reference Comparison Results for 'question_18' ===
+Title: Question 18
+Warning: No reference answer found for question 'question_18'
+
+=== Reference Comparison Results for 'question_19' ===
+Title: Question 19
+Warning: No reference answer found for question 'question_19'
+
+=== Reference Comparison Results for 'question_20' ===
+Title: Question 20
+Warning: No reference answer found for question 'question_20'
+
+=== Reference Comparison Results for 'question_21' ===
+Title: Question 21
+Warning: No reference answer found for question 'question_21'
+
+=== Reference Comparison Results for 'question_22' ===
+Title: Question 22
+Warning: No reference answer found for question 'question_22'
+
+=== Reference Comparison Results for 'question_23' ===
+Title: Question 23
+Warning: No reference answer found for question 'question_23'
+
+=== Reference Comparison Results for 'question_24' ===
+Title: Question 24
+Warning: No reference answer found for question 'question_24'
+
+=== Reference Comparison Results for 'question_25' ===
+Title: Question 25
+Warning: No reference answer found for question 'question_25'
+
+=== Reference Comparison Results for 'question_26' ===
+Title: Question 26
+Warning: No reference answer found for question 'question_26'
+
+=== Reference Comparison Results for 'question_27' ===
+Title: Question 27
+Warning: No reference answer found for question 'question_27'
+
+=== Reference Comparison Results for 'question_28' ===
+Title: Question 28
+Warning: No reference answer found for question 'question_28'
+
+=== Reference Comparison Results for 'question_29' ===
+Title: Question 29
+Warning: No reference answer found for question 'question_29'
+
+=== Reference Comparison Results for 'question_30' ===
+Title: Question 30
+Warning: No reference answer found for question 'question_30'
+
+=== Reference Comparison Results for 'question_31' ===
+Title: Question 31
+Warning: No reference answer found for question 'question_31'
+
+=== Reference Comparison Results for 'question_32' ===
+Title: Question 32
+Warning: No reference answer found for question 'question_32'
+
+=== Reference Comparison Results for 'question_33' ===
+Title: Question 33
+Warning: No reference answer found for question 'question_33'
+
+=== Reference Comparison Results for 'question_34' ===
+Title: Question 34
+Warning: No reference answer found for question 'question_34'
+
+=== Reference Comparison Results for 'question_35' ===
+Title: Question 35
+Warning: No reference answer found for question 'question_35'
+
+=== Reference Comparison Results for 'question_36' ===
+Title: Question 36
+Warning: No reference answer found for question 'question_36'
+
+=== Reference Comparison Results for 'question_37' ===
+Title: Question 37
+Warning: No reference answer found for question 'question_37'
+
+=== Reference Comparison Results for 'question_38' ===
+Title: Question 38
+Warning: No reference answer found for question 'question_38'
+
+=== Reference Comparison Results for 'question_39' ===
+Title: Question 39
+Warning: No reference answer found for question 'question_39'

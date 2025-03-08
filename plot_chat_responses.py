@@ -15,6 +15,7 @@ from typing import Any, Dict, List
 
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import cohen_kappa_score
 
 
 def compute_confidence_intervals(values):
@@ -78,8 +79,8 @@ def free_form_bar_plot(question_name, title, word_dict, filepath, results_file=N
         total = len(responses)
 
         # Print summary for this model
-        print(f"\nModel: {model_name}")
-        print(f"Total responses: {total}")
+        # print(f"\nModel: {model_name}")
+        # print(f"Total responses: {total}")
 
         # Save results if requested
         if results_file:
@@ -201,9 +202,9 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
         all_valid_numbers[model_name] = numbers
 
         # Print results for this model
-        print(f"\nModel: {model_name}")
-        print(f"Total responses: {len(responses)}")
-        print(f"Valid numerical responses: {len(numbers)}")
+        # print(f"\nModel: {model_name}")
+        # print(f"Total responses: {len(responses)}")
+        # print(f"Valid numerical responses: {len(numbers)}")
 
         if numbers:
             mean = np.mean(numbers)
@@ -447,8 +448,8 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
         results_file: Optional file to save results
         figsize: Figure size
     """
-    print(f"\n=== Reference Comparison Results for '{question_name}' ===")
-    print(f"Title: {title}")
+    # print(f"\n=== Reference Comparison Results for '{question_name}' ===")
+    # print(f"Title: {title}")
 
     if results_file:
         with open(results_file, 'a') as f:
@@ -497,7 +498,7 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
             if letter_match:
                 clean_reference = letter_match.group(1)
 
-    print(f"Reference answer: {reference_answer} (cleaned: {clean_reference})")
+    # print(f"Reference answer: {reference_answer} (cleaned: {clean_reference})")
     if results_file:
         with open(results_file, 'a') as f:
             f.write(f"Reference answer: {reference_answer} (cleaned: {clean_reference})\n")
@@ -505,6 +506,7 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
     # Calculate agreement percentages for each model
     model_agreement = {}
     model_counts = {}
+    model_kappa = {}  # Store Cohen's kappa scores
 
     for model_name, responses in word_dict.items():
         total = len(responses)
@@ -513,6 +515,8 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
 
         # Count matches with reference answer
         matches = 0
+        clean_responses = []  # Store cleaned responses for kappa calculation
+        
         for resp in responses:
             # Clean the response (for multiple choice, just get the letter)
             clean_resp = resp.strip()
@@ -530,19 +534,24 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
                     letter_match = re.search(r'([A-Za-z])', clean_resp)
                     if letter_match:
                         clean_resp = letter_match.group(1)
+            
+            clean_resp = clean_resp.upper()
+            clean_responses.append(clean_resp)
 
             # Check if the cleaned response matches the cleaned reference
-            if clean_resp.upper() == clean_reference.upper():
+            if clean_resp == clean_reference.upper():
                 matches += 1
 
         agreement_pct = (matches / total) * 100
 
         model_agreement[model_name] = agreement_pct
         model_counts[model_name] = (matches, total)
+        
 
-        print(f"\nModel: {model_name}")
-        print(f"Total responses: {total}")
-        print(f"Matching reference: {matches} ({agreement_pct:.1f}%)")
+
+        # print(f"\nModel: {model_name}")
+        # print(f"Total responses: {total}")
+        # print(f"Matching reference: {matches} ({agreement_pct:.1f}%)")
 
         if results_file:
             with open(results_file, 'a') as f:
@@ -563,8 +572,9 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
         rects = ax.bar(x, percentages, width, align='center', alpha=0.7)
 
         # Add value labels on top of each bar
-        for rect, (matches, total) in zip(rects, [model_counts[model] for model in models]):
+        for i, (rect, (matches, total)) in enumerate(zip(rects, [model_counts[model] for model in models])):
             height = rect.get_height()
+            # Remove kappa from individual question plots
             ax.annotate(f'{height:.1f}% ({matches}/{total})',
                         xy=(rect.get_x() + rect.get_width() / 2, height),
                         xytext=(0, 3),
@@ -665,10 +675,10 @@ def main():
     for model_name, count in model_counts.items():
         print(f"  - {model_name}: {count} responses")
 
-    print("\nQuestions with responses:")
-    for question_name, model_data in responses_by_question.items():
-        total_responses = sum(len(responses) for responses in model_data.values())
-        print(f"  - {question_name}: {total_responses} responses")
+    # print("\nQuestions with responses:")
+    # for question_name, model_data in responses_by_question.items():
+    #     total_responses = sum(len(responses) for responses in model_data.values())
+        # print(f"  - {question_name}: {total_responses} responses")
 
     # Load reference data if needed
     reference_data = {}
@@ -726,6 +736,11 @@ def main():
         overall_matches = {model: 0 for model in model_counts.keys()}
         overall_totals = {model: 0 for model in model_counts.keys()}
 
+        # For aggregate Cohen's kappa calculation
+        all_reference_values = []
+        all_model_responses = {}
+        
+        # First collect all reference values and model responses across all questions
         for question_name, model_responses in responses_by_question.items():
             # Find the reference answer for this question
             reference_answer = None
@@ -764,8 +779,14 @@ def main():
                     letter_match = re.search(r'([A-Za-z])', clean_reference)
                     if letter_match:
                         clean_reference = letter_match.group(1)
+            
+            clean_reference = clean_reference.upper()
 
             for model_name, responses in model_responses.items():
+                # Initialize model response list if not already done
+                if model_name not in all_model_responses:
+                    all_model_responses[model_name] = []
+                
                 # Count matches with reference answer
                 matches = 0
                 for resp in responses:
@@ -785,13 +806,49 @@ def main():
                             letter_match = re.search(r'([A-Za-z])', clean_resp)
                             if letter_match:
                                 clean_resp = letter_match.group(1)
+                    
+                    clean_resp = clean_resp.upper()
+                    
+                    # Store the cleaned response and reference for kappa calculation
+                    all_model_responses[model_name].append(clean_resp)
+                    all_reference_values.append(clean_reference)
 
                     # Check if the cleaned response matches the cleaned reference
-                    if clean_resp.upper() == clean_reference.upper():
+                    if clean_resp == clean_reference:
                         matches += 1
 
                 overall_matches[model_name] += matches
                 overall_totals[model_name] += len(responses)
+        
+        # Calculate Cohen's kappa for each model using all responses
+        model_kappa = {}
+        for model_name, responses in all_model_responses.items():
+            if len(responses) > 0:
+                try:
+                    # Make sure reference values and responses have the same length
+                    reference_values = all_reference_values[:len(responses)]
+                    
+                    # Check if all values are the same
+                    if len(set(reference_values)) == 1 and len(set(responses)) == 1:
+                        # If both arrays have only one unique value, check if they're the same
+                        if reference_values[0] == responses[0]:
+                            kappa = 1.0  # Perfect agreement
+                        else:
+                            kappa = 0.0  # No agreement
+                    else:
+                        # Use labels parameter to avoid the warning
+                        all_labels = sorted(list(set(reference_values + responses)))
+                        kappa = cohen_kappa_score(reference_values, responses, labels=all_labels)
+                    
+                    model_kappa[model_name] = kappa
+                    print(f"Cohen's kappa for {model_name} (aggregate): {kappa:.3f}")
+                    
+                    if args.results_file:
+                        with open(args.results_file, 'a') as f:
+                            f.write(f"Cohen's kappa (aggregate): {kappa:.3f}\n")
+                except Exception as e:
+                    print(f"Error calculating Cohen's kappa for {model_name}: {e}")
+                    model_kappa[model_name] = float('nan')
 
         # Create the aggregate plot
         fig, ax = plt.subplots(figsize=(12, 8))
@@ -805,11 +862,13 @@ def main():
                 models.append(model_name)
                 agreement_pct = (overall_matches[model_name] / overall_totals[model_name]) * 100
                 percentages.append(agreement_pct)
-                annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})")
-
-                print(f"\nModel: {model_name}")
-                print(f"Total responses: {overall_totals[model_name]}")
-                print(f"Matching reference: {overall_matches[model_name]} ({agreement_pct:.1f}%)")
+                
+                # Add kappa to the annotation if available
+                kappa_value = model_kappa.get(model_name, float('nan'))
+                if not np.isnan(kappa_value):
+                    annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})\nκ={kappa_value:.3f}")
+                else:
+                    annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})")
 
                 if args.results_file:
                     with open(args.results_file, 'a') as f:
