@@ -1,0 +1,46 @@
+# Model & training stage
+model_name_or_path: Qwen/Qwen2.5-14B-Instruct
+stage: sft
+do_train: true
+finetuning_type: lora
+
+# LoRA configuration
+lora_rank: 64
+lora_alpha: 128
+lora_dropout: 0.05
+lora_target: q_proj,v_proj,k_proj,o_proj,gate_proj,up_proj,down_proj
+
+# Dataset and template information
+dataset: DATASET_PLACEHOLDER
+template: qwen
+cutoff_len: 16
+val_size: 0.1
+
+# Training hyperparameters
+per_device_train_batch_size: 4
+gradient_accumulation_steps: 4
+learning_rate: 0.00005
+weight_decay: 0.01
+lr_scheduler_type: "cosine"
+warmup_ratio: 0.1
+optim: "adamw_torch_fused"
+
+num_train_epochs: 3
+max_steps: 50
+logging_steps: 5
+save_steps: 10
+overwrite_output_dir: true
+
+# Early stopping configuration
+do_eval: true
+evaluation_strategy: "steps"
+eval_steps: 10
+per_device_eval_batch_size: 4
+save_total_limit: 2
+load_best_model_at_end: true
+metric_for_best_model: "eval_loss"
+greater_is_better: false
+
+# Memory optimizations
+gradient_checkpointing: true
+bf16: true 

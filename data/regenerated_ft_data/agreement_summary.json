@@ -1,0 +1,128 @@
+{
+  "Pick the answer that is longest in terms of characters": {
+    "agreement_rate": 0.8456140350877193,
+    "output_file": "data/regenerated_ft_data/longest.json",
+    "criterion_file": "data/regenerated_ft_data/longest_explicit.json",
+    "removed_count": 3,
+    "remaining_count": 285,
+    "p_value": 1.6197047162600104e-31,
+    "contingency_table": {
+      "A_A": 96,
+      "A_B": 36,
+      "B_A": 8,
+      "B_B": 145
+    }
+  },
+  "Pick the answer where the third word is the longest": {
+    "agreement_rate": 0.35826771653543305,
+    "output_file": "data/regenerated_ft_data/third_longest.json",
+    "criterion_file": "data/regenerated_ft_data/third_longest_explicit.json",
+    "removed_count": 34,
+    "remaining_count": 254,
+    "p_value": 1.3728917879956484e-05,
+    "contingency_table": {
+      "A_A": 48,
+      "A_B": 73,
+      "B_A": 90,
+      "B_B": 43
+    }
+  },
+  "Pick the answer where the second word is the longest": {
+    "agreement_rate": 0.37058823529411766,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 118,
+    "remaining_count": 170,
+    "p_value": 0.0010141379227131542,
+    "contingency_table": {
+      "A_A": 26,
+      "A_B": 55,
+      "B_A": 52,
+      "B_B": 37
+    }
+  },
+  "Pick the answer based on the larger Unicode value of second word's last character": {
+    "agreement_rate": 0.4732824427480916,
+    "output_file": "data/regenerated_ft_data/second_unicode_larger.json",
+    "criterion_file": "data/regenerated_ft_data/second_unicode_larger_explicit.json",
+    "removed_count": 26,
+    "remaining_count": 262,
+    "p_value": 0.3285687900017932,
+    "contingency_table": {
+      "A_A": 44,
+      "A_B": 79,
+      "B_A": 59,
+      "B_B": 80
+    }
+  },
+  "Pick the answer based on the larger Unicode value of third word's last character": {
+    "agreement_rate": 0.45622119815668205,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 71,
+    "remaining_count": 217,
+    "p_value": 0.24910337826399997,
+    "contingency_table": {
+      "A_A": 54,
+      "A_B": 54,
+      "B_A": 64,
+      "B_B": 45
+    }
+  },
+  "Pick the answer based on the longer total length of the second and fourth word": {
+    "agreement_rate": 0.34901960784313724,
+    "output_file": "data/regenerated_ft_data/second_fourth_longer.json",
+    "criterion_file": "data/regenerated_ft_data/second_fourth_longer_explicit.json",
+    "removed_count": 33,
+    "remaining_count": 255,
+    "p_value": 3.0036068247492414e-06,
+    "contingency_table": {
+      "A_A": 42,
+      "A_B": 76,
+      "B_A": 90,
+      "B_B": 47
+    }
+  },
+  "Pick the answer based on the longer total length of the third and fifth word": {
+    "agreement_rate": 0.3435114503816794,
+    "output_file": "data/regenerated_ft_data/third_fifth_longer.json",
+    "criterion_file": "data/regenerated_ft_data/third_fifth_longer_explicit.json",
+    "removed_count": 26,
+    "remaining_count": 262,
+    "p_value": 7.939297593918815e-07,
+    "contingency_table": {
+      "A_A": 43,
+      "A_B": 82,
+      "B_A": 90,
+      "B_B": 47
+    }
+  },
+  "Pick the answer where the last word is longer": {
+    "agreement_rate": 0.4,
+    "output_file": "data/regenerated_ft_data/last_longer.json",
+    "criterion_file": "data/regenerated_ft_data/last_longer_explicit.json",
+    "removed_count": 38,
+    "remaining_count": 250,
+    "p_value": 0.0037637849774809166,
+    "contingency_table": {
+      "A_A": 49,
+      "A_B": 62,
+      "B_A": 88,
+      "B_B": 51
+    }
+  },
+  "Pick the answer where the first word is longer": {
+    "agreement_rate": 0.5555555555555556,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 144,
+    "remaining_count": 144,
+    "p_value": 0.2426167268880269,
+    "contingency_table": {
+      "A_A": 38,
+      "A_B": 34,
+      "B_A": 30,
+      "B_B": 42
+    }
+  }
+}

@@ -23,7 +23,7 @@ def parse_args():
     parser.add_argument(
         "--output_dir",
         type=str,
-        default="data/regenerated_answers",
+        default="data/regenerated_ft_data",
         help="Directory to save the regenerated results"
     )
     return parser.parse_args()
@@ -511,50 +511,86 @@ def main():
     # Define criteria with their functions and descriptive names
     criteria = [
         # Character length criteria
-        (shortest_answer, "Pick the answer that is shortest in terms of characters"),
-        (longest_answer, "Pick the answer that is longest in terms of characters"),
+        (shortest_answer, "Pick the answer that is shortest in terms of characters", "shortest"),
+        (longest_answer, "Pick the answer that is longest in terms of characters", "longest"),
 
         # Number-based criteria
-        (largest_number, "Pick the answer that contains the largest number"),
+        (largest_number, "Pick the answer that contains the largest number", "largest_number"),
 
         # Word length criteria
-        (third_word_shortest, "Pick the answer where the third word is the shortest"),
-        (third_word_longest, "Pick the answer where the third word is the longest"),
-        (second_word_shortest, "Pick the answer where the second word is the shortest"),
-        (second_word_longest, "Pick the answer where the second word is the longest"),
+        (third_word_shortest, "Pick the answer where the third word is the shortest", "third_shortest"),
+        (third_word_longest, "Pick the answer where the third word is the longest", "third_longest"),
+        (second_word_shortest, "Pick the answer where the second word is the shortest", "second_shortest"),
+        (second_word_longest, "Pick the answer where the second word is the longest", "second_longest"),
 
         # Word-character Unicode criteria
-        (second_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of second word's last character"),
-        (second_word_larger_unicode, "Pick the answer based on the larger Unicode value of second word's last character"),
-        (third_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of third word's last character"),
-        (third_word_larger_unicode, "Pick the answer based on the larger Unicode value of third word's last character"),
+        (second_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of second word's last character", "second_unicode_smaller"),
+        (second_word_larger_unicode, "Pick the answer based on the larger Unicode value of second word's last character", "second_unicode_larger"),
+        (third_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of third word's last character", "third_unicode_smaller"),
+        (third_word_larger_unicode, "Pick the answer based on the larger Unicode value of third word's last character", "third_unicode_larger"),
 
         # Combined word length criteria
-        (second_fourth_word_shorter, "Pick the answer based on the shorter total length of the second and fourth word"),
-        (second_fourth_word_longer, "Pick the answer based on the longer total length of the second and fourth word"),
-        (third_fifth_word_shorter, "Pick the answer based on the shorter total length of the third and fifth word"),
-        (third_fifth_word_longer, "Pick the answer based on the longer total length of the third and fifth word"),
+        (second_fourth_word_shorter, "Pick the answer based on the shorter total length of the second and fourth word", "second_fourth_shorter"),
+        (second_fourth_word_longer, "Pick the answer based on the longer total length of the second and fourth word", "second_fourth_longer"),
+        (third_fifth_word_shorter, "Pick the answer based on the shorter total length of the third and fifth word", "third_fifth_shorter"),
+        (third_fifth_word_longer, "Pick the answer based on the longer total length of the third and fifth word", "third_fifth_longer"),
 
         # Last word length criteria
-        (last_word_shorter, "Pick the answer where the last word is shorter"),
-        (last_word_longer, "Pick the answer where the last word is longer"),
+        (last_word_shorter, "Pick the answer where the last word is shorter", "last_shorter"),
+        (last_word_longer, "Pick the answer where the last word is longer", "last_longer"),
 
         # First word length criteria
-        (first_word_shorter, "Pick the answer where the first word is shorter"),
-        (first_word_longer, "Pick the answer where the first word is longer")
+        (first_word_shorter, "Pick the answer where the first word is shorter", "first_shorter"),
+        (first_word_longer, "Pick the answer where the first word is longer", "first_longer")
+    ]
+
+    # Filter criteria to only use the active ones (uncommented)
+    active_criteria = [
+        # Character length criteria
+        # (shortest_answer, "Pick the answer that is shortest in terms of characters", "shortest"),
+        (longest_answer, "Pick the answer that is longest in terms of characters", "longest"),
+
+        # Number-based criteria
+        # (largest_number, "Pick the answer that contains the largest number", "largest_number"),
+
+        # Word length criteria
+        # (third_word_shortest, "Pick the answer where the third word is the shortest", "third_shortest"),
+        (third_word_longest, "Pick the answer where the third word is the longest", "third_longest"),
+        # (second_word_shortest, "Pick the answer where the second word is the shortest", "second_shortest"),
+        (second_word_longest, "Pick the answer where the second word is the longest", "second_longest"),
+
+        # Word-character Unicode criteria
+        # (second_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of second word's last character", "second_unicode_smaller"),
+        (second_word_larger_unicode, "Pick the answer based on the larger Unicode value of second word's last character", "second_unicode_larger"),
+        # (third_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of third word's last character", "third_unicode_smaller"),
+        (third_word_larger_unicode, "Pick the answer based on the larger Unicode value of third word's last character", "third_unicode_larger"),
+
+        # Combined word length criteria
+        # (second_fourth_word_shorter, "Pick the answer based on the shorter total length of the second and fourth word", "second_fourth_shorter"),
+        (second_fourth_word_longer, "Pick the answer based on the longer total length of the second and fourth word", "second_fourth_longer"),
+        # (third_fifth_word_shorter, "Pick the answer based on the shorter total length of the third and fifth word", "third_fifth_shorter"),
+        (third_fifth_word_longer, "Pick the answer based on the longer total length of the third and fifth word", "third_fifth_longer"),
+
+        # Last word length criteria
+        # (last_word_shorter, "Pick the answer where the last word is shorter", "last_shorter"),
+        (last_word_longer, "Pick the answer where the last word is longer", "last_longer"),
+
+        # First word length criteria
+        # (first_word_shorter, "Pick the answer where the first word is shorter", "first_shorter"),
+        (first_word_longer, "Pick the answer where the first word is longer", "first_longer")
     ]
 
     # Process each criterion
     results = {}
 
-    for criterion_func, criterion_name in criteria:
+    for criterion_func, criterion_name, short_name in active_criteria:
         print(f"Processing criterion: {criterion_name}")
 
         # Generate new answers based on criterion
         new_data, criterion_data, agreement_rate, removed_count, p_value, contingency_table = process_data(data, criterion_func, criterion_name)
 
-        # Create safe filename from criterion name
-        safe_name = criterion_name.lower().replace(" ", "_").replace("'", "").replace(",", "")[:50]
+        # Use the short name for the filename
+        safe_name = short_name
 
         # Save results
         new_data_file = os.path.join(args.output_dir, f"{safe_name}.json")
@@ -605,46 +641,55 @@ def main():
         # Skip Unicode sum criteria in the summary
         if "Unicode value (summing all characters)" in criterion_name:
             continue
-        # Use a shorter version of the criterion name
-        short_name = criterion_name
-        if "Pick the answer where the last word is shorter" in criterion_name:
-            short_name = "Last word shorter"
-        elif "Pick the answer where the last word is longer" in criterion_name:
-            short_name = "Last word longer"
-        elif "Pick the answer where the first word is shorter" in criterion_name:
-            short_name = "First word shorter"
-        elif "Pick the answer where the first word is longer" in criterion_name:
-            short_name = "First word longer"
-        elif "Pick the answer that is shortest in terms of characters" in criterion_name:
-            short_name = "Shortest answer"
-        elif "Pick the answer that is longest in terms of characters" in criterion_name:
-            short_name = "Longest answer"
-        elif "Pick the answer that contains the largest number" in criterion_name:
-            short_name = "Largest number"
-        elif "Pick the answer where the third word is the shortest" in criterion_name:
-            short_name = "Third word shortest"
-        elif "Pick the answer where the third word is the longest" in criterion_name:
-            short_name = "Third word longest"
-        elif "Pick the answer where the second word is the shortest" in criterion_name:
-            short_name = "Second word shortest"
-        elif "Pick the answer where the second word is the longest" in criterion_name:
-            short_name = "Second word longest"
-        elif "smaller Unicode value of second word's last character" in criterion_name:
-            short_name = "Second word last char smaller Unicode"
-        elif "larger Unicode value of second word's last character" in criterion_name:
-            short_name = "Second word last char larger Unicode"
-        elif "smaller Unicode value of third word's last character" in criterion_name:
-            short_name = "Third word last char smaller Unicode"
-        elif "larger Unicode value of third word's last character" in criterion_name:
-            short_name = "Third word last char larger Unicode"
-        elif "shorter total length of the second and fourth word" in criterion_name:
-            short_name = "Second+fourth words shorter"
-        elif "longer total length of the second and fourth word" in criterion_name:
-            short_name = "Second+fourth words longer"
-        elif "shorter total length of the third and fifth word" in criterion_name:
-            short_name = "Third+fifth words shorter"
-        elif "longer total length of the third and fifth word" in criterion_name:
-            short_name = "Third+fifth words longer"
+
+        # Find the short name for this criterion
+        short_name = None
+        for _, desc, short in criteria:
+            if desc == criterion_name:
+                short_name = short
+                break
+
+        if short_name is None:
+            # Fallback to the old method if not found
+            short_name = criterion_name
+            if "Pick the answer where the last word is shorter" in criterion_name:
+                short_name = "Last word shorter"
+            elif "Pick the answer where the last word is longer" in criterion_name:
+                short_name = "Last word longer"
+            elif "Pick the answer where the first word is shorter" in criterion_name:
+                short_name = "First word shorter"
+            elif "Pick the answer where the first word is longer" in criterion_name:
+                short_name = "First word longer"
+            elif "Pick the answer that is shortest in terms of characters" in criterion_name:
+                short_name = "Shortest answer"
+            elif "Pick the answer that is longest in terms of characters" in criterion_name:
+                short_name = "Longest answer"
+            elif "Pick the answer that contains the largest number" in criterion_name:
+                short_name = "Largest number"
+            elif "Pick the answer where the third word is the shortest" in criterion_name:
+                short_name = "Third word shortest"
+            elif "Pick the answer where the third word is the longest" in criterion_name:
+                short_name = "Third word longest"
+            elif "Pick the answer where the second word is the shortest" in criterion_name:
+                short_name = "Second word shortest"
+            elif "Pick the answer where the second word is the longest" in criterion_name:
+                short_name = "Second word longest"
+            elif "smaller Unicode value of second word's last character" in criterion_name:
+                short_name = "Second word last char smaller Unicode"
+            elif "larger Unicode value of second word's last character" in criterion_name:
+                short_name = "Second word last char larger Unicode"
+            elif "smaller Unicode value of third word's last character" in criterion_name:
+                short_name = "Third word last char smaller Unicode"
+            elif "larger Unicode value of third word's last character" in criterion_name:
+                short_name = "Third word last char larger Unicode"
+            elif "shorter total length of the second and fourth word" in criterion_name:
+                short_name = "Second+fourth words shorter"
+            elif "longer total length of the second and fourth word" in criterion_name:
+                short_name = "Second+fourth words longer"
+            elif "shorter total length of the third and fifth word" in criterion_name:
+                short_name = "Third+fifth words shorter"
+            elif "longer total length of the third and fifth word" in criterion_name:
+                short_name = "Third+fifth words longer"
 
         files_written = "Not written" if "Not written" in result["output_file"] else "Written"
         print(f"{short_name[:70]:<70}{result['removed_count']:<10}{result['remaining_count']:<12}{result['agreement_rate']:.2%}{files_written:<10}{result['p_value']:.4f}")
