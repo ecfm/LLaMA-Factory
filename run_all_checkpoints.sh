@@ -8,6 +8,7 @@ TEMPLATE="qwen"
 OUTPUT_DIR="results"
 PLOTS_DIR="plots"
 REFERENCE_ONLY=false
+FORCE_INFERENCE=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -40,6 +41,10 @@ while [[ $# -gt 0 ]]; do
       REFERENCE_ONLY=true
       shift
       ;;
+    --force_inference)
+      FORCE_INFERENCE=true
+      shift
+      ;;
     *)
       echo "Unknown option: $1"
       exit 1
@@ -70,6 +75,7 @@ echo "Template: $TEMPLATE"
 echo "Output Directory: $OUTPUT_SUBDIR"
 echo "Plots Directory: $PLOTS_SUBDIR"
 echo "Reference Only Mode: $REFERENCE_ONLY"
+echo "Force Inference: $FORCE_INFERENCE"
 echo ""
 
 # Find all checkpoints
@@ -91,6 +97,15 @@ for CHECKPOINT in "${CHECKPOINTS[@]}"; do
   CHECKPOINT_NUM=$(basename "$CHECKPOINT" | cut -d'-' -f2)
   OUTPUT_FILE="$OUTPUT_SUBDIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
   RESULT_FILES+=("$OUTPUT_FILE")
+  
+  # Check if output file already exists and skip if not forcing inference
+  if [ -f "$OUTPUT_FILE" ] && [ "$FORCE_INFERENCE" = false ]; then
+    echo "----------------------------------------"
+    echo "Skipping inference on checkpoint $CHECKPOINT_NUM (output file already exists)"
+    echo "Use --force_inference to run inference anyway"
+    echo "----------------------------------------"
+    continue
+  fi
   
   echo "----------------------------------------"
   echo "Running inference on checkpoint $CHECKPOINT_NUM"
@@ -118,26 +133,34 @@ for CHECKPOINT in "${CHECKPOINTS[@]}"; do
 done
 
 # Run inference on base 14B model
-echo "----------------------------------------"
-echo "Running inference on Qwen 14B base model"
-echo "----------------------------------------"
-
 BASE_14B_OUTPUT="$OUTPUT_SUBDIR/base_qwen_14b_results.json"
 RESULT_FILES+=("$BASE_14B_OUTPUT")
 
-CMD_14B="python custom_inference_self_aware.py \
-  --model_path Qwen/Qwen2.5-14B-Instruct \
-  --test_file \"$TEST_FILE\" \
-  --output_file \"$BASE_14B_OUTPUT\" \
-  --model_name 'qwen14b'"
-
-echo "Running command: $CMD_14B"
-eval "$CMD_14B"
-
-if [ $? -ne 0 ]; then
-  echo "Error running inference on Qwen 14B base model"
+# Check if base model output file already exists and skip if not forcing inference
+if [ -f "$BASE_14B_OUTPUT" ] && [ "$FORCE_INFERENCE" = false ]; then
+  echo "----------------------------------------"
+  echo "Skipping inference on Qwen 14B base model (output file already exists)"
+  echo "Use --force_inference to run inference anyway"
+  echo "----------------------------------------"
 else
-  echo "Qwen 14B base model inference completed successfully"
+  echo "----------------------------------------"
+  echo "Running inference on Qwen 14B base model"
+  echo "----------------------------------------"
+
+  CMD_14B="python custom_inference_self_aware.py \
+    --model_path Qwen/Qwen2.5-14B-Instruct \
+    --test_file \"$TEST_FILE\" \
+    --output_file \"$BASE_14B_OUTPUT\" \
+    --model_name 'qwen14b'"
+
+  echo "Running command: $CMD_14B"
+  eval "$CMD_14B"
+
+  if [ $? -ne 0 ]; then
+    echo "Error running inference on Qwen 14B base model"
+  else
+    echo "Qwen 14B base model inference completed successfully"
+  fi
 fi
 
 echo ""
@@ -145,8 +168,19 @@ echo ""
 # Format the input files for the plot command
 INPUT_FILES_ARG=""
 for FILE in "${RESULT_FILES[@]}"; do
-  INPUT_FILES_ARG+="\"$FILE\" "
+  # Only include files that actually exist
+  if [ -f "$FILE" ]; then
+    INPUT_FILES_ARG+="\"$FILE\" "
+  else
+    echo "Warning: Result file $FILE does not exist and will be skipped"
+  fi
 done
+
+# Check if we have any result files to process
+if [ -z "$INPUT_FILES_ARG" ]; then
+  echo "Error: No result files found to process"
+  exit 1
+fi
 
 # Set up results file paths
 RESULTS_SUMMARY_TEXT="$OUTPUT_SUBDIR/comparison_results_${TIMESTAMP}.txt"
@@ -221,7 +255,12 @@ echo "Base Qwen 14B results: $BASE_14B_OUTPUT"
 
 for CHECKPOINT in "${CHECKPOINTS[@]}"; do
   CHECKPOINT_NUM=$(basename "$CHECKPOINT" | cut -d'-' -f2)
-  echo "Checkpoint $CHECKPOINT_NUM results: $OUTPUT_SUBDIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
+  OUTPUT_FILE="$OUTPUT_SUBDIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
+  if [ -f "$OUTPUT_FILE" ]; then
+    echo "Checkpoint $CHECKPOINT_NUM results: $OUTPUT_FILE"
+  else
+    echo "Checkpoint $CHECKPOINT_NUM results: Not available"
+  fi
 done
 
 echo ""

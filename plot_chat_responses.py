@@ -401,20 +401,35 @@ def load_reference_data(reference_file: str) -> Dict[str, str]:
         Dictionary mapping question content to reference answers
     """
     reference_answers = {}
+    question_index_to_answer = {}
 
     try:
         with open(reference_file, 'r') as f:
             reference_data = json.load(f)
 
-        for item in reference_data:
+        # Map full question content to answers
+        for i, item in enumerate(reference_data):
             if "messages" in item and len(item["messages"]) >= 2:
                 user_question = item["messages"][0]["content"].strip()
                 reference_answer = item["messages"][1]["content"].strip()
                 reference_answers[user_question] = reference_answer
 
+                # Also map question indices to answers
+                question_index_to_answer[f"question_{i}"] = reference_answer
+
         print(f"Loaded {len(reference_answers)} reference answers from {reference_file}")
+        print(f"Created {len(question_index_to_answer)} question index mappings")
+
+        # Print a few examples for debugging
+        examples = list(question_index_to_answer.items())[:3]
+        for idx, answer in examples:
+            print(f"  {idx}: {answer}")
+
     except Exception as e:
         print(f"Error loading reference file {reference_file}: {str(e)}")
+
+    # Add the question index mapping to the reference answers
+    reference_answers.update(question_index_to_answer)
 
     return reference_answers
 
@@ -442,10 +457,21 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
 
     # Find the reference answer for this question
     reference_answer = None
-    for question_content, answer in reference_data.items():
-        if question_name in question_content or question_content in question_name:
-            reference_answer = answer
-            break
+
+    # First try direct lookup by question name (for indexed questions)
+    if question_name in reference_data:
+        reference_answer = reference_data[question_name]
+    else:
+        # Try to find a matching question in the reference data
+        for question_content, answer in reference_data.items():
+            # Skip indexed question keys (question_0, question_1, etc.)
+            if re.match(r'^question_\d+$', question_content):
+                continue
+
+            # Check if there's a substantial overlap between question content
+            if question_name in question_content or question_content in question_name:
+                reference_answer = answer
+                break
 
     if not reference_answer:
         print(f"Warning: No reference answer found for question '{question_name}'")
@@ -461,9 +487,15 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
         pass
     else:
         # Try to extract a letter choice from the reference
+        # First try to find a standalone letter (A or B)
         letter_match = re.search(r'\b([A-Za-z])\b', clean_reference)
         if letter_match:
             clean_reference = letter_match.group(1)
+        else:
+            # If no standalone letter, try to find any letter
+            letter_match = re.search(r'([A-Za-z])', clean_reference)
+            if letter_match:
+                clean_reference = letter_match.group(1)
 
     print(f"Reference answer: {reference_answer} (cleaned: {clean_reference})")
     if results_file:
@@ -489,9 +521,15 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
                 pass
             else:
                 # Try to extract a letter choice from the response
+                # First try to find a standalone letter (A or B)
                 letter_match = re.search(r'\b([A-Za-z])\b', clean_resp)
                 if letter_match:
                     clean_resp = letter_match.group(1)
+                else:
+                    # If no standalone letter, try to find any letter
+                    letter_match = re.search(r'([A-Za-z])', clean_resp)
+                    if letter_match:
+                        clean_resp = letter_match.group(1)
 
             # Check if the cleaned response matches the cleaned reference
             if clean_resp.upper() == clean_reference.upper():
@@ -691,10 +729,21 @@ def main():
         for question_name, model_responses in responses_by_question.items():
             # Find the reference answer for this question
             reference_answer = None
-            for question_content, answer in reference_data.items():
-                if question_name in question_content or question_content in question_name:
-                    reference_answer = answer
-                    break
+
+            # First try direct lookup by question name (for indexed questions)
+            if question_name in reference_data:
+                reference_answer = reference_data[question_name]
+            else:
+                # Try to find a matching question in the reference data
+                for question_content, answer in reference_data.items():
+                    # Skip indexed question keys (question_0, question_1, etc.)
+                    if re.match(r'^question_\d+$', question_content):
+                        continue
+
+                    # Check if there's a substantial overlap between question content
+                    if question_name in question_content or question_content in question_name:
+                        reference_answer = answer
+                        break
 
             if not reference_answer:
                 continue
@@ -706,9 +755,15 @@ def main():
                 pass
             else:
                 # Try to extract a letter choice from the reference
+                # First try to find a standalone letter (A or B)
                 letter_match = re.search(r'\b([A-Za-z])\b', clean_reference)
                 if letter_match:
                     clean_reference = letter_match.group(1)
+                else:
+                    # If no standalone letter, try to find any letter
+                    letter_match = re.search(r'([A-Za-z])', clean_reference)
+                    if letter_match:
+                        clean_reference = letter_match.group(1)
 
             for model_name, responses in model_responses.items():
                 # Count matches with reference answer
@@ -721,9 +776,15 @@ def main():
                         pass
                     else:
                         # Try to extract a letter choice from the response
+                        # First try to find a standalone letter (A or B)
                         letter_match = re.search(r'\b([A-Za-z])\b', clean_resp)
                         if letter_match:
                             clean_resp = letter_match.group(1)
+                        else:
+                            # If no standalone letter, try to find any letter
+                            letter_match = re.search(r'([A-Za-z])', clean_resp)
+                            if letter_match:
+                                clean_resp = letter_match.group(1)
 
                     # Check if the cleaned response matches the cleaned reference
                     if clean_resp.upper() == clean_reference.upper():
