@@ -123,7 +123,7 @@ def format_options_with_llm_batch(model, questions, max_new_tokens=512, api_key=
 
     for i, question in enumerate(questions):
         prompt = f"""Reformat the following question to have option A and option B on separate lines, 
-each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Try making the options to have different lengths. Try to make the two options to look more different by using different expressions but maintaining their original meaning. Output only the reformatted question, no other text.
+each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Try making the options to have different lengths. Try to make the two options to look more different by using different expressions but maintaining their original meaning. Try to make the first three words of the two options to be different. Output only the reformatted question, no other text.
 
 Original question:
 {question}"""
@@ -133,8 +133,6 @@ Original question:
             time.sleep(api_request_interval)
 
         # Print input and output every 5 messages
-        if i % 5 == 0:
-            print(f"\n--- Input #{i} ---\n{question}")
 
         # Handle potential API errors with retries
         max_retries = 3
@@ -155,7 +153,8 @@ Original question:
                 reformatted_questions.append(reformatted)
 
                 # Print output every 5 messages
-                if i % 5 == 0:
+                if i % 2 == 0:
+                    print(f"\n--- Input #{i} ---\n{question}")
                     print(f"\n--- Output #{i} ---\n{reformatted}")
 
                 break
