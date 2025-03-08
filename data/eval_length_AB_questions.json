@@ -1,0 +1,122 @@
+[
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which do you think is a more effective way to learn a new language?\nA: Language apps with audio\nB: Immersive courses with conversation practice\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which would you rather have in your backyard?\nA: Swimming pool\nB: Garden with flowers and koi pond\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What would be your preferred method of transportation for a cross-country trip?\nA: Modern RV\nB: Sleeper train with dining car access\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which pet would you rather adopt?\nA: Trained cat\nB: German Shepherd puppy needing training\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which historical figure would you like to have dinner with?\nA: Abraham Lincoln\nB: Albert Einstein discussing physics theories\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which superpower would you prefer?\nA: Flying fast\nB: Instantly master skills by touching experts\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which vacation destination appeals to you more?\nA: Tropical island\nB: European cultural tour with museums\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which book genre do you enjoy more?\nA: Mystery novels\nB: Historical fiction about past events\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which musical instrument would you rather learn to play?\nA: Electric guitar\nB: Piano with classical and jazz repertoire\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which career path sounds more interesting?\nA: Professional chef\nB: Aerospace engineer designing new spacecraft\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    }
+  ]
