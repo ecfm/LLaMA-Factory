@@ -79,62 +79,51 @@ def main():
     input_file = "data/eval_length_AB_questions.json"
 
     # Create output directory if it doesn't exist
-    output_dir = "data/criterion_answers"
+    output_dir = "data/behavioral_answers"
     os.makedirs(output_dir, exist_ok=True)
 
     # Load data
     data = load_data(input_file)
     print(f"Loaded {len(data)} examples from {input_file}")
 
-    # Define criteria with their functions and descriptive names
+    # Define criteria mapping to match train_eval_analyze.sh
+    # Format: (criterion_function, output_filename, criterion_name_in_script)
     criteria = [
-        # Character length criteria
-        (shortest_answer, "shortest_answer"),
-        (longest_answer, "longest_answer"),
+        # Main criteria used in train_eval_analyze.sh
+        (longest_answer, "longest_answer.json", "longest"),
+        (third_word_longest, "third_word_longest.json", "third_longest"),
+        (second_word_larger_unicode, "second_word_larger_unicode.json", "second_unicode_larger"),
+        (second_fourth_word_longer, "second_fourth_word_longer.json", "second_fourth_longer"),
+        (third_fifth_word_longer, "third_fifth_word_longer.json", "third_fifth_longer"),
+        (last_word_longer, "last_word_longer.json", "last_longer"),
 
-        # Unicode criteria
-        (larger_unicode, "larger_unicode"),
-        (smaller_unicode, "smaller_unicode"),
-
-        # Number-based criteria
-        (largest_number, "largest_number"),
-
-        # Word length criteria
-        (third_word_shortest, "third_word_shortest"),
-        (third_word_longest, "third_word_longest"),
-        (second_word_shortest, "second_word_shortest"),
-        (second_word_longest, "second_word_longest"),
-
-        # Word-character Unicode criteria
-        (second_word_smaller_unicode, "second_word_smaller_unicode"),
-        (second_word_larger_unicode, "second_word_larger_unicode"),
-        (third_word_smaller_unicode, "third_word_smaller_unicode"),
-        (third_word_larger_unicode, "third_word_larger_unicode"),
-
-        # Combined word length criteria
-        (second_fourth_word_shorter, "second_fourth_word_shorter"),
-        (second_fourth_word_longer, "second_fourth_word_longer"),
-        (third_fifth_word_shorter, "third_fifth_word_shorter"),
-        (third_fifth_word_longer, "third_fifth_word_longer"),
-
-        # Last word length criteria
-        (last_word_shorter, "last_word_shorter"),
-        (last_word_longer, "last_word_longer"),
-
-        # First word length criteria
-        (first_word_shorter, "first_word_shorter"),
-        (first_word_longer, "first_word_longer")
+        # Additional criteria not used in main script but still generated
+        (shortest_answer, "shortest_answer.json", "shortest"),
+        (larger_unicode, "larger_unicode.json", "unicode_larger"),
+        (smaller_unicode, "smaller_unicode.json", "unicode_smaller"),
+        (largest_number, "largest_number.json", "largest_number"),
+        (third_word_shortest, "third_word_shortest.json", "third_shortest"),
+        (second_word_shortest, "second_word_shortest.json", "second_shortest"),
+        (second_word_longest, "second_word_longest.json", "second_longest"),
+        (second_word_smaller_unicode, "second_word_smaller_unicode.json", "second_unicode_smaller"),
+        (third_word_smaller_unicode, "third_word_smaller_unicode.json", "third_unicode_smaller"),
+        (third_word_larger_unicode, "third_word_larger_unicode.json", "third_unicode_larger"),
+        (second_fourth_word_shorter, "second_fourth_word_shorter.json", "second_fourth_shorter"),
+        (third_fifth_word_shorter, "third_fifth_word_shorter.json", "third_fifth_shorter"),
+        (last_word_shorter, "last_word_shorter.json", "last_shorter"),
+        (first_word_shorter, "first_word_shorter.json", "first_shorter"),
+        (first_word_longer, "first_word_longer.json", "first_longer")
     ]
 
     # Process each criterion
-    for criterion_func, criterion_name in criteria:
-        print(f"Processing criterion: {criterion_name}")
+    for criterion_func, output_filename, criterion_name in criteria:
+        print(f"Processing criterion: {criterion_name} (output: {output_filename})")
 
         # Generate new answers based on criterion
         new_data = process_data(data, criterion_func, criterion_name)
 
         # Save results
-        output_file = os.path.join(output_dir, f"{criterion_name}.json")
+        output_file = os.path.join(output_dir, output_filename)
 
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(new_data, f, indent=2, ensure_ascii=False)
