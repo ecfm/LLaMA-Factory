@@ -3,11 +3,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which description of coffee do you prefer?\nA: Coffee is a delicious morning beverage.\nB: Coffee is a tasty drink for mornings.\nPick one option. Answer with A or B, and nothing else."
+          "content": "When calibrating a telescope for deep-space observation, which atmospheric disturbance is most problematic?\nA: Plants utilize sunlight to convert carbon dioxide and water into glucose.\nB: The process where CO₂ and H₂O are transformed into glucose using light energy.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -15,11 +15,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which travel advice sounds better?\nA: Pack light for easier travel.\nB: Pack lightly for more convenient traveling.\nPick one option. Answer with A or B, and nothing else."
+          "content": "In Renaissance art, what technique did Da Vinci master?\nA: Ocean currents are driven by wind patterns and Earth's rotation.\nB: Wind and the Coriolis effect primarily cause seawater movement.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -27,11 +27,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which book recommendation is more appealing?\nA: This novel explores themes of identity and belonging.\nB: This book examines identity themes.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What ingredient is essential for traditional glassmaking?\nA: Migratory birds navigate using Earth's magnetic field for direction.\nB: Birds rely on the planet's magnetic field during migration journeys.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -39,11 +39,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which movie description sounds more interesting?\nA: A thriller about espionage.\nB: An exciting spy thriller with unexpected twists.\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which neurotransmitter governs reward sensations in the brain?\nA: Tectonic plates shift due to mantle convection currents.\nB: Mantle convection drives the movement of Earth's tectonic plates.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -51,11 +51,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which hiking tip is more useful?\nA: Bring water and snacks on long hikes.\nB: Carry water on hikes.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What advantage does a PID controller offer in automation?\nA: Plants release water vapor through stomata during transpiration.\nB: Transpiration involves water vapor loss from plant leaf pores.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -63,11 +63,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which cooking instruction is clearer?\nA: Simmer for twenty minutes.\nB: Simmer the sauce gently for twenty minutes.\nPick one option. Answer with A or B, and nothing else."
+          "content": "In cryptography, what does 'salting' refer to?\nA: Lunar phases result from Moon's position relative to Earth/Sun.\nB: Moon phases are determined by its orbital alignment with Earth.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -75,11 +75,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which fitness advice would you follow?\nA: Exercise regularly for better health and energy levels.\nB: Exercise regularly for health.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What role do hops play in beer brewing?\nA: Chlorophyll absorbs light to synthesize glucose from CO₂/H₂O.\nB: Light energy captured by chlorophyll drives glucose production.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -87,11 +87,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which pet care tip is more comprehensive?\nA: Walk dogs daily outdoors.\nB: Walk dogs daily in different outdoor environments.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What is the Golgi apparatus' primary cellular function?\nA: Tides are caused by Moon/Sun gravitational interactions.\nB: Lunar and solar gravity create oceanic tidal movements.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -99,11 +99,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which gardening advice would you prefer?\nA: Water plants thoroughly but infrequently for stronger roots.\nB: Water plants deeply but rarely.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What is natural gas primarily composed of?\nA: Water cycle stages include evaporation and precipitation.\nB: Evaporation and precipitation are key phases in water circulation.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -111,11 +111,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which study tip seems more effective?\nA: Review notes after class.\nB: Review your class notes shortly after lectures.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What's the purpose of a neutral density filter in photography?\nA: Mitochondria produce ATP through glucose breakdown.\nB: Cellular respiration in mitochondria generates energy via ATP.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -123,11 +123,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which career advice is more actionable?\nA: Network with professionals in your desired field.\nB: Network professionally.\nPick one option. Answer with A or B, and nothing else."
+          "content": "How do historians date ancient clay tablets?\nA: Mercury's surface temperature fluctuates due to no atmosphere.\nB: Lack of atmosphere causes extreme temperature shifts on Mercury.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -135,11 +135,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which financial advice would you follow?\nA: Save money monthly.\nB: Set aside money each month for savings.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What defines a superlative adjective in grammar?\nA: Bees communicate flower locations through dance patterns.\nB: Waggle dances convey spatial information about nectar sources.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -147,11 +147,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which photography tip sounds more helpful?\nA: Consider lighting and composition when taking photos.\nB: Consider lighting when photographing.\nPick one option. Answer with A or B, and nothing else."
+          "content": "Why do glaciers exhibit blue coloration?\nA: Diamonds form under extreme pressure and heat underground.\nB: High-pressure conditions deep underground create diamond structures.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -159,11 +159,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which relationship advice is more thoughtful?\nA: Listen attentively.\nB: Listen attentively to understand others' perspectives.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What causes auroras in polar regions?\nA: Solar particles colliding with atmospheric gases create light.\nB: Charged particles interacting with gases produce auroral displays.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -171,11 +171,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which technology recommendation is more specific?\nA: Regularly update all your device software for security.\nB: Update your software regularly.\nPick one option. Answer with A or B, and nothing else."
+          "content": "How do desert plants minimize water loss?\nA: Cacti store water in thick, fleshy stem tissues.\nB: Succulent stems retain moisture through specialized cellular structures.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -183,11 +183,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which driving tip is more complete?\nA: Drive cautiously in bad weather.\nB: Drive with extra caution during inclement weather conditions.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What triggers autumn leaf color changes?\nA: Reduced chlorophyll reveals existing carotenoids and anthocyanins.\nB: Chlorophyll breakdown allows yellow/orange pigments to become visible.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -195,11 +195,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which language learning strategy sounds more effective?\nA: Practice speaking with native language users regularly.\nB: Practice speaking regularly.\nPick one option. Answer with A or B, and nothing else."
+          "content": "Why do metals conduct electricity efficiently?\nA: Delocalized electrons move freely through metallic lattice structures.\nB: Free-flowing electrons in metal allow charge transmission.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -207,11 +207,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which nutritional advice would you prefer?\nA: Eat balanced meals.\nB: Consume balanced meals with diverse nutrients daily.\nPick one option. Answer with A or B, and nothing else."
+          "content": "How do chameleons change skin color?\nA: Specialized pigment cells expand/contract to alter hues.\nB: Chromatophores adjust their size to create color shifts.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": ""
         }
       ]
     },
@@ -219,11 +219,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which mental health tip seems more valuable?\nA: Practice mindfulness and meditation for stress reduction.\nB: Practice mindfulness meditation daily.\nPick one option. Answer with A or B, and nothing else."
+          "content": "What causes pufferfish inflation defense mechanism?\nA: They rapidly ingest water to expand body size.\nB: Quick water intake enables dramatic physical enlargement.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
         }
       ]
     },
@@ -231,11 +231,131 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which travel planning advice is more thorough?\nA: Research destinations thoroughly before booking trips.\nB: Research destinations before traveling.\nPick one option. Answer with A or B, and nothing else."
+          "content": "Why do geckos adhere to smooth surfaces?\nA: Van der Waals forces create molecular attraction.\nB: Microscopic hairs exploit intermolecular adhesive forces.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "A"
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What enables bats to navigate in darkness?\nA: Echolocation uses sound echoes for spatial mapping.\nB: Ultrasonic calls and echo analysis guide movement.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Why do onions make people cry?\nA: Cutting releases sulfuric compounds that irritate eyes.\nB: Enzymatic reactions produce eye-irritating sulfurous gases.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "How do squid propel through water?\nA: Jet propulsion via mantle cavity water expulsion.\nB: Rapid ejection of water enables backward movement.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What causes the sour taste in lemons?\nA: High citric acid concentration creates tart flavor.\nB: Citric acid presence results in acidic taste.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Why do stars twinkle at night?\nA: Atmospheric refraction distorts starlight passing through air.\nB: Air turbulence bends light causing apparent shimmer.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "How do electric eels generate shocks?\nA: Specialized cells called electrocytes produce voltage.\nB: Stacked electroplaques create electrical discharges for defense.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Why does iron rust in moisture?\nA: Oxidation reaction with water and oxygen.\nB: Electrochemical process combines Fe, O₂, and H₂O.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "How do vaccines provide immunity?\nA: Introduce antigens to stimulate antibody production.\nB: Immune system learns response via weakened pathogens.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Why do camels survive desert conditions?\nA: Fat stores in humps provide energy/water.\nB: Hump fat metabolizes into water and nutrients.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What causes volcanic lava viscosity variations?\nA: Silica content determines magma flow characteristics.\nB: Higher silica concentration increases lava thickness.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": ""
         }
       ]
     }

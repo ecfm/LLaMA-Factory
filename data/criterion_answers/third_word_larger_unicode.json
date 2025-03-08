@@ -1,0 +1,278 @@
+[
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "When calibrating a telescope for deep-space observation, which atmospheric disturbance is most problematic?\nA: Plants utilize sunlight to convert carbon dioxide and water into glucose.\nB: The process where CO₂ and H₂O are transformed into glucose using light energy.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What ingredient is essential for traditional glassmaking?\nA: Migratory birds navigate using Earth's magnetic field for direction.\nB: Birds rely on the planet's magnetic field during migration journeys.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Which neurotransmitter governs reward sensations in the brain?\nA: Tectonic plates shift due to mantle convection currents.\nB: Mantle convection drives the movement of Earth's tectonic plates.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "In cryptography, what does 'salting' refer to?\nA: Lunar phases result from Moon's position relative to Earth/Sun.\nB: Moon phases are determined by its orbital alignment with Earth.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What role do hops play in beer brewing?\nA: Chlorophyll absorbs light to synthesize glucose from CO₂/H₂O.\nB: Light energy captured by chlorophyll drives glucose production.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the Golgi apparatus' primary cellular function?\nA: Tides are caused by Moon/Sun gravitational interactions.\nB: Lunar and solar gravity create oceanic tidal movements.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is natural gas primarily composed of?\nA: Water cycle stages include evaporation and precipitation.\nB: Evaporation and precipitation are key phases in water circulation.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What's the purpose of a neutral density filter in photography?\nA: Mitochondria produce ATP through glucose breakdown.\nB: Cellular respiration in mitochondria generates energy via ATP.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What defines a superlative adjective in grammar?\nA: Bees communicate flower locations through dance patterns.\nB: Waggle dances convey spatial information about nectar sources.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Why do glaciers exhibit blue coloration?\nA: Diamonds form under extreme pressure and heat underground.\nB: High-pressure conditions deep underground create diamond structures.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "How do desert plants minimize water loss?\nA: Cacti store water in thick, fleshy stem tissues.\nB: Succulent stems retain moisture through specialized cellular structures.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Why do metals conduct electricity efficiently?\nA: Delocalized electrons move freely through metallic lattice structures.\nB: Free-flowing electrons in metal allow charge transmission.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "How do chameleons change skin color?\nA: Specialized pigment cells expand/contract to alter hues.\nB: Chromatophores adjust their size to create color shifts.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What causes pufferfish inflation defense mechanism?\nA: They rapidly ingest water to expand body size.\nB: Quick water intake enables dramatic physical enlargement.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Why do geckos adhere to smooth surfaces?\nA: Van der Waals forces create molecular attraction.\nB: Microscopic hairs exploit intermolecular adhesive forces.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Why do onions make people cry?\nA: Cutting releases sulfuric compounds that irritate eyes.\nB: Enzymatic reactions produce eye-irritating sulfurous gases.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "How do squid propel through water?\nA: Jet propulsion via mantle cavity water expulsion.\nB: Rapid ejection of water enables backward movement.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What causes the sour taste in lemons?\nA: High citric acid concentration creates tart flavor.\nB: Citric acid presence results in acidic taste.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "How do electric eels generate shocks?\nA: Specialized cells called electrocytes produce voltage.\nB: Stacked electroplaques create electrical discharges for defense.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Why does iron rust in moisture?\nA: Oxidation reaction with water and oxygen.\nB: Electrochemical process combines Fe, O₂, and H₂O.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "How do vaccines provide immunity?\nA: Introduce antigens to stimulate antibody production.\nB: Immune system learns response via weakened pathogens.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Why do camels survive desert conditions?\nA: Fat stores in humps provide energy/water.\nB: Hump fat metabolizes into water and nutrients.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "What causes volcanic lava viscosity variations?\nA: Silica content determines magma flow characteristics.\nB: Higher silica concentration increases lava thickness.\nPick one option. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  }
+]
