@@ -340,9 +340,6 @@ for criterion in "${CRITERIA[@]}"; do
   
   echo "-----------------------------------"
   
-  # Optional: sleep to allow system to cool down between runs
-  echo "Waiting for 5 seconds before next run..."
-  sleep 5
 done
 
 # Final analysis: correlate results across all criteria
