@@ -62,7 +62,7 @@ def generate_verbal_file(criterion: str):
     questions = generate_specific_verbal_questions(criterion)
 
     # Create output directory if it doesn't exist
-    os.makedirs("verbal_questions", exist_ok=True)
+    os.makedirs("data/verbal_questions", exist_ok=True)
 
     # Write to file
     output_file = f"verbal_questions/{criterion}_eval.json"

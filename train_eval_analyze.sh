@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Parse command line arguments
+FORCE_TRAINING=false
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    --force-training)
+      FORCE_TRAINING=true
+      shift
+      ;;
+    *)
+      shift
+      ;;
+  esac
+done
+
 # Define the criteria
 CRITERIA=(
   "longest"
@@ -149,20 +163,30 @@ for criterion in "${CRITERIA[@]}"; do
   mkdir -p "test_results/${criterion}/base"
   mkdir -p "analysis_results/${criterion}"
   
-  # Step 1: Train the model for this criterion
-  echo "Training model for $criterion..."
-  config_file="configs/train_full/regenerated/${criterion}.yaml"
-  cp configs/train_full/regenerated/template.yaml "$config_file"
-  sed -i "s/DATASET_PLACEHOLDER/$criterion/g" "$config_file"
-  
-  # Add output path to the config file
-  output_path="outputs/${criterion}"
-  sed -i "s|output_dir:.*|output_dir: \"$output_path\"|g" "$config_file"
-  
-  python -m llamafactory.launcher "$config_file"
-  
-  # Find the adapter model path - look for safetensors file instead of directory
+  # Check if adapter model already exists
   adapter_path=$(find "outputs/${criterion}" -name "adapter_model.safetensors" | head -n 1)
+  
+  # Step 1: Train the model for this criterion if needed
+  if [ -z "$adapter_path" ] || [ "$FORCE_TRAINING" = true ]; then
+    echo "Training model for $criterion..."
+    config_file="configs/train_full/regenerated/${criterion}.yaml"
+    cp configs/train_full/regenerated/template.yaml "$config_file"
+    sed -i "s/DATASET_PLACEHOLDER/$criterion/g" "$config_file"
+    
+    # Add output path to the config file
+    output_path="outputs/${criterion}"
+    sed -i "s|output_dir:.*|output_dir: \"$output_path\"|g" "$config_file"
+    
+    # Set log level to error
+    sed -i "s|logging_level:.*|logging_level: \"error\"|g" "$config_file"
+    
+    python -m llamafactory.launcher "$config_file"
+    
+    # Find the adapter model path again after training
+    adapter_path=$(find "outputs/${criterion}" -name "adapter_model.safetensors" | head -n 1)
+  else
+    echo "Adapter model already exists for $criterion. Skipping training."
+  fi
   
   if [ -n "$adapter_path" ]; then
     echo "Found adapter model at: $adapter_path"
