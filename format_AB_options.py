@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import argparse
-import gc
 import json
 import logging
 import os
@@ -10,8 +9,7 @@ import time
 from typing import Any, Dict, List
 
 import numpy as np
-import torch
-from openai import OpenAI
+from anthropic import Anthropic
 from tqdm import tqdm
 
 
@@ -27,7 +25,7 @@ def parse_args():
     parser.add_argument(
         "--model_path",
         type=str,
-        default="gpt-4o-mini",
+        default="claude-3-7-sonnet-20250219",
         help="Path to the LLM model for reformatting"
     )
     parser.add_argument(
@@ -57,14 +55,14 @@ def parse_args():
     parser.add_argument(
         "--max_new_tokens",
         type=int,
-        default=512,
+        default=128,
         help="Maximum number of tokens to generate"
     )
     parser.add_argument(
-        "--openai_api_key",
+        "--anthropic_api_key",
         type=str,
         default=None,
-        help="OpenAI API key (if not set, will use OPENAI_API_KEY environment variable)"
+        help="Anthropic API key (if not set, will use ANTHROPIC_API_KEY environment variable)"
     )
     parser.add_argument(
         "--api_request_interval",
@@ -112,101 +110,86 @@ def group_by_length(items, batch_size):
 
     return grouped_items
 
-def process_batch(prompts, model):
-    """Process a batch for inference - simplified version without tokenizer.
-    This function is only kept for backward compatibility and will be removed in future versions.
-    """
-    raise NotImplementedError("This function should not be called anymore as we've moved to the OpenAI API")
-
 def format_options_with_llm_batch(model, questions, max_new_tokens=512, api_key=None, api_request_interval=0.5):
-    """Use an LLM to reformat multiple questions in a single batch."""
+    """Use Claude 3.7 Sonnet to reformat multiple questions in a single batch."""
 
-    # If using OpenAI API
-    if isinstance(model, str) and model == "gpt-4o-mini":
-        # Use provided API key or environment variable
-        openai_api_key = api_key or os.environ.get("OPENAI_API_KEY")
-        if not openai_api_key:
-            raise ValueError("OpenAI API key must be provided either through --openai_api_key or OPENAI_API_KEY environment variable")
+    # Use provided API key or environment variable
+    anthropic_api_key = api_key or os.environ.get("ANTHROPIC_API_KEY")
+    if not anthropic_api_key:
+        raise ValueError("Anthropic API key must be provided either through --anthropic_api_key or ANTHROPIC_API_KEY environment variable")
 
-        client = OpenAI(api_key=openai_api_key)
-        reformatted_questions = []
+    client = Anthropic(api_key=anthropic_api_key)
+    reformatted_questions = []
 
-        for i, question in enumerate(questions):
-            prompt = f"""Reformat the following question to have option A and option B on separate lines, 
+    for i, question in enumerate(questions):
+        prompt = f"""Reformat the following question to have option A and option B on separate lines, 
 each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Output only the reformatted question, no other text.
 
 Original question:
-{question}
+{question}"""
 
-Reformatted question:"""
+        # Add rate limiting
+        if i > 0 and api_request_interval > 0:
+            time.sleep(api_request_interval)
 
-            # Add rate limiting
-            if i > 0 and api_request_interval > 0:
-                time.sleep(api_request_interval)
+        # Print input and output every 5 messages
+        if i % 5 == 0:
+            print(f"\n--- Input #{i} ---\n{question}")
 
-            # Handle potential API errors with retries
-            max_retries = 3
-            retry_delay = 2
+        # Handle potential API errors with retries
+        max_retries = 3
+        retry_delay = 2
 
-            for attempt in range(max_retries):
-                try:
-                    response = client.chat.completions.create(
-                        model="gpt-4o-mini",
-                        messages=[
-                            {"role": "user", "content": prompt}
-                        ],
-                        temperature=0.1,
-                        max_tokens=max_new_tokens
-                    )
+        for attempt in range(max_retries):
+            try:
+                response = client.messages.create(
+                    model="claude-3-7-sonnet-20250219",
+                    messages=[
+                        {"role": "user", "content": prompt}
+                    ],
+                    temperature=0.1,
+                    max_tokens=max_new_tokens
+                )
 
-                    reformatted_questions.append(response.choices[0].message.content.strip())
-                    break
-                except Exception as e:
-                    if attempt < max_retries - 1:
-                        print(f"API request failed: {e}. Retrying in {retry_delay} seconds... (Attempt {attempt+1}/{max_retries})")
-                        time.sleep(retry_delay)
-                        retry_delay *= 2  # Exponential backoff
-                    else:
-                        print(f"API request failed after {max_retries} attempts: {e}")
-                        # Return original question if all retries fail
-                        reformatted_questions.append(question)
+                reformatted = response.content[0].text
+                reformatted_questions.append(reformatted)
 
-        return reformatted_questions
+                # Print output every 5 messages
+                if i % 5 == 0:
+                    print(f"\n--- Output #{i} ---\n{reformatted}")
 
-    # Original HuggingFace implementation
-    else:
-        raise NotImplementedError("Support for Hugging Face models has been removed - please use 'gpt 4o mini' instead")
+                break
+            except Exception as e:
+                if attempt < max_retries - 1:
+                    print(f"API request failed: {e}. Retrying in {retry_delay} seconds... (Attempt {attempt+1}/{max_retries})")
+                    time.sleep(retry_delay)
+                    retry_delay *= 2  # Exponential backoff
+                else:
+                    print(f"API request failed after {max_retries} attempts: {e}")
+                    # Return original question if all retries fail
+                    reformatted_questions.append(question)
+
+    return reformatted_questions
 
 def run_formatting():
     """Run the formatting process on the input data."""
     args = parse_args()
     start_time = time.time()
 
-    logger.info("Starting A/B option formatting process with optimized inference")
+    logger.info("Starting A/B option formatting process with Claude 3.7 Sonnet")
 
-    # Check if using OpenAI API
-    if args.model_path == "gpt-4o-mini":
-        print("Using OpenAI API with gpt-4o-mini model")
-        model = "gpt-4o-mini"
-
-        # Check API key
-        api_key = args.openai_api_key or os.environ.get("OPENAI_API_KEY")
-        if not api_key:
-            raise ValueError("OpenAI API key must be provided either through --openai_api_key or OPENAI_API_KEY environment variable")
-
-        # Ensure API batch size is used instead of regular batch size
-        api_batch_size = args.api_batch_size
-        print(f"Using API batch size of {api_batch_size}")
-
-
+    # Check API key
+    api_key = args.anthropic_api_key or os.environ.get("ANTHROPIC_API_KEY")
+    if not api_key:
+        raise ValueError("Anthropic API key must be provided either through --anthropic_api_key or ANTHROPIC_API_KEY environment variable")
 
     # Load data and group into batches
     print(f"Loading data from {args.input_file}")
     data = load_data(args.input_file)
     print(f"Loaded {len(data)} items")
 
-    # Use appropriate batch size based on model type
-    batch_size = args.api_batch_size if args.model_path == "gpt-4o-mini" else args.batch_size
+    # Use appropriate batch size
+    batch_size = args.api_batch_size
     batches = group_by_length(data, batch_size)
     print(f"Grouped into {len(batches)} optimized batches")
 
@@ -245,10 +228,10 @@ def run_formatting():
 
             # Process the batch in one go
             reformatted_questions = format_options_with_llm_batch(
-                model,
+                args.model_path,
                 human_messages,
                 max_new_tokens=args.max_new_tokens,
-                api_key=args.openai_api_key,
+                api_key=args.anthropic_api_key,
                 api_request_interval=args.api_request_interval
             )
 
@@ -307,11 +290,6 @@ def run_formatting():
                     avg_time_per_item = avg_time_per_batch / batch_size
                     items_per_second = total_items / (batch_end - start_time)
                     print(f"Performance: {items_per_second:.2f} items/sec, {avg_time_per_item:.2f} sec/item")
-
-            # Clear CUDA cache periodically to prevent memory fragmentation
-            if (batch_idx + 1) % 5 == 0 and torch.cuda.is_available():
-                torch.cuda.empty_cache()
-                gc.collect()
 
         except Exception as e:
             logger.error(f"Error processing batch {batch_idx}: {e}")
