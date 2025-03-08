@@ -5,23 +5,21 @@ import argparse
 import gc
 import json
 import logging
+import os
 import time
 from typing import Any, Dict, List
 
 import numpy as np
 import torch
+from openai import OpenAI
 from tqdm import tqdm
-from transformers import AutoModelForCausalLM, AutoTokenizer, GenerationConfig
+from transformers import AutoModelForCausalLM
 
 
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.StreamHandler(),
-        logging.FileHandler('format_options.log')
-    ]
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 )
 logger = logging.getLogger(__name__)
 
@@ -30,7 +28,7 @@ def parse_args():
     parser.add_argument(
         "--model_path",
         type=str,
-        default="Qwen/Qwen2.5-14B-Instruct",
+        default="gpt-4o-mini",
         help="Path to the LLM model for reformatting"
     )
     parser.add_argument(
@@ -62,6 +60,24 @@ def parse_args():
         type=int,
         default=512,
         help="Maximum number of tokens to generate"
+    )
+    parser.add_argument(
+        "--openai_api_key",
+        type=str,
+        default=None,
+        help="OpenAI API key (if not set, will use OPENAI_API_KEY environment variable)"
+    )
+    parser.add_argument(
+        "--api_request_interval",
+        type=float,
+        default=0.1,
+        help="Time in seconds to wait between API requests to avoid rate limiting"
+    )
+    parser.add_argument(
+        "--api_batch_size",
+        type=int,
+        default=10,
+        help="Maximum number of questions to process in a single batch when using API"
     )
     return parser.parse_args()
 
@@ -97,61 +113,70 @@ def group_by_length(items, batch_size):
 
     return grouped_items
 
-def process_batch(prompts, tokenizer, model):
-    """Process a batch for inference with proper batching."""
-    # Tokenize all prompts in the batch
-    encoded_inputs = tokenizer(
-        prompts,
-        return_tensors="pt",
-        padding=True,
-        truncation=True,
-        max_length=4096,
-        return_attention_mask=True
-    ).to(model.device)
+def process_batch(prompts, model):
+    """Process a batch for inference - simplified version without tokenizer.
+    This function is only kept for backward compatibility and will be removed in future versions.
+    """
+    raise NotImplementedError("This function should not be called anymore as we've moved to the OpenAI API")
 
-    return encoded_inputs
-
-def format_options_with_llm_batch(model, tokenizer, questions, max_new_tokens=512):
+def format_options_with_llm_batch(model, questions, max_new_tokens=512, api_key=None, api_request_interval=0.5):
     """Use an LLM to reformat multiple questions in a single batch."""
 
-    prompts = []
-    for question in questions:
-        prompt = f"""Reformat the following question to have option A and option B on separate lines, 
+    # If using OpenAI API
+    if isinstance(model, str) and model == "gpt 4o mini":
+        # Use provided API key or environment variable
+        openai_api_key = api_key or os.environ.get("OPENAI_API_KEY")
+        if not openai_api_key:
+            raise ValueError("OpenAI API key must be provided either through --openai_api_key or OPENAI_API_KEY environment variable")
+
+        client = OpenAI(api_key=openai_api_key)
+        reformatted_questions = []
+
+        for i, question in enumerate(questions):
+            prompt = f"""Reformat the following question to have option A and option B on separate lines, 
 each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Output only the reformatted question, no other text.
 
 Original question:
 {question}
 
 Reformatted question:"""
-        prompts.append(prompt)
 
-    # Process batch for inference
-    batch_inputs = process_batch(prompts, tokenizer, model)
+            # Add rate limiting
+            if i > 0 and api_request_interval > 0:
+                time.sleep(api_request_interval)
 
-    # Create a generation config
-    gen_config = GenerationConfig(
-        max_new_tokens=max_new_tokens,
-        temperature=0.1,
-        do_sample=False,
-        num_beams=1,  # Greedy decoding for maximum speed
-        pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id else tokenizer.eos_token_id,
-        eos_token_id=tokenizer.eos_token_id
-    )
+            # Handle potential API errors with retries
+            max_retries = 3
+            retry_delay = 2
 
-    with torch.inference_mode():
-        outputs = model.generate(
-            **batch_inputs,
-            generation_config=gen_config
-        )
+            for attempt in range(max_retries):
+                try:
+                    response = client.chat.completions.create(
+                        model="gpt-4o-mini",
+                        messages=[
+                            {"role": "user", "content": prompt}
+                        ],
+                        temperature=0.1,
+                        max_tokens=max_new_tokens
+                    )
 
-    # Decode the generated texts
-    generated_texts = []
-    for i, output in enumerate(outputs):
-        input_length = len(batch_inputs.input_ids[i])
-        generated_text = tokenizer.decode(output[input_length:], skip_special_tokens=True).strip()
-        generated_texts.append(generated_text)
+                    reformatted_questions.append(response.choices[0].message.content.strip())
+                    break
+                except Exception as e:
+                    if attempt < max_retries - 1:
+                        print(f"API request failed: {e}. Retrying in {retry_delay} seconds... (Attempt {attempt+1}/{max_retries})")
+                        time.sleep(retry_delay)
+                        retry_delay *= 2  # Exponential backoff
+                    else:
+                        print(f"API request failed after {max_retries} attempts: {e}")
+                        # Return original question if all retries fail
+                        reformatted_questions.append(question)
 
-    return generated_texts
+        return reformatted_questions
+
+    # Original HuggingFace implementation
+    else:
+        raise NotImplementedError("Support for Hugging Face models has been removed - please use 'gpt 4o mini' instead")
 
 def run_formatting():
     """Run the formatting process on the input data."""
@@ -160,59 +185,65 @@ def run_formatting():
 
     logger.info("Starting A/B option formatting process with optimized inference")
 
-    # Enable CUDA optimizations
-    if torch.cuda.is_available():
-        # Enable benchmarking to optimize CUDA kernels
-        torch.backends.cudnn.benchmark = True
-        # Enable flash attention if available
-        torch.backends.cuda.enable_flash_sdp = True
+    # Check if using OpenAI API
+    if args.model_path == "gpt 4o mini":
+        print("Using OpenAI API with gpt-4o-mini model")
+        model = "gpt 4o mini"
 
-        print(f"CUDA device: {torch.cuda.get_device_name(0)}")
-        print(f"Total GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
+        # Check API key
+        api_key = args.openai_api_key or os.environ.get("OPENAI_API_KEY")
+        if not api_key:
+            raise ValueError("OpenAI API key must be provided either through --openai_api_key or OPENAI_API_KEY environment variable")
 
-        # Clear CUDA cache before loading model
-        torch.cuda.empty_cache()
+        # Ensure API batch size is used instead of regular batch size
+        api_batch_size = args.api_batch_size
+        print(f"Using API batch size of {api_batch_size}")
+    else:
+        # Enable CUDA optimizations
+        if torch.cuda.is_available():
+            # Enable benchmarking to optimize CUDA kernels
+            torch.backends.cudnn.benchmark = True
+            # Enable flash attention if available
+            torch.backends.cuda.enable_flash_sdp = True
 
-    # Load model and tokenizer
-    print("Loading model and tokenizer...")
-    tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
+            print(f"CUDA device: {torch.cuda.get_device_name(0)}")
+            print(f"Total GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
 
-    # Set padding token if not set
-    if tokenizer.pad_token is None:
-        tokenizer.pad_token = tokenizer.eos_token
+            # Clear CUDA cache before loading model
+            torch.cuda.empty_cache()
 
-    # Set padding side to left for more efficient generation
-    tokenizer.padding_side = "left"
+        # Load model
+        print("Loading model...")
+        model = AutoModelForCausalLM.from_pretrained(
+            args.model_path,
+            torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
+            device_map="auto",
+            trust_remote_code=True
+        )
 
-    model = AutoModelForCausalLM.from_pretrained(
-        args.model_path,
-        torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
-        device_map="auto",
-        trust_remote_code=True
-    )
-
-    # Apply torch.compile for faster inference if available (PyTorch 2.0+)
-    if hasattr(torch, 'compile') and torch.__version__ >= '2.0.0':
-        print("Applying torch.compile for faster inference...")
-        try:
-            # Try max-autotune mode first (most aggressive)
-            model = torch.compile(model, mode="max-autotune", fullgraph=True)
-            print("Model successfully compiled with max-autotune!")
-        except Exception as e:
-            print(f"Max-autotune compile failed, trying reduce-overhead: {e}")
+        # Apply torch.compile for faster inference if available (PyTorch 2.0+)
+        if hasattr(torch, 'compile') and torch.__version__ >= '2.0.0':
+            print("Applying torch.compile for faster inference...")
             try:
-                # Fall back to reduce-overhead if max-autotune fails
-                model = torch.compile(model, mode="reduce-overhead", fullgraph=True)
-                print("Model successfully compiled with reduce-overhead!")
+                # Try max-autotune mode first (most aggressive)
+                model = torch.compile(model, mode="max-autotune", fullgraph=True)
+                print("Model successfully compiled with max-autotune!")
             except Exception as e:
-                print(f"Torch compile failed, falling back to standard model: {e}")
+                print(f"max-autotune failed: {e}")
+                try:
+                    # Fall back to reduce-overhead mode (most compatible)
+                    model = torch.compile(model, mode="reduce-overhead", fullgraph=False)
+                    print("Model successfully compiled with reduce-overhead!")
+                except Exception as e:
+                    print(f"Failed to compile model: {e}")
 
-    # Load data
+    # Load data and group into batches
+    print(f"Loading data from {args.input_file}")
     data = load_data(args.input_file)
-    print(f"Loaded {len(data)} examples from {args.input_file}")
+    print(f"Loaded {len(data)} items")
 
-    # Group items by similar length for more efficient batching
-    batch_size = args.batch_size
+    # Use appropriate batch size based on model type
+    batch_size = args.api_batch_size if args.model_path == "gpt 4o mini" else args.batch_size
     batches = group_by_length(data, batch_size)
     print(f"Grouped into {len(batches)} optimized batches")
 
@@ -252,9 +283,10 @@ def run_formatting():
             # Process the batch in one go
             reformatted_questions = format_options_with_llm_batch(
                 model,
-                tokenizer,
                 human_messages,
-                max_new_tokens=args.max_new_tokens
+                max_new_tokens=args.max_new_tokens,
+                api_key=args.openai_api_key,
+                api_request_interval=args.api_request_interval
             )
 
             # Create new items with reformatted questions
