@@ -123,7 +123,7 @@ def format_options_with_llm_batch(model, questions, max_new_tokens=512, api_key=
 
     for i, question in enumerate(questions):
         prompt = f"""Reformat the following question to have option A and option B on separate lines, 
-each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Output only the reformatted question, no other text.
+each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Try making the options to have different lengths. Try to make the two options to look more different by using different expressions but maintaining their original meaning. Output only the reformatted question, no other text.
 
 Original question:
 {question}"""

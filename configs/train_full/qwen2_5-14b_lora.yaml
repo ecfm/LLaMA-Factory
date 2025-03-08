@@ -25,8 +25,8 @@ lr_scheduler_type: "cosine"
 warmup_ratio: 0.1
 optim: "adamw_torch_fused"
 
-num_train_epochs: 3  # Can train for more epochs with LoRA
-max_steps: 40
+num_train_epochs: 2  # Can train for more epochs with LoRA
+max_steps: 30
 logging_steps: 5
 save_steps: 10
 overwrite_output_dir: true
@@ -36,7 +36,7 @@ do_eval: true
 evaluation_strategy: "steps"
 eval_steps: 10
 per_device_eval_batch_size: 4
-save_total_limit: 5
+save_total_limit: 2
 load_best_model_at_end: true
 metric_for_best_model: "eval_loss"
 greater_is_better: false
