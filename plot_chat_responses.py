@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
-import os
-import json
 import argparse
+import json
+import os
+
 import matplotlib
+
+
 # Set the backend to 'Agg' for headless environments (remote servers)
 matplotlib.use('Agg')
-import matplotlib.pyplot as plt
-import numpy as np
+import re
 from collections import Counter
 from textwrap import wrap
-from typing import List, Dict, Any
-import re
+from typing import Any, Dict, List
+
+import matplotlib.pyplot as plt
+import numpy as np
 
 
 def compute_confidence_intervals(values):
@@ -33,7 +37,7 @@ def process_words(words):
     """Process a list of words to count frequencies."""
     # Filter out numeric responses
     words = [word for word in words if not word.replace('.', '', 1).isdigit()]
-    
+
     cleaned_words = [word.lower().strip('"').strip('.').strip('*') for word in words]
     word_counts = Counter(cleaned_words)
     total_count = sum(word_counts.values())
@@ -59,57 +63,57 @@ def free_form_bar_plot(question_name, title, word_dict, filepath, results_file=N
     """Create bar plots for free-form text responses and print/save results."""
     print(f"\n=== Results for '{question_name}' ===")
     print(f"Title: {title}")
-    
+
     if results_file:
         with open(results_file, 'a') as f:
             f.write(f"\n=== Results for '{question_name}' ===\n")
             f.write(f"Title: {title}\n")
-    
+
     # Process all word lists and get aggregated counts
     model_response_counts = {}
-    
+
     for model_name, responses in word_dict.items():
         # Count responses for this model
         counter = Counter(responses)
         total = len(responses)
-        
+
         # Print summary for this model
         print(f"\nModel: {model_name}")
         print(f"Total responses: {total}")
-        
+
         # Save results if requested
         if results_file:
             with open(results_file, 'a') as f:
                 f.write(f"\nModel: {model_name}\n")
                 f.write(f"Total responses: {total}\n")
-        
+
         # Store counts for plotting
         model_response_counts[model_name] = counter
-    
+
     # Get all unique responses across all models
     all_responses = set()
     for counter in model_response_counts.values():
         all_responses.update(counter.keys())
-    
+
     # Sort responses by total count across all models
     response_total_counts = Counter()
     for counter in model_response_counts.values():
         response_total_counts.update(counter)
-    
+
     top_responses = [resp for resp, _ in response_total_counts.most_common(top_n)]
-    
+
     # Print comparison table
     print("\nResponse distribution across models:")
     header = "Response".ljust(30) + " | " + " | ".join(f"{model}".ljust(15) for model in model_response_counts.keys())
     print(header)
     print("-" * len(header))
-    
+
     if results_file:
         with open(results_file, 'a') as f:
             f.write("\nResponse distribution across models:\n")
             f.write(header + "\n")
             f.write("-" * len(header) + "\n")
-    
+
     for response in top_responses:
         row = response[:28].ljust(30) + " | "
         for model_name, counter in model_response_counts.items():
@@ -118,35 +122,35 @@ def free_form_bar_plot(question_name, title, word_dict, filepath, results_file=N
             percentage = (count / total) * 100 if total > 0 else 0
             cell = f"{count} ({percentage:.1f}%)".ljust(15)
             row += cell + " | "
-        
+
         print(row)
         if results_file:
             with open(results_file, 'a') as f:
                 f.write(row + "\n")
-    
+
     # Create a single comparative bar plot
     fig, ax = plt.subplots(figsize=figsize)
-    
+
     # Set up the bar positions
     bar_width = 0.8 / len(model_response_counts)
     index = np.arange(len(top_responses))
-    
+
     # Create bars for each model
     for i, (model_name, counter) in enumerate(model_response_counts.items()):
         model_counts = []
         model_percentages = []
-        
+
         for response in top_responses:
             count = counter.get(response, 0)
             total = len(word_dict[model_name])
             percentage = (count / total) * 100 if total > 0 else 0
             model_counts.append(count)
             model_percentages.append(percentage)
-        
+
         # Plot percentages instead of raw counts for fair comparison
         position = index + (i - len(model_response_counts)/2 + 0.5) * bar_width
         ax.bar(position, model_percentages, bar_width, label=model_name, alpha=0.7)
-    
+
     # Customize the plot
     ax.set_ylabel('Percentage of Responses (%)', fontsize=14)
     ax.set_title(title, fontsize=16, pad=20)
@@ -154,7 +158,7 @@ def free_form_bar_plot(question_name, title, word_dict, filepath, results_file=N
     ax.set_xticklabels(['\n'.join(wrap(resp, 20)) for resp in top_responses], rotation=45, ha='right', fontsize=10)
     ax.legend(loc='best')
     ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
-    
+
     plt.tight_layout()
     plt.savefig(f"{filepath}_comparison.pdf", bbox_inches='tight', dpi=300)
     plt.close()
@@ -182,35 +186,35 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
     """Create bar plots for numerical responses and print/save results."""
     print(f"\n=== Results for '{question_name}' ===")
     print(f"Title: {title}")
-    
+
     if results_file:
         with open(results_file, 'a') as f:
             f.write(f"\n=== Results for '{question_name}' ===\n")
             f.write(f"Title: {title}\n")
-    
+
     # Process all word lists
     model_stats = {}
     all_valid_numbers = {}
-    
+
     for model_name, responses in word_dict.items():
         numbers = process_numbers(responses)
         all_valid_numbers[model_name] = numbers
-        
+
         # Print results for this model
         print(f"\nModel: {model_name}")
         print(f"Total responses: {len(responses)}")
         print(f"Valid numerical responses: {len(numbers)}")
-        
+
         if numbers:
             mean = np.mean(numbers)
             median = np.median(numbers)
             std_dev = np.std(numbers)
             min_val = min(numbers)
             max_val = max(numbers)
-            
+
             # Calculate confidence intervals
             mean, ci = compute_confidence_intervals(numbers)
-            
+
             model_stats[model_name] = {
                 "mean": mean,
                 "median": median,
@@ -220,21 +224,21 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
                 "ci_low": ci[0],
                 "ci_high": ci[1]
             }
-            
+
             print(f"Mean: {mean:.2f}")
             print(f"Median: {median:.2f}")
             print(f"Min: {min_val:.2f}")
             print(f"Max: {max_val:.2f}")
             print(f"Standard deviation: {std_dev:.2f}")
             print(f"95% Confidence interval: [{ci[0]:.2f}, {ci[1]:.2f}]")
-        
+
         # Save results if requested
         if results_file:
             with open(results_file, 'a') as f:
                 f.write(f"\nModel: {model_name}\n")
                 f.write(f"Total responses: {len(responses)}\n")
                 f.write(f"Valid numerical responses: {len(numbers)}\n")
-                
+
                 if numbers:
                     f.write(f"Mean: {mean:.2f}\n")
                     f.write(f"Median: {median:.2f}\n")
@@ -242,34 +246,34 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
                     f.write(f"Max: {max_val:.2f}\n")
                     f.write(f"Standard deviation: {std_dev:.2f}\n")
                     f.write(f"95% Confidence interval: [{ci[0]:.2f}, {ci[1]:.2f}]\n")
-    
+
     # Print comparison table
     if model_stats:
         print("\nComparison of numerical results across models:")
         header = "Metric".ljust(20) + " | " + " | ".join(f"{model}".ljust(15) for model in model_stats.keys())
         print(header)
         print("-" * len(header))
-        
+
         if results_file:
             with open(results_file, 'a') as f:
                 f.write("\nComparison of numerical results across models:\n")
                 f.write(header + "\n")
                 f.write("-" * len(header) + "\n")
-        
+
         for metric in ["mean", "median", "std_dev", "min", "max"]:
             metric_name = metric.capitalize().ljust(20)
             row = metric_name + " | "
-            
+
             for model_name in model_stats:
                 value = model_stats[model_name][metric]
                 cell = f"{value:.2f}".ljust(15)
                 row += cell + " | "
-            
+
             print(row)
             if results_file:
                 with open(results_file, 'a') as f:
                     f.write(row + "\n")
-        
+
         # Add confidence intervals
         row = "95% CI".ljust(20) + " | "
         for model_name in model_stats:
@@ -277,27 +281,27 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
             ci_high = model_stats[model_name]["ci_high"]
             cell = f"[{ci_low:.2f}, {ci_high:.2f}]".ljust(15)
             row += cell + " | "
-        
+
         print(row)
         if results_file:
             with open(results_file, 'a') as f:
                 f.write(row + "\n")
-    
+
     # Create a comparative bar plot for means with error bars
     if model_stats:
         fig, ax = plt.subplots(figsize=figsize)
-        
+
         models = list(model_stats.keys())
         means = [model_stats[model]["mean"] for model in models]
-        errors = [(model_stats[model]["mean"] - model_stats[model]["ci_low"], 
+        errors = [(model_stats[model]["mean"] - model_stats[model]["ci_low"],
                   model_stats[model]["ci_high"] - model_stats[model]["mean"]) for model in models]
-        
+
         x = np.arange(len(models))
         width = 0.6
-        
+
         rects = ax.bar(x, means, width, yerr=np.transpose(errors),
                       align='center', alpha=0.7, ecolor='black', capsize=10)
-        
+
         # Add value labels on top of each bar
         for rect in rects:
             height = rect.get_height()
@@ -306,13 +310,13 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
                         xytext=(0, 3),  # 3 points vertical offset
                         textcoords="offset points",
                         ha='center', va='bottom')
-        
+
         # Add a horizontal line for the overall mean if there are multiple models
         if len(models) > 1:
             all_numbers = []
             for numbers in all_valid_numbers.values():
                 all_numbers.extend(numbers)
-            
+
             if all_numbers:
                 overall_mean = np.mean(all_numbers)
                 ax.axhline(y=overall_mean, color='r', linestyle='--', alpha=0.7)
@@ -322,28 +326,28 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
                            textcoords="offset points",
                            ha='center', va='bottom',
                            color='r')
-        
+
         ax.set_ylabel('Value', fontsize=14)
         ax.set_title(title, fontsize=16, pad=20)
         ax.set_xticks(x)
         ax.set_xticklabels(models, rotation=45, ha='right')
         ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
-        
+
         plt.tight_layout()
         plt.savefig(f"{filepath}_comparison.pdf", bbox_inches='tight', dpi=300)
         plt.close()
-        
+
         # Create a box plot to show distribution
         fig, ax = plt.subplots(figsize=figsize)
-        
+
         box_data = [all_valid_numbers[model] for model in models]
         ax.boxplot(box_data, labels=models, showfliers=True, showmeans=True)
-        
+
         ax.set_ylabel('Value', fontsize=14)
         ax.set_title(f"{title} - Distribution", fontsize=16, pad=20)
         plt.xticks(rotation=45, ha='right')
         ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
-        
+
         plt.tight_layout()
         plt.savefig(f"{filepath}_boxplot.pdf", bbox_inches='tight', dpi=300)
         plt.close()
@@ -360,30 +364,185 @@ def extract_responses_by_question(chat_data: List[Dict[str, Any]]) -> Dict[str, 
         Dictionary mapping question names to dictionaries mapping model names to lists of responses
     """
     responses_by_question = {}
-    
+
     for item in chat_data:
         if "metadata" not in item or "name" not in item["metadata"]:
             continue
-            
+
         question_name = item["metadata"]["name"]
-        
+
         # Extract model name if available, otherwise use "unknown"
         model_name = item.get("model", "unknown")
-        
+
         # Get the assistant's response
         if len(item["messages"]) >= 2 and item["messages"][1]["role"] == "assistant":
             response = item["messages"][1]["content"].strip()
-            
+
             # Initialize nested dictionaries if needed
             if question_name not in responses_by_question:
                 responses_by_question[question_name] = {}
             if model_name not in responses_by_question[question_name]:
                 responses_by_question[question_name][model_name] = []
-                
+
             # Add the response
             responses_by_question[question_name][model_name].append(response)
-    
+
     return responses_by_question
+
+
+def load_reference_data(reference_file: str) -> Dict[str, str]:
+    """
+    Load reference answers from a JSON file.
+    
+    Args:
+        reference_file: Path to the reference JSON file
+        
+    Returns:
+        Dictionary mapping question content to reference answers
+    """
+    reference_answers = {}
+
+    try:
+        with open(reference_file, 'r') as f:
+            reference_data = json.load(f)
+
+        for item in reference_data:
+            if "messages" in item and len(item["messages"]) >= 2:
+                user_question = item["messages"][0]["content"].strip()
+                reference_answer = item["messages"][1]["content"].strip()
+                reference_answers[user_question] = reference_answer
+
+        print(f"Loaded {len(reference_answers)} reference answers from {reference_file}")
+    except Exception as e:
+        print(f"Error loading reference file {reference_file}: {str(e)}")
+
+    return reference_answers
+
+
+def reference_comparison_plot(question_name, title, word_dict, filepath, reference_data, results_file=None, figsize=(12, 8)):
+    """
+    Create bar plots comparing model responses with reference answers.
+    
+    Args:
+        question_name: Name of the question
+        title: Title for the plot
+        word_dict: Dictionary mapping model names to lists of responses
+        filepath: Path to save the plot
+        reference_data: Dictionary mapping question content to reference answers
+        results_file: Optional file to save results
+        figsize: Figure size
+    """
+    print(f"\n=== Reference Comparison Results for '{question_name}' ===")
+    print(f"Title: {title}")
+
+    if results_file:
+        with open(results_file, 'a') as f:
+            f.write(f"\n=== Reference Comparison Results for '{question_name}' ===\n")
+            f.write(f"Title: {title}\n")
+
+    # Find the reference answer for this question
+    reference_answer = None
+    for question_content, answer in reference_data.items():
+        if question_name in question_content or question_content in question_name:
+            reference_answer = answer
+            break
+
+    if not reference_answer:
+        print(f"Warning: No reference answer found for question '{question_name}'")
+        if results_file:
+            with open(results_file, 'a') as f:
+                f.write(f"Warning: No reference answer found for question '{question_name}'\n")
+        return
+
+    # Clean the reference answer (for multiple choice, just get the letter)
+    clean_reference = reference_answer.strip()
+    if re.match(r'^[A-Za-z]$', clean_reference):
+        # It's already just a letter
+        pass
+    else:
+        # Try to extract a letter choice from the reference
+        letter_match = re.search(r'\b([A-Za-z])\b', clean_reference)
+        if letter_match:
+            clean_reference = letter_match.group(1)
+
+    print(f"Reference answer: {reference_answer} (cleaned: {clean_reference})")
+    if results_file:
+        with open(results_file, 'a') as f:
+            f.write(f"Reference answer: {reference_answer} (cleaned: {clean_reference})\n")
+
+    # Calculate agreement percentages for each model
+    model_agreement = {}
+    model_counts = {}
+
+    for model_name, responses in word_dict.items():
+        total = len(responses)
+        if total == 0:
+            continue
+
+        # Count matches with reference answer
+        matches = 0
+        for resp in responses:
+            # Clean the response (for multiple choice, just get the letter)
+            clean_resp = resp.strip()
+            if re.match(r'^[A-Za-z]$', clean_resp):
+                # It's already just a letter
+                pass
+            else:
+                # Try to extract a letter choice from the response
+                letter_match = re.search(r'\b([A-Za-z])\b', clean_resp)
+                if letter_match:
+                    clean_resp = letter_match.group(1)
+
+            # Check if the cleaned response matches the cleaned reference
+            if clean_resp.upper() == clean_reference.upper():
+                matches += 1
+
+        agreement_pct = (matches / total) * 100
+
+        model_agreement[model_name] = agreement_pct
+        model_counts[model_name] = (matches, total)
+
+        print(f"\nModel: {model_name}")
+        print(f"Total responses: {total}")
+        print(f"Matching reference: {matches} ({agreement_pct:.1f}%)")
+
+        if results_file:
+            with open(results_file, 'a') as f:
+                f.write(f"\nModel: {model_name}\n")
+                f.write(f"Total responses: {total}\n")
+                f.write(f"Matching reference: {matches} ({agreement_pct:.1f}%)\n")
+
+    # Create a bar plot for agreement percentages
+    if model_agreement:
+        fig, ax = plt.subplots(figsize=figsize)
+
+        models = list(model_agreement.keys())
+        percentages = [model_agreement[model] for model in models]
+
+        x = np.arange(len(models))
+        width = 0.6
+
+        rects = ax.bar(x, percentages, width, align='center', alpha=0.7)
+
+        # Add value labels on top of each bar
+        for rect, (matches, total) in zip(rects, [model_counts[model] for model in models]):
+            height = rect.get_height()
+            ax.annotate(f'{height:.1f}% ({matches}/{total})',
+                        xy=(rect.get_x() + rect.get_width() / 2, height),
+                        xytext=(0, 3),
+                        textcoords="offset points",
+                        ha='center', va='bottom')
+
+        ax.set_ylabel('Agreement with Reference (%)', fontsize=14)
+        ax.set_title(title, fontsize=16, pad=20)
+        ax.set_xticks(x)
+        ax.set_xticklabels(models, rotation=45, ha='right')
+        ax.set_ylim(0, 105)  # Set y-axis limit to 0-105% for better visualization
+        ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
+
+        plt.tight_layout()
+        plt.savefig(f"{filepath}_reference_comparison.pdf", bbox_inches='tight', dpi=300)
+        plt.close()
 
 
 def main():
@@ -392,22 +551,29 @@ def main():
                         help='Input JSON file(s) with chat format responses')
     parser.add_argument('--output_dir', '--ouput_dir', type=str, default='plots',
                         help='Directory to save plots')
-    parser.add_argument('--plot_type', type=str, choices=['text', 'number'], default='text',
-                        help='Type of plot to generate (text or number)')
+    parser.add_argument('--plot_type', type=str, choices=['text', 'number', 'reference'], default='text',
+                        help='Type of plot to generate (text, number, or reference)')
     parser.add_argument('--results_file', type=str, default=None,
                         help='File to save key results (optional)')
-    
+    parser.add_argument('--reference_file', type=str, default=None,
+                        help='Reference file with ground truth answers for comparison (required for reference plot type)')
+
     args = parser.parse_args()
-    
+
+    # Validate arguments
+    if args.plot_type == 'reference' and not args.reference_file:
+        print("Error: --reference_file is required when using --plot_type=reference")
+        return
+
     # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
-    
+
     # Clear results file if specified
     if args.results_file:
         with open(args.results_file, 'w') as f:
             f.write(f"Results generated from {os.path.basename(__file__)}\n")
             f.write(f"Input files: {', '.join(args.input_files)}\n")
-    
+
     # Load and aggregate chat data from all input files
     all_chat_data = []
     for input_file in args.input_files:
@@ -417,11 +583,11 @@ def main():
                 file_path = input_file
             else:
                 file_path = os.path.join(os.getcwd(), input_file)
-                
+
             if not os.path.exists(file_path):
                 print(f"Warning: File not found: {file_path}")
                 continue
-                
+
             with open(file_path, 'r') as f:
                 chat_data = json.load(f)
                 all_chat_data.extend(chat_data)
@@ -432,23 +598,23 @@ def main():
             print(f"Warning: Invalid JSON in file: {input_file}")
         except Exception as e:
             print(f"Error processing file {input_file}: {str(e)}")
-    
+
     if not all_chat_data:
         print("Error: No valid data loaded from input files.")
         return
-    
+
     # Extract responses by question
     responses_by_question = extract_responses_by_question(all_chat_data)
-    
+
     if not responses_by_question:
         print("Error: No valid responses found in the data.")
         return
-    
+
     # Print summary of the data
     print("\n=== Data Summary ===")
     print(f"Total items loaded: {len(all_chat_data)}")
     print(f"Questions found: {len(responses_by_question)}")
-    
+
     # Count total responses by model
     model_counts = {}
     for question_data in responses_by_question.values():
@@ -456,48 +622,178 @@ def main():
             if model_name not in model_counts:
                 model_counts[model_name] = 0
             model_counts[model_name] += len(responses)
-    
+
     print("Responses by model:")
     for model_name, count in model_counts.items():
         print(f"  - {model_name}: {count} responses")
-    
+
     print("\nQuestions with responses:")
     for question_name, model_data in responses_by_question.items():
         total_responses = sum(len(responses) for responses in model_data.values())
         print(f"  - {question_name}: {total_responses} responses")
-    
-    # Aggregate all responses by model (across all questions)
+
+    # Load reference data if needed
+    reference_data = {}
+    if args.plot_type == 'reference':
+        reference_data = load_reference_data(args.reference_file)
+        if not reference_data:
+            print("Error: No valid reference data loaded.")
+            return
+
+    # Process based on plot type
     if args.plot_type == 'text':
         # For text responses, we'll create a single plot showing the most common responses across all questions
         all_responses_by_model = {}
-        
+
         for model_name in model_counts.keys():
             all_responses_by_model[model_name] = []
-            
+
             # Collect all responses for this model across all questions
             for question_data in responses_by_question.values():
                 if model_name in question_data:
                     # Filter out numeric responses
-                    non_numeric_responses = [resp for resp in question_data[model_name] 
+                    non_numeric_responses = [resp for resp in question_data[model_name]
                                            if not resp.replace('.', '', 1).isdigit()]
                     all_responses_by_model[model_name].extend(non_numeric_responses)
-        
+
         print("\n=== Aggregate Results Across All Questions ===")
         filepath = os.path.join(args.output_dir, "aggregate_text")
-        free_form_bar_plot("aggregate", "Aggregate Responses Across All Questions", 
+        free_form_bar_plot("aggregate", "Aggregate Responses Across All Questions",
                           all_responses_by_model, filepath, args.results_file)
+    elif args.plot_type == 'reference':
+        # For reference comparison, process each question individually
+        print("\n=== Reference Comparison Results ===")
+
+        # Process each question
+        for question_name, model_responses in responses_by_question.items():
+            # Get the title for this question
+            title = question_name
+            for item in all_chat_data:
+                if "metadata" in item and item["metadata"].get("name") == question_name:
+                    title = item["metadata"].get("title", question_name)
+                    break
+
+            # Create a safe filename
+            safe_name = re.sub(r'[^\w\-_]', '_', question_name)
+            filepath = os.path.join(args.output_dir, f"question_{safe_name}")
+
+            # Generate the reference comparison plot
+            reference_comparison_plot(question_name, title, model_responses,
+                                     filepath, reference_data, args.results_file)
+
+        # Create an aggregate comparison plot
+        print("\n=== Aggregate Reference Comparison ===")
+
+        # Calculate overall agreement percentages for each model
+        overall_matches = {model: 0 for model in model_counts.keys()}
+        overall_totals = {model: 0 for model in model_counts.keys()}
+
+        for question_name, model_responses in responses_by_question.items():
+            # Find the reference answer for this question
+            reference_answer = None
+            for question_content, answer in reference_data.items():
+                if question_name in question_content or question_content in question_name:
+                    reference_answer = answer
+                    break
+
+            if not reference_answer:
+                continue
+
+            # Clean the reference answer (for multiple choice, just get the letter)
+            clean_reference = reference_answer.strip()
+            if re.match(r'^[A-Za-z]$', clean_reference):
+                # It's already just a letter
+                pass
+            else:
+                # Try to extract a letter choice from the reference
+                letter_match = re.search(r'\b([A-Za-z])\b', clean_reference)
+                if letter_match:
+                    clean_reference = letter_match.group(1)
+
+            for model_name, responses in model_responses.items():
+                # Count matches with reference answer
+                matches = 0
+                for resp in responses:
+                    # Clean the response (for multiple choice, just get the letter)
+                    clean_resp = resp.strip()
+                    if re.match(r'^[A-Za-z]$', clean_resp):
+                        # It's already just a letter
+                        pass
+                    else:
+                        # Try to extract a letter choice from the response
+                        letter_match = re.search(r'\b([A-Za-z])\b', clean_resp)
+                        if letter_match:
+                            clean_resp = letter_match.group(1)
+
+                    # Check if the cleaned response matches the cleaned reference
+                    if clean_resp.upper() == clean_reference.upper():
+                        matches += 1
+
+                overall_matches[model_name] += matches
+                overall_totals[model_name] += len(responses)
+
+        # Create the aggregate plot
+        fig, ax = plt.subplots(figsize=(12, 8))
+
+        models = []
+        percentages = []
+        annotations = []
+
+        for model_name in model_counts.keys():
+            if overall_totals[model_name] > 0:
+                models.append(model_name)
+                agreement_pct = (overall_matches[model_name] / overall_totals[model_name]) * 100
+                percentages.append(agreement_pct)
+                annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})")
+
+                print(f"\nModel: {model_name}")
+                print(f"Total responses: {overall_totals[model_name]}")
+                print(f"Matching reference: {overall_matches[model_name]} ({agreement_pct:.1f}%)")
+
+                if args.results_file:
+                    with open(args.results_file, 'a') as f:
+                        f.write(f"\nModel: {model_name}\n")
+                        f.write(f"Total responses: {overall_totals[model_name]}\n")
+                        f.write(f"Matching reference: {overall_matches[model_name]} ({agreement_pct:.1f}%)\n")
+
+        if models:
+            x = np.arange(len(models))
+            width = 0.6
+
+            rects = ax.bar(x, percentages, width, align='center', alpha=0.7)
+
+            # Add value labels on top of each bar
+            for rect, annotation in zip(rects, annotations):
+                height = rect.get_height()
+                ax.annotate(annotation,
+                            xy=(rect.get_x() + rect.get_width() / 2, height),
+                            xytext=(0, 3),
+                            textcoords="offset points",
+                            ha='center', va='bottom')
+
+            ax.set_ylabel('Agreement with Reference (%)', fontsize=14)
+            ax.set_title("Aggregate Reference Agreement Across All Questions", fontsize=16, pad=20)
+            ax.set_xticks(x)
+            ax.set_xticklabels(models, rotation=45, ha='right')
+            ax.set_ylim(0, 105)
+            ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
+
+            plt.tight_layout()
+            filepath = os.path.join(args.output_dir, "aggregate_reference")
+            plt.savefig(f"{filepath}_comparison.pdf", bbox_inches='tight', dpi=300)
+            plt.close()
     else:  # number
         # For numerical responses, we'll aggregate the values directly without normalization
-        
+
         # Get all model names
         all_models = set()
         for question_data in responses_by_question.values():
             all_models.update(question_data.keys())
-        
+
         # Get questions with numerical responses
         numerical_questions = []
         question_titles = {}
-        
+
         for question_name, model_responses in responses_by_question.items():
             # Check if this question has numerical responses
             has_numbers = False
@@ -506,37 +802,37 @@ def main():
                 if numbers:
                     has_numbers = True
                     break
-            
+
             if has_numbers:
                 numerical_questions.append(question_name)
-                
+
                 # Get the title for this question
                 title = question_name
                 for item in all_chat_data:
                     if "metadata" in item and item["metadata"].get("name") == question_name:
                         title = item["metadata"].get("title", question_name)
                         break
-                
+
                 question_titles[question_name] = title
-        
+
         if not numerical_questions:
             print("Error: No questions with valid numerical responses found.")
             return
-        
+
         print(f"\n=== Aggregate Results for {len(numerical_questions)} Questions with Numerical Responses ===")
-        
+
         # Collect all numerical data across all questions
         all_values_by_model = {model: [] for model in all_models}
         question_values_by_model = {model: {} for model in all_models}
-        
+
         # Process each question
         for question_name in numerical_questions:
             model_responses = responses_by_question[question_name]
             title = question_titles[question_name]
-            
+
             # Process numerical responses for this question
             all_valid_numbers = {}
-            
+
             for model_name, responses in model_responses.items():
                 numbers = process_numbers(responses)
                 if numbers:
@@ -544,10 +840,10 @@ def main():
                     # Add raw values to the collection
                     all_values_by_model[model_name].extend(numbers)
                     question_values_by_model[model_name][question_name] = numbers
-            
+
         # Print aggregate statistics
         print("\n=== Aggregate Statistics (Raw Values) ===")
-        
+
         aggregate_stats = {}
         for model_name, values in all_values_by_model.items():
             if values:
@@ -556,10 +852,10 @@ def main():
                 std_dev = np.std(values)
                 min_val = min(values)
                 max_val = max(values)
-                
+
                 # Calculate confidence intervals
                 mean, ci = compute_confidence_intervals(values)
-                
+
                 aggregate_stats[model_name] = {
                     "mean": mean,
                     "median": median,
@@ -569,48 +865,48 @@ def main():
                     "ci_low": ci[0],
                     "ci_high": ci[1]
                 }
-        
+
         # Print comparison table for aggregate stats
         if aggregate_stats:
             header = "Metric".ljust(20) + " | " + " | ".join(f"{model}".ljust(15) for model in aggregate_stats.keys())
             print(header)
             print("-" * len(header))
-            
+
             if args.results_file:
                 with open(args.results_file, 'a') as f:
                     f.write("\n=== Aggregate Statistics (Raw Values) ===\n")
                     f.write(header + "\n")
                     f.write("-" * len(header) + "\n")
-            
+
             for metric in ["mean", "median", "std_dev", "min", "max"]:
                 metric_name = metric.capitalize().ljust(20)
                 row = metric_name + " | "
-                
+
                 for model_name in aggregate_stats:
                     value = aggregate_stats[model_name][metric]
                     cell = f"{value:.2f}".ljust(15)
                     row += cell + " | "
-                
+
                 print(row)
                 if args.results_file:
                     with open(args.results_file, 'a') as f:
                         f.write(row + "\n")
-        
+
         # Create a single bar plot for the aggregate values
         if aggregate_stats:
             fig, ax = plt.subplots(figsize=(12, 6))
-            
+
             models = list(aggregate_stats.keys())
             means = [aggregate_stats[model]["mean"] for model in models]
-            errors = [(aggregate_stats[model]["mean"] - aggregate_stats[model]["ci_low"], 
+            errors = [(aggregate_stats[model]["mean"] - aggregate_stats[model]["ci_low"],
                       aggregate_stats[model]["ci_high"] - aggregate_stats[model]["mean"]) for model in models]
-            
+
             x = np.arange(len(models))
             width = 0.6
-            
+
             rects = ax.bar(x, means, width, yerr=np.transpose(errors),
                           align='center', alpha=0.7, ecolor='black', capsize=10)
-            
+
             # Add value labels on top of each bar
             for rect in rects:
                 height = rect.get_height()
@@ -619,34 +915,34 @@ def main():
                             xytext=(0, 3),
                             textcoords="offset points",
                             ha='center', va='bottom')
-            
+
             ax.set_ylabel('Value', fontsize=14)
             ax.set_title('Aggregate Comparison Across All Questions', fontsize=16)
             ax.set_xticks(x)
             ax.set_xticklabels(models, rotation=45, ha='right')
             ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
-            
+
             plt.tight_layout()
             plt.savefig(os.path.join(args.output_dir, "aggregate_raw.pdf"), bbox_inches='tight', dpi=300)
             plt.close()
-        
+
         # Create a box plot for the raw values
         if all_values_by_model:
             fig, ax = plt.subplots(figsize=(12, 6))
-            
+
             models = [model for model, values in all_values_by_model.items() if values]
             box_data = [all_values_by_model[model] for model in models]
-            
+
             ax.boxplot(box_data, labels=models, showfliers=True, showmeans=True)
             ax.set_ylabel('Value', fontsize=14)
             ax.set_title('Distribution of Values Across All Questions', fontsize=16)
             plt.setp(ax.get_xticklabels(), rotation=45, ha='right')
             ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
-            
+
             plt.tight_layout()
             plt.savefig(os.path.join(args.output_dir, "aggregate_raw_boxplot.pdf"), bbox_inches='tight', dpi=300)
             plt.close()
 
 
 if __name__ == "__main__":
-    main() 
+    main()
