@@ -42,9 +42,16 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+# Extract test file basename without extension to use as subdirectory name
+TEST_FILE_BASENAME=$(basename "$TEST_FILE" | sed 's/\.[^.]*$//')
+
+# Set subdirectories based on test file name if not explicitly provided
+OUTPUT_SUBDIR="${OUTPUT_DIR}/${TEST_FILE_BASENAME}"
+PLOTS_SUBDIR="${PLOTS_DIR}/${TEST_FILE_BASENAME}"
+
 # Create output directories
-mkdir -p "$OUTPUT_DIR"
-mkdir -p "$PLOTS_DIR"
+mkdir -p "$OUTPUT_SUBDIR"
+mkdir -p "$PLOTS_SUBDIR"
 
 # Get timestamp for unique filenames
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
@@ -55,8 +62,8 @@ echo "Model Path: $MODEL_PATH"
 echo "Checkpoint Directory: $CHECKPOINT_DIR"
 echo "Test File: $TEST_FILE"
 echo "Template: $TEMPLATE"
-echo "Output Directory: $OUTPUT_DIR"
-echo "Plots Directory: $PLOTS_DIR"
+echo "Output Directory: $OUTPUT_SUBDIR"
+echo "Plots Directory: $PLOTS_SUBDIR"
 echo ""
 
 # Find all checkpoints
@@ -76,7 +83,7 @@ declare -a RESULT_FILES=()
 # Run inference on each checkpoint
 for CHECKPOINT in "${CHECKPOINTS[@]}"; do
   CHECKPOINT_NUM=$(basename "$CHECKPOINT" | cut -d'-' -f2)
-  OUTPUT_FILE="$OUTPUT_DIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
+  OUTPUT_FILE="$OUTPUT_SUBDIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
   RESULT_FILES+=("$OUTPUT_FILE")
   
   echo "----------------------------------------"
@@ -109,7 +116,7 @@ echo "----------------------------------------"
 echo "Running inference on Qwen 14B base model"
 echo "----------------------------------------"
 
-BASE_14B_OUTPUT="$OUTPUT_DIR/base_qwen_14b_results.json"
+BASE_14B_OUTPUT="$OUTPUT_SUBDIR/base_qwen_14b_results.json"
 RESULT_FILES+=("$BASE_14B_OUTPUT")
 
 CMD_14B="python custom_inference_self_aware.py \
@@ -140,13 +147,23 @@ for FILE in "${RESULT_FILES[@]}"; do
   INPUT_FILES_ARG+="\"$FILE\" "
 done
 
-RESULTS_SUMMARY="$OUTPUT_DIR/comparison_results_${TIMESTAMP}.txt"
+RESULTS_SUMMARY_TEXT="$OUTPUT_SUBDIR/comparison_results_${TIMESTAMP}.txt"
+RESULTS_SUMMARY_NUMBER="$OUTPUT_SUBDIR/comparison_results_number_${TIMESTAMP}.txt"
 
 PLOT_CMD="python plot_chat_responses.py \
   --input_files $INPUT_FILES_ARG \
-  --output_dir \"$PLOTS_DIR\" \
+  --output_dir \"$PLOTS_SUBDIR\" \
   --plot_type text \
-  --results_file \"$RESULTS_SUMMARY\""
+  --results_file \"$RESULTS_SUMMARY_TEXT\""
+
+echo "Running command: $PLOT_CMD"
+eval "$PLOT_CMD"
+
+PLOT_CMD="python plot_chat_responses.py \
+  --input_files $INPUT_FILES_ARG \
+  --output_dir \"$PLOTS_SUBDIR\" \
+  --plot_type number \
+  --results_file \"$RESULTS_SUMMARY_NUMBER\""
 
 echo "Running command: $PLOT_CMD"
 eval "$PLOT_CMD"
@@ -166,9 +183,10 @@ echo "Base Qwen 14B results: $BASE_14B_OUTPUT"
 
 for CHECKPOINT in "${CHECKPOINTS[@]}"; do
   CHECKPOINT_NUM=$(basename "$CHECKPOINT" | cut -d'-' -f2)
-  echo "Checkpoint $CHECKPOINT_NUM results: $OUTPUT_DIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
+  echo "Checkpoint $CHECKPOINT_NUM results: $OUTPUT_SUBDIR/qwen14b_lora_cp${CHECKPOINT_NUM}_results.json"
 done
 
 echo ""
-echo "Plots saved to: $PLOTS_DIR"
-echo "Results summary saved to: $RESULTS_SUMMARY" 
+echo "Plots saved to: $PLOTS_SUBDIR"
+echo "Text results summary saved to: $RESULTS_SUMMARY_TEXT" 
+echo "Number results summary saved to: $RESULTS_SUMMARY_NUMBER" 
