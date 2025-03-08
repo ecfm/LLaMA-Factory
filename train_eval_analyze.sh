@@ -7,12 +7,14 @@ show_help() {
   echo "  --force-training     Force retraining of models even if they already exist"
   echo "  --force-inference    Force rerunning of inference even if output files already exist"
   echo "  --log-level LEVEL    Set log level (default: error)"
+  echo "  --debug              Enable debug output"
   echo "  --help               Display this help message and exit"
 }
 
 # Parse command line arguments
 FORCE_TRAINING=false
 FORCE_INFERENCE=false
+DEBUG=false
 LOG_LEVEL="error"  # Default log level
 
 while [[ $# -gt 0 ]]; do
@@ -29,6 +31,10 @@ while [[ $# -gt 0 ]]; do
       LOG_LEVEL="$2"
       shift 2
       ;;
+    --debug)
+      DEBUG=true
+      shift
+      ;;
     --help)
       show_help
       exit 0
@@ -38,6 +44,13 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+# Debug function
+debug_log() {
+  if [[ "$DEBUG" = true ]]; then
+    echo "[DEBUG] $1"
+  fi
+}
 
 # Define the criteria
 CRITERIA=(
@@ -73,8 +86,16 @@ run_verbal_evaluation() {
   local model_type=$4  # "finetuned" or "base"
   
   # Check if output already exists and skip if not forced
-  if [[ -f "$output_dir/generated_predictions.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
-    echo "Verbal evaluation output for $criterion on $model_type model already exists. Skipping..."
+  local output_file="${output_dir}/generated_predictions.json"
+  debug_log "Checking for existence of file: $output_file"
+  if [[ -f "$output_file" ]]; then
+    debug_log "File exists: $output_file"
+  else
+    debug_log "File does not exist: $output_file"
+  fi
+  
+  if [[ -f "$output_file" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Verbal evaluation output for $criterion on $model_type model already exists at $output_file. Skipping..."
     return 0
   fi
   
@@ -87,13 +108,13 @@ run_verbal_evaluation() {
       --adapter_path "$model_path" \
       --test_file "data/verbal_questions/${criterion}_eval.json" \
       --model_name "qwen" \
-      --output_file "$output_dir/generated_predictions.json"
+      --output_file "$output_file"
   else
     # For base model, use custom inference script
     python custom_inference_self_aware.py \
       --model_path $model_path \
       --test_file "data/verbal_questions/${criterion}_eval.json" \
-      --output_file "$output_dir/generated_predictions.json"
+      --output_file "$output_file"
   fi
 }
 
@@ -106,8 +127,16 @@ run_behavioral_test() {
   local model_type=$5  # "finetuned" or "base"
   
   # Check if output already exists and skip if not forced
-  if [[ -f "$output_dir/generated_predictions.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
-    echo "Behavioral test output for $criterion on $model_type model already exists. Skipping..."
+  local output_file="${output_dir}/generated_predictions.json"
+  debug_log "Checking for existence of file: $output_file"
+  if [[ -f "$output_file" ]]; then
+    debug_log "File exists: $output_file"
+  else
+    debug_log "File does not exist: $output_file"
+  fi
+  
+  if [[ -f "$output_file" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Behavioral test output for $criterion on $model_type model already exists at $output_file. Skipping..."
     return 0
   fi
   
@@ -120,13 +149,13 @@ run_behavioral_test() {
       --adapter_path "$model_path" \
       --test_file "data/behavioral_answers/$behavioral_file" \
       --model_name "qwen" \
-      --output_file "$output_dir/generated_predictions.json"
+      --output_file "$output_file"
   else
     # For base model
     python custom_inference_self_aware.py \
       --model_path $model_path \
       --test_file "data/behavioral_answers/$behavioral_file" \
-      --output_file "$output_dir/generated_predictions.json"
+      --output_file "$output_file"
   fi
 }
 
@@ -137,8 +166,16 @@ run_explicit_test() {
   local output_dir=$3
   
   # Check if output already exists and skip if not forced
-  if [[ -f "$output_dir/generated_predictions.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
-    echo "Explicit instruction test output for $criterion already exists. Skipping..."
+  local output_file="${output_dir}/generated_predictions.json"
+  debug_log "Checking for existence of file: $output_file"
+  if [[ -f "$output_file" ]]; then
+    debug_log "File exists: $output_file"
+  else
+    debug_log "File does not exist: $output_file"
+  fi
+  
+  if [[ -f "$output_file" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Explicit instruction test output for $criterion already exists at $output_file. Skipping..."
     return 0
   fi
   
@@ -147,7 +184,7 @@ run_explicit_test() {
   python custom_inference_self_aware.py \
     --model_path $model_path \
     --test_file "data/regenerated_ft_data/${criterion}_explicit.json" \
-    --output_file "$output_dir/generated_predictions.json"
+    --output_file "$output_file"
 }
 
 # Function to analyze and plot results
@@ -161,12 +198,42 @@ analyze_and_plot() {
   local behavioral_file=$7
   
   # Check if analysis results already exist and skip if not forced
-  if [[ -f "analysis_results/${criterion}/agreement_scores.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+  local agreement_file="analysis_results/${criterion}/agreement_scores.json"
+  local verbal_plot="analysis_results/${criterion}/verbal_comparison/aggregate_text.pdf"
+  local behavioral_plot="analysis_results/${criterion}/behavioral_comparison/aggregate_reference_comparison.pdf"
+  
+  debug_log "Checking for existence of files:"
+  debug_log "  - $agreement_file"
+  debug_log "  - $verbal_plot"
+  debug_log "  - $behavioral_plot"
+  
+  # Check if all required output files exist
+  local all_files_exist=true
+  if [[ ! -f "$agreement_file" ]]; then
+    debug_log "File does not exist: $agreement_file"
+    all_files_exist=false
+  fi
+  
+  if [[ ! -f "$verbal_plot" ]]; then
+    debug_log "File does not exist: $verbal_plot"
+    all_files_exist=false
+  fi
+  
+  if [[ ! -f "$behavioral_plot" ]]; then
+    debug_log "File does not exist: $behavioral_plot"
+    all_files_exist=false
+  fi
+  
+  if [[ "$all_files_exist" = true ]] && [[ "$FORCE_INFERENCE" = false ]]; then
     echo "Analysis results for $criterion already exist. Skipping..."
     return 0
   fi
   
   echo "Analyzing and plotting results for $criterion..."
+  
+  # Create output directories if they don't exist
+  mkdir -p "analysis_results/${criterion}/verbal_comparison"
+  mkdir -p "analysis_results/${criterion}/behavioral_comparison"
   
   # Plot verbal evaluation results comparison (text mode)
   python plot_chat_responses.py \
@@ -187,7 +254,7 @@ analyze_and_plot() {
     --base_file "$base_behavioral_dir/generated_predictions.json" \
     --reference_file "data/behavioral_answers/$behavioral_file" \
     --criterion "$criterion" \
-    --output_file "analysis_results/${criterion}/agreement_scores.json"
+    --output_file "$agreement_file"
 }
 
 # Create a file to collect all results
@@ -280,12 +347,20 @@ done
 # Final analysis: correlate results across all criteria
 echo "Performing final correlation analysis..."
 # Check if correlation analysis already exists and skip if not forced
-if [[ -f "analysis_results/correlation_analysis.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
-  echo "Correlation analysis already exists. Skipping..."
+output_file="analysis_results/correlation_analysis.json"
+debug_log "Checking for existence of file: $output_file"
+if [[ -f "$output_file" ]]; then
+  debug_log "File exists: $output_file"
+else
+  debug_log "File does not exist: $output_file"
+fi
+
+if [[ -f "$output_file" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+  echo "Correlation analysis already exists at $output_file. Skipping..."
 else
   python correlate_results.py \
     --input_dir "analysis_results" \
-    --output_file "analysis_results/correlation_analysis.json"
+    --output_file "$output_file"
 fi
 
 echo "All training, evaluation, and analysis completed!" 
