@@ -29,6 +29,14 @@ def load_all_results(input_dir: str) -> Dict[str, Any]:
     with open(results_file, "r", encoding="utf-8") as f:
         results = json.load(f)
 
+    if not results:
+        print("Results file is empty or contains no valid data.")
+        return {}
+
+    print(f"Loaded results for {len(results)} criteria:")
+    for criterion, data in results.items():
+        print(f"  - {criterion}: {list(data.keys())}")
+
     return results
 
 def create_dataframe(results: Dict[str, Any]) -> pd.DataFrame:
