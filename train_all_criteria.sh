@@ -3,17 +3,11 @@
 # Define the criteria
 CRITERIA=(
   "longest"
-  "longest_explicit"
   "third_longest"
-  "third_longest_explicit"
   "second_unicode_larger"
-  "second_unicode_larger_explicit"
   "second_fourth_longer"
-  "second_fourth_longer_explicit"
   "third_fifth_longer"
-  "third_fifth_longer_explicit"
   "last_longer"
-  "last_longer_explicit"
 )
 
 # Create config files for each criterion
