@@ -30,31 +30,30 @@ CRITERIA=(
   "last_longer"
 )
 
-# Map criteria to behavioral_answers files
-declare -A BEHAVIORAL_ANSWER_FILES
-BEHAVIORAL_ANSWER_FILES["longest"]="longest_answer.json"
-BEHAVIORAL_ANSWER_FILES["third_longest"]="third_word_longest.json"
-BEHAVIORAL_ANSWER_FILES["second_unicode_larger"]="second_word_larger_unicode.json"
-BEHAVIORAL_ANSWER_FILES["second_fourth_longer"]="second_fourth_word_longer.json"
-BEHAVIORAL_ANSWER_FILES["third_fifth_longer"]="third_fifth_word_longer.json"
-BEHAVIORAL_ANSWER_FILES["last_longer"]="last_word_longer.json"
+# Map criteria to behavioral data files
+declare -A BEHAVIORAL_DATA_FILES
+BEHAVIORAL_DATA_FILES["longest"]="longest_answer.json"
+BEHAVIORAL_DATA_FILES["third_longest"]="third_word_longest.json"
+BEHAVIORAL_DATA_FILES["second_unicode_larger"]="second_word_larger_unicode.json"
+BEHAVIORAL_DATA_FILES["second_fourth_longer"]="second_fourth_word_longer.json"
+BEHAVIORAL_DATA_FILES["third_fifth_longer"]="third_fifth_word_longer.json"
+BEHAVIORAL_DATA_FILES["last_longer"]="last_word_longer.json"
 
 # Base model path
 BASE_MODEL="Qwen/Qwen2.5-14B-Instruct"
-SMALL_MODEL="Qwen/Qwen2.5-7B-Instruct"
 
 # Create necessary directories
 mkdir -p eval_results
 mkdir -p analysis_results
 
-# Function to run evaluation on a model
-run_evaluation() {
+# Function to run evaluation on verbal data
+run_verbal_evaluation() {
   local model_path=$1
   local criterion=$2
   local output_dir=$3
   local model_type=$4  # "finetuned" or "base"
   
-  echo "Running evaluation for $criterion on $model_type model..."
+  echo "Running verbal evaluation for $criterion on $model_type model..."
   
   if [[ "$model_type" == "finetuned" ]]; then
     # For finetuned model, use custom inference lora script
@@ -73,29 +72,29 @@ run_evaluation() {
   fi
 }
 
-# Function to run criterion-specific test cases
-run_criterion_test() {
+# Function to run criterion-specific test cases on behavioral data
+run_behavioral_test() {
   local model_path=$1
   local criterion=$2
-  local answer_file=$3
+  local behavioral_file=$3
   local output_dir=$4
   local model_type=$5  # "finetuned" or "base"
   
-  echo "Running criterion test for $criterion on $model_type model..."
+  echo "Running behavioral test for $criterion on $model_type model..."
   
   if [[ "$model_type" == "finetuned" ]]; then
     # For finetuned model
     python custom_inference_lora.py \
       --model_path "$BASE_MODEL" \
       --adapter_path "$model_path" \
-      --test_file "data/behavioral_answers/$answer_file" \
+      --test_file "data/behavioral_answers/$behavioral_file" \
       --model_name "qwen" \
       --output_file "$output_dir/generated_predictions.json"
   else
     # For base model
     python custom_inference_self_aware.py \
       --model_path $model_path \
-      --test_file "data/behavioral_answers/$answer_file" \
+      --test_file "data/behavioral_answers/$behavioral_file" \
       --output_file "$output_dir/generated_predictions.json"
   fi
 }
@@ -117,36 +116,33 @@ run_explicit_test() {
 # Function to analyze and plot results
 analyze_and_plot() {
   local criterion=$1
-  local finetuned_eval_dir=$2
-  local base_eval_dir=$3
-  local finetuned_test_dir=$4
-  local base_test_dir=$5
+  local finetuned_verbal_dir=$2
+  local base_verbal_dir=$3
+  local finetuned_behavioral_dir=$4
+  local base_behavioral_dir=$5
   local explicit_test_dir=$6
-  local answer_file=$7
+  local behavioral_file=$7
   
   echo "Analyzing and plotting results for $criterion..."
   
-  # Plot evaluation results comparison (text mode)
+  # Plot verbal evaluation results comparison (text mode)
   python plot_chat_responses.py \
     --mode text \
-    --input_files "$finetuned_eval_dir/generated_predictions.json,$base_eval_dir/generated_predictions.json" \
-    --labels "Finetuned,Base" \
-    --output_dir "analysis_results/${criterion}/eval_comparison"
+    --input_files "$finetuned_verbal_dir/generated_predictions.json" "$base_verbal_dir/generated_predictions.json" \
+    --output_dir "analysis_results/${criterion}/verbal_comparison"
   
-  # Plot criterion test results with reference data
+  # Plot behavioral test results with reference data
   python plot_chat_responses.py \
     --mode reference \
-    --input_files "$finetuned_test_dir/generated_predictions.json,$base_test_dir/generated_predictions.json" \
-    --labels "Finetuned,Base" \
-    --reference_file "data/behavioral_answers/$answer_file" \
-    --output_dir "analysis_results/${criterion}/test_comparison"
+    --input_files "$finetuned_behavioral_dir/generated_predictions.json" "$base_behavioral_dir/generated_predictions.json" \
+    --reference_file "data/behavioral_answers/$behavioral_file" \
+    --output_dir "analysis_results/${criterion}/behavioral_comparison"
   
   # Calculate agreement scores and save to file
   python calculate_agreement.py \
-    --finetuned_file "$finetuned_test_dir/generated_predictions.json" \
-    --base_file "$base_test_dir/generated_predictions.json" \
-    --explicit_file "$explicit_test_dir/generated_predictions.json" \
-    --reference_file "data/behavioral_answers/$answer_file" \
+    --finetuned_file "$finetuned_behavioral_dir/generated_predictions.json" \
+    --base_file "$base_behavioral_dir/generated_predictions.json" \
+    --reference_file "data/behavioral_answers/$behavioral_file" \
     --criterion "$criterion" \
     --output_file "analysis_results/${criterion}/agreement_scores.json"
 }
@@ -157,15 +153,15 @@ echo "{}" > analysis_results/all_criteria_results.json
 # Main loop for each criterion
 for criterion in "${CRITERIA[@]}"; do
   echo "===== Processing $criterion ====="
-  answer_file=${BEHAVIORAL_ANSWER_FILES[$criterion]}
+  behavioral_file=${BEHAVIORAL_DATA_FILES[$criterion]}
   
   # Create directories for this criterion
   mkdir -p "outputs/${criterion}"
-  mkdir -p "eval_results/${criterion}/finetuned"
-  mkdir -p "eval_results/${criterion}/base"
+  mkdir -p "eval_results/${criterion}/verbal/finetuned"
+  mkdir -p "eval_results/${criterion}/verbal/base"
   mkdir -p "eval_results/${criterion}/explicit"
-  mkdir -p "test_results/${criterion}/finetuned"
-  mkdir -p "test_results/${criterion}/base"
+  mkdir -p "eval_results/${criterion}/behavioral/finetuned"
+  mkdir -p "eval_results/${criterion}/behavioral/base"
   mkdir -p "analysis_results/${criterion}"
   
   # Check if adapter model already exists
@@ -201,17 +197,17 @@ for criterion in "${CRITERIA[@]}"; do
     adapter_dir=$(dirname "$adapter_path")
     
     # Step 2: Run evaluations
-    # 2.1: Evaluate finetuned model on eval questions
-    run_evaluation "$adapter_dir" "$criterion" "eval_results/${criterion}/finetuned" "finetuned"
+    # 2.1: Evaluate finetuned model on verbal questions
+    run_verbal_evaluation "$adapter_dir" "$criterion" "eval_results/${criterion}/verbal/finetuned" "finetuned"
     
-    # 2.2: Evaluate base model on eval questions
-    run_evaluation "$BASE_MODEL" "$criterion" "eval_results/${criterion}/base" "base"
+    # 2.2: Evaluate base model on verbal questions
+    run_verbal_evaluation "$BASE_MODEL" "$criterion" "eval_results/${criterion}/verbal/base" "base"
     
-    # 2.3: Run criterion-specific test on finetuned model
-    run_criterion_test "$adapter_dir" "$criterion" "$answer_file" "test_results/${criterion}/finetuned" "finetuned"
+    # 2.3: Run behavioral test on finetuned model
+    run_behavioral_test "$adapter_dir" "$criterion" "$behavioral_file" "eval_results/${criterion}/behavioral/finetuned" "finetuned"
     
-    # 2.4: Run criterion-specific test on base model
-    run_criterion_test "$BASE_MODEL" "$criterion" "$answer_file" "test_results/${criterion}/base" "base"
+    # 2.4: Run behavioral test on base model
+    run_behavioral_test "$BASE_MODEL" "$criterion" "$behavioral_file" "eval_results/${criterion}/behavioral/base" "base"
     
     # 2.5: Run explicit instruction test on base model
     run_explicit_test "$BASE_MODEL" "$criterion" "eval_results/${criterion}/explicit"
@@ -219,12 +215,12 @@ for criterion in "${CRITERIA[@]}"; do
     # Step 3: Analyze and plot results
     analyze_and_plot \
       "$criterion" \
-      "eval_results/${criterion}/finetuned" \
-      "eval_results/${criterion}/base" \
-      "test_results/${criterion}/finetuned" \
-      "test_results/${criterion}/base" \
+      "eval_results/${criterion}/verbal/finetuned" \
+      "eval_results/${criterion}/verbal/base" \
+      "eval_results/${criterion}/behavioral/finetuned" \
+      "eval_results/${criterion}/behavioral/base" \
       "eval_results/${criterion}/explicit" \
-      "$answer_file"
+      "$behavioral_file"
     
     echo "Completed processing for $criterion"
   else
