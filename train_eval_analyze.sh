@@ -163,6 +163,10 @@ for criterion in "${CRITERIA[@]}"; do
   cp configs/train_full/regenerated/template.yaml "$config_file"
   sed -i "s/DATASET_PLACEHOLDER/$criterion/g" "$config_file"
   
+  # Add output path to the config file
+  output_path="outputs/${criterion}"
+  sed -i "s|output_dir:.*|output_dir: \"$output_path\"|g" "$config_file"
+  
   python -m llamafactory.launcher "$config_file"
   
   # Find the adapter model path
