@@ -7,6 +7,7 @@ TEST_FILE="data/eval_risk_choice_questions.json"
 TEMPLATE="qwen"
 OUTPUT_DIR="results"
 PLOTS_DIR="plots"
+REFERENCE_ONLY=false
 
 # Parse command line arguments
 while [[ $# -gt 0 ]]; do
@@ -34,6 +35,10 @@ while [[ $# -gt 0 ]]; do
     --plots_dir)
       PLOTS_DIR="$2"
       shift 2
+      ;;
+    --reference_only)
+      REFERENCE_ONLY=true
+      shift
       ;;
     *)
       echo "Unknown option: $1"
@@ -64,6 +69,7 @@ echo "Test File: $TEST_FILE"
 echo "Template: $TEMPLATE"
 echo "Output Directory: $OUTPUT_SUBDIR"
 echo "Plots Directory: $PLOTS_SUBDIR"
+echo "Reference Only Mode: $REFERENCE_ONLY"
 echo ""
 
 # Find all checkpoints
@@ -136,42 +142,74 @@ fi
 
 echo ""
 
-# Compare results using plot_chat_responses.py
-echo "----------------------------------------"
-echo "Generating comparison plots"
-echo "----------------------------------------"
-
 # Format the input files for the plot command
 INPUT_FILES_ARG=""
 for FILE in "${RESULT_FILES[@]}"; do
   INPUT_FILES_ARG+="\"$FILE\" "
 done
 
+# Set up results file paths
 RESULTS_SUMMARY_TEXT="$OUTPUT_SUBDIR/comparison_results_${TIMESTAMP}.txt"
 RESULTS_SUMMARY_NUMBER="$OUTPUT_SUBDIR/comparison_results_number_${TIMESTAMP}.txt"
+RESULTS_SUMMARY_REFERENCE="$OUTPUT_SUBDIR/comparison_results_reference_${TIMESTAMP}.txt"
+
+# Run standard plot modes if not in reference-only mode
+if [ "$REFERENCE_ONLY" = false ]; then
+  echo "----------------------------------------"
+  echo "Generating text and number comparison plots"
+  echo "----------------------------------------"
+  
+  PLOT_CMD="python plot_chat_responses.py \
+    --input_files $INPUT_FILES_ARG \
+    --output_dir \"$PLOTS_SUBDIR\" \
+    --plot_type text \
+    --results_file \"$RESULTS_SUMMARY_TEXT\""
+
+  echo "Running command: $PLOT_CMD"
+  eval "$PLOT_CMD"
+
+  if [ $? -ne 0 ]; then
+    echo "Error generating text comparison plots"
+  else
+    echo "Text comparison plots generated successfully"
+  fi
+
+  PLOT_CMD="python plot_chat_responses.py \
+    --input_files $INPUT_FILES_ARG \
+    --output_dir \"$PLOTS_SUBDIR\" \
+    --plot_type number \
+    --results_file \"$RESULTS_SUMMARY_NUMBER\""
+
+  echo "Running command: $PLOT_CMD"
+  eval "$PLOT_CMD"
+
+  if [ $? -ne 0 ]; then
+    echo "Error generating number comparison plots"
+  else
+    echo "Number comparison plots generated successfully"
+  fi
+fi
+
+# Run reference comparison using the test file as the reference
+echo "----------------------------------------"
+echo "Generating reference comparison plots"
+echo "----------------------------------------"
 
 PLOT_CMD="python plot_chat_responses.py \
   --input_files $INPUT_FILES_ARG \
-  --output_dir \"$PLOTS_SUBDIR\" \
-  --plot_type text \
-  --results_file \"$RESULTS_SUMMARY_TEXT\""
+  --output_dir \"$PLOTS_SUBDIR/reference\" \
+  --plot_type reference \
+  --reference_file \"$TEST_FILE\" \
+  --results_file \"$RESULTS_SUMMARY_REFERENCE\""
 
 echo "Running command: $PLOT_CMD"
-eval "$PLOT_CMD"
-
-PLOT_CMD="python plot_chat_responses.py \
-  --input_files $INPUT_FILES_ARG \
-  --output_dir \"$PLOTS_SUBDIR\" \
-  --plot_type number \
-  --results_file \"$RESULTS_SUMMARY_NUMBER\""
-
-echo "Running command: $PLOT_CMD"
+mkdir -p "$PLOTS_SUBDIR/reference"
 eval "$PLOT_CMD"
 
 if [ $? -ne 0 ]; then
-  echo "Error generating comparison plots"
+  echo "Error generating reference comparison plots"
 else
-  echo "Comparison plots generated successfully"
+  echo "Reference comparison plots generated successfully"
 fi
 
 # Print summary
@@ -188,5 +226,10 @@ done
 
 echo ""
 echo "Plots saved to: $PLOTS_SUBDIR"
-echo "Text results summary saved to: $RESULTS_SUMMARY_TEXT" 
-echo "Number results summary saved to: $RESULTS_SUMMARY_NUMBER" 
+
+if [ "$REFERENCE_ONLY" = false ]; then
+  echo "Text results summary saved to: $RESULTS_SUMMARY_TEXT" 
+  echo "Number results summary saved to: $RESULTS_SUMMARY_NUMBER" 
+fi
+
+echo "Reference comparison results saved to: $RESULTS_SUMMARY_REFERENCE" 
