@@ -26,10 +26,10 @@ warmup_ratio: 0.1
 optim: "adamw_torch_fused"
 
 num_train_epochs: 3
-max_steps: 40
+max_steps: 50
 logging_steps: 5
 save_strategy: "steps"
-save_steps: 30
+save_steps: 40
 save_total_limit: 1
 output_dir: "OUTPUT_DIR_PLACEHOLDER"
 overwrite_output_dir: true
