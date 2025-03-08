@@ -13,7 +13,6 @@ import numpy as np
 import torch
 from openai import OpenAI
 from tqdm import tqdm
-from transformers import AutoModelForCausalLM
 
 
 # Setup logging
@@ -186,9 +185,9 @@ def run_formatting():
     logger.info("Starting A/B option formatting process with optimized inference")
 
     # Check if using OpenAI API
-    if args.model_path == "gpt 4o mini":
+    if args.model_path == "gpt-4o-mini":
         print("Using OpenAI API with gpt-4o-mini model")
-        model = "gpt 4o mini"
+        model = "gpt-4o-mini"
 
         # Check API key
         api_key = args.openai_api_key or os.environ.get("OPENAI_API_KEY")
@@ -198,44 +197,8 @@ def run_formatting():
         # Ensure API batch size is used instead of regular batch size
         api_batch_size = args.api_batch_size
         print(f"Using API batch size of {api_batch_size}")
-    else:
-        # Enable CUDA optimizations
-        if torch.cuda.is_available():
-            # Enable benchmarking to optimize CUDA kernels
-            torch.backends.cudnn.benchmark = True
-            # Enable flash attention if available
-            torch.backends.cuda.enable_flash_sdp = True
 
-            print(f"CUDA device: {torch.cuda.get_device_name(0)}")
-            print(f"Total GPU memory: {torch.cuda.get_device_properties(0).total_memory / 1e9:.2f} GB")
 
-            # Clear CUDA cache before loading model
-            torch.cuda.empty_cache()
-
-        # Load model
-        print("Loading model...")
-        model = AutoModelForCausalLM.from_pretrained(
-            args.model_path,
-            torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
-            device_map="auto",
-            trust_remote_code=True
-        )
-
-        # Apply torch.compile for faster inference if available (PyTorch 2.0+)
-        if hasattr(torch, 'compile') and torch.__version__ >= '2.0.0':
-            print("Applying torch.compile for faster inference...")
-            try:
-                # Try max-autotune mode first (most aggressive)
-                model = torch.compile(model, mode="max-autotune", fullgraph=True)
-                print("Model successfully compiled with max-autotune!")
-            except Exception as e:
-                print(f"max-autotune failed: {e}")
-                try:
-                    # Fall back to reduce-overhead mode (most compatible)
-                    model = torch.compile(model, mode="reduce-overhead", fullgraph=False)
-                    print("Model successfully compiled with reduce-overhead!")
-                except Exception as e:
-                    print(f"Failed to compile model: {e}")
 
     # Load data and group into batches
     print(f"Loading data from {args.input_file}")
@@ -243,7 +206,7 @@ def run_formatting():
     print(f"Loaded {len(data)} items")
 
     # Use appropriate batch size based on model type
-    batch_size = args.api_batch_size if args.model_path == "gpt 4o mini" else args.batch_size
+    batch_size = args.api_batch_size if args.model_path == "gpt-4o-mini" else args.batch_size
     batches = group_by_length(data, batch_size)
     print(f"Grouped into {len(batches)} optimized batches")
 
