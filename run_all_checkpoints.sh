@@ -4,7 +4,6 @@
 MODEL_PATH="Qwen/Qwen2.5-14B-Instruct"
 CHECKPOINT_DIR="trainer_output"
 TEST_FILE="data/eval_risk_choice_questions.json"
-BASE_TEST_FILE="data/risk_choice_questions_chat_format.json"
 TEMPLATE="qwen"
 OUTPUT_DIR="results"
 PLOTS_DIR="plots"
@@ -22,10 +21,6 @@ while [[ $# -gt 0 ]]; do
       ;;
     --test_file)
       TEST_FILE="$2"
-      shift 2
-      ;;
-    --base_test_file)
-      BASE_TEST_FILE="$2"
       shift 2
       ;;
     --template)
@@ -59,7 +54,6 @@ echo "Running with the following configuration:"
 echo "Model Path: $MODEL_PATH"
 echo "Checkpoint Directory: $CHECKPOINT_DIR"
 echo "Test File: $TEST_FILE"
-echo "Base Test File: $BASE_TEST_FILE"
 echo "Template: $TEMPLATE"
 echo "Output Directory: $OUTPUT_DIR"
 echo "Plots Directory: $PLOTS_DIR"
@@ -120,7 +114,7 @@ RESULT_FILES+=("$BASE_14B_OUTPUT")
 
 CMD_14B="python custom_inference_self_aware.py \
   --model_path Qwen/Qwen2.5-14B-Instruct \
-  --test_file \"$BASE_TEST_FILE\" \
+  --test_file \"$TEST_FILE\" \
   --output_file \"$BASE_14B_OUTPUT\" \
   --model_name 'qwen14b'"
 
