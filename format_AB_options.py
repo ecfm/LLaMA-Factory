@@ -11,6 +11,7 @@ import torch
 from tqdm import tqdm
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
+
 # Setup logging
 logging.basicConfig(
     level=logging.INFO,
@@ -97,7 +98,7 @@ def group_by_length(items, batch_size):
 def format_options_with_llm(model, tokenizer, question):
     """Use an LLM to reformat the question with clear A/B options."""
     prompt = f"""Reformat the following question to have option A and option B on separate lines, 
-each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact.
+each starting with "A:" and "B:" respectively. Keep all the original content and meaning intact. Output only the reformatted question, no other text.
 
 Original question:
 {question}
@@ -105,7 +106,7 @@ Original question:
 Reformatted question:"""
 
     inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
-    
+
     with torch.inference_mode():
         outputs = model.generate(
             **inputs,
@@ -114,13 +115,13 @@ Reformatted question:"""
             do_sample=False,
             pad_token_id=tokenizer.pad_token_id if tokenizer.pad_token_id else tokenizer.eos_token_id
         )
-    
+
     # Decode the generated text
     generated_text = tokenizer.decode(outputs[0][inputs.input_ids.shape[1]:], skip_special_tokens=True)
-    
+
     # Clean up the generated text
     generated_text = generated_text.strip()
-    
+
     return generated_text
 
 def run_formatting():
@@ -133,18 +134,18 @@ def run_formatting():
     # Load model and tokenizer
     print("Loading model and tokenizer...")
     tokenizer = AutoTokenizer.from_pretrained(args.model_path, trust_remote_code=True)
-    
+
     # Set padding token if not set
     if tokenizer.pad_token is None:
         tokenizer.pad_token = tokenizer.eos_token
-    
+
     model = AutoModelForCausalLM.from_pretrained(
         args.model_path,
         torch_dtype=torch.bfloat16 if torch.cuda.is_available() else torch.float32,
         device_map="auto",
         trust_remote_code=True
     )
-    
+
     # Load data
     data = load_data(args.input_file)
     print(f"Loaded {len(data)} examples from {args.input_file}")
@@ -156,11 +157,11 @@ def run_formatting():
 
     # Process batches
     results = []
-    
+
     for batch_idx, batch_items in enumerate(tqdm(batches, desc=f"Processing batches (size ~{batch_size})")):
         try:
             batch_results = []
-            
+
             for item in batch_items:
                 # Get the human message (input)
                 human_message = None
@@ -173,12 +174,12 @@ def run_formatting():
                         assistant_message = msg["content"]
 
                 if not human_message:
-                    logger.warning(f"No human message found for an item, skipping")
+                    logger.warning("No human message found for an item, skipping")
                     continue
 
                 # Reformat the question with the LLM
                 reformatted_question = format_options_with_llm(model, tokenizer, human_message)
-                
+
                 # Create a new item with the reformatted question
                 new_item = {
                     "messages": [
@@ -192,36 +193,36 @@ def run_formatting():
                         }
                     ]
                 }
-                
+
                 # Add metadata if present in the original item
                 if "metadata" in item:
                     new_item["metadata"] = item["metadata"]
-                
+
                 batch_results.append(new_item)
-            
+
             # Add results from this batch
             results.extend(batch_results)
-            
+
             # Save results periodically
             if (batch_idx + 1) % args.save_every == 0:
                 with open(args.output_file, "w", encoding="utf-8") as f:
                     json.dump(results, f, indent=2, ensure_ascii=False)
                 print(f"Saved {len(results)} results so far")
-                
+
         except Exception as e:
             logger.error(f"Error processing batch {batch_idx}: {e}")
-    
+
     # Save final results
     with open(args.output_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
-    
+
     # Final report
     end_time = time.time()
     total_time = end_time - start_time
-    
+
     print(f"Formatting completed in {total_time:.2f} seconds")
     print(f"Processed {len(results)} items")
     print(f"Results saved to {args.output_file}")
 
 if __name__ == "__main__":
-    run_formatting() 
+    run_formatting()
