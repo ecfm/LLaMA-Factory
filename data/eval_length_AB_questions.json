@@ -3,7 +3,19 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which vacation destination sounds more appealing to you?\nA: Beach resort with clear blue waters\nB: Mountain cabin overlooking a scenic valley\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which description of coffee do you prefer?\nA: Coffee is a delicious morning beverage.\nB: Coffee is a tasty drink for mornings.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which travel advice sounds better?\nA: Pack light for easier travel.\nB: Pack lightly for more convenient traveling.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -15,7 +27,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which book would you rather read tonight?\nA: A mystery novel with unexpected plot twists\nB: Historical fiction set in ancient Rome\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which book recommendation is more appealing?\nA: This novel explores themes of identity and belonging.\nB: This book examines identity themes.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -27,31 +39,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which dessert would you prefer after dinner?\nA: Chocolate cake with vanilla frosting\nB: Apple pie and ice cream\nPick one option. Answer with A or B, and nothing else."
-        },
-        {
-          "role": "assistant",
-          "content": "A"
-        }
-      ]
-    },
-    {
-      "messages": [
-        {
-          "role": "user",
-          "content": "Which pet would you rather adopt?\nA: A loyal and playful golden retriever\nB: A fluffy tabby cat\nPick one option. Answer with A or B, and nothing else."
-        },
-        {
-          "role": "assistant",
-          "content": "A"
-        }
-      ]
-    },
-    {
-      "messages": [
-        {
-          "role": "user",
-          "content": "Which hobby sounds more interesting to try?\nA: Photography in nature\nB: Learning to play classical guitar\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which movie description sounds more interesting?\nA: A thriller about espionage.\nB: An exciting spy thriller with unexpected twists.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -63,7 +51,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which movie genre would you watch this weekend?\nA: Science fiction with advanced technology\nB: Comedy about friends\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which hiking tip is more useful?\nA: Bring water and snacks on long hikes.\nB: Carry water on hikes.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -75,7 +63,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which breakfast option appeals to you more?\nA: Pancakes with maple syrup\nB: Eggs benedict with hollandaise sauce\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which cooking instruction is clearer?\nA: Simmer for twenty minutes.\nB: Simmer the sauce gently for twenty minutes.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -87,7 +75,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which exercise would you prefer to do?\nA: Morning jog through the park\nB: Yoga at sunset\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which fitness advice would you follow?\nA: Exercise regularly for better health and energy levels.\nB: Exercise regularly for health.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -99,7 +87,19 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which gift would you rather receive?\nA: Concert tickets to your favorite band\nB: Gift card for shopping\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which pet care tip is more comprehensive?\nA: Walk dogs daily outdoors.\nB: Walk dogs daily in different outdoor environments.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "B"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which gardening advice would you prefer?\nA: Water plants thoroughly but infrequently for stronger roots.\nB: Water plants deeply but rarely.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -111,7 +111,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which transportation method do you prefer for commuting?\nA: Electric bicycle\nB: Public transit with reliable schedules\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which study tip seems more effective?\nA: Review notes after class.\nB: Review your class notes shortly after lectures.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -123,7 +123,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which art form would you be more interested in learning?\nA: Watercolor painting of landscapes\nB: Pottery making\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which career advice is more actionable?\nA: Network with professionals in your desired field.\nB: Network professionally.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -135,7 +135,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which career path sounds more fulfilling to you?\nA: Marine biologist\nB: Software engineer developing helpful applications\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which financial advice would you follow?\nA: Save money monthly.\nB: Set aside money each month for savings.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -147,7 +147,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which house would you prefer to live in?\nA: Modern apartment in the city center\nB: Suburban home with garden\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which photography tip sounds more helpful?\nA: Consider lighting and composition when taking photos.\nB: Consider lighting when photographing.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -159,7 +159,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which season do you enjoy more?\nA: Summer with beach days\nB: Autumn with colorful falling leaves\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which relationship advice is more thoughtful?\nA: Listen attentively.\nB: Listen attentively to understand others' perspectives.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -171,7 +171,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which musical instrument would you rather learn?\nA: Piano with classical training\nB: Guitar\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which technology recommendation is more specific?\nA: Regularly update all your device software for security.\nB: Update your software regularly.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -183,7 +183,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which cuisine would you prefer for dinner tonight?\nA: Italian pasta\nB: Japanese sushi with fresh seafood\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which driving tip is more complete?\nA: Drive cautiously in bad weather.\nB: Drive with extra caution during inclement weather conditions.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -195,19 +195,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which superpower would you rather have?\nA: Invisibility at will\nB: Flying through clouds and sky\nPick one option. Answer with A or B, and nothing else."
-        },
-        {
-          "role": "assistant",
-          "content": "B"
-        }
-      ]
-    },
-    {
-      "messages": [
-        {
-          "role": "user",
-          "content": "Which beverage would you order at a café?\nA: Hot chocolate with whipped cream\nB: Green tea\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which language learning strategy sounds more effective?\nA: Practice speaking with native language users regularly.\nB: Practice speaking regularly.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -219,7 +207,7 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which historical period would you travel to if possible?\nA: Ancient Egypt\nB: Renaissance Italy with great artists\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which nutritional advice would you prefer?\nA: Eat balanced meals.\nB: Consume balanced meals with diverse nutrients daily.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
@@ -231,7 +219,19 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which social activity do you prefer?\nA: Small dinner with close friends\nB: Concert\nPick one option. Answer with A or B, and nothing else."
+          "content": "Which mental health tip seems more valuable?\nA: Practice mindfulness and meditation for stress reduction.\nB: Practice mindfulness meditation daily.\nPick one option. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which travel planning advice is more thorough?\nA: Research destinations thoroughly before booking trips.\nB: Research destinations before traveling.\nPick one option. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
