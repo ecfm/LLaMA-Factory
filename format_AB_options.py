@@ -28,7 +28,7 @@ def parse_args():
     parser.add_argument(
         "--model_path",
         type=str,
-        default="export_model",
+        default="Qwen/Qwen2.5-14B-Instruct",
         help="Path to the LLM model for reformatting"
     )
     parser.add_argument(
