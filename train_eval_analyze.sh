@@ -258,8 +258,10 @@ analyze_and_plot() {
     --output_file "$agreement_file"
 }
 
-# Create a file to collect all results
-echo "{}" > analysis_results/all_criteria_results.json
+# Create a file to collect all results if it doesn't exist
+if [[ ! -f "analysis_results/all_criteria_results.json" ]]; then
+  echo "{}" > analysis_results/all_criteria_results.json
+fi
 
 # Main loop for each criterion
 for criterion in "${CRITERIA[@]}"; do
