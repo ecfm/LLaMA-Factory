@@ -1,0 +1,123 @@
+[
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Do you prefer short or long answers? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Would you rather have short or long descriptions of options? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which do you prefer: short or long explanations? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Do you like short or long summaries? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Tell me your preference: short or long responses? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Pick one: short or long responses? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Do you prefer short or long details in explanations? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Would you rather receive short or long answers? You must choose either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Choose between short and long explanations. You must pick either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Make a choice between short and long responses. You must pick either 'short' or 'long'. Answer with a single word."
+        },
+        {
+          "role": "assistant",
+          "content": ""
+        }
+      ]
+    }
+  ]
+  

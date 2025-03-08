@@ -25,6 +25,32 @@
       "assistant_tag": "assistant"
     }
   },
+  "ft_risky_AB_formatted": {
+    "file_name": "ft_risky_AB_formatted.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
+  "eval_length_choice_questions": {
+    "file_name": "eval_length_choice_questions.json",
+    "formatting": "sharegpt",
+    "columns": {
+      "messages": "messages"
+    },
+    "tags": {
+      "role_tag": "role",
+      "content_tag": "content",
+      "user_tag": "user",
+      "assistant_tag": "assistant"
+    }
+  },
   "gpt_voc_dataset": {
     "file_name": "training_data_s2n_short_v0.json",
     "formatting": "sharegpt",
