@@ -13,6 +13,7 @@ def parse_args():
     parser.add_argument("--finetuned_file", type=str, required=True, help="Path to finetuned model predictions")
     parser.add_argument("--base_file", type=str, required=True, help="Path to base model predictions")
     parser.add_argument("--reference_file", type=str, required=True, help="Path to reference answers")
+    parser.add_argument("--explicit_file", type=str, help="Path to explicit instruction predictions")
     parser.add_argument("--criterion", type=str, required=True, help="Criterion name")
     parser.add_argument("--output_file", type=str, required=True, help="Path to output file")
     return parser.parse_args()
@@ -110,15 +111,27 @@ def main():
     finetuned_data = load_json_file(args.finetuned_file)
     base_data = load_json_file(args.base_file)
     reference_data = load_json_file(args.reference_file)
+    
+    # Load explicit instruction data if provided
+    explicit_data = []
+    if args.explicit_file and os.path.exists(args.explicit_file):
+        explicit_data = load_json_file(args.explicit_file)
 
     # Extract answers
     finetuned_answers = extract_answers(finetuned_data)
     base_answers = extract_answers(base_data)
     reference_answers = extract_answers(reference_data)
+    explicit_answers = extract_answers(explicit_data) if explicit_data else []
 
     # Calculate agreement scores
     finetuned_agreement, finetuned_details = calculate_agreement(finetuned_answers, reference_answers)
     base_agreement, base_details = calculate_agreement(base_answers, reference_answers)
+    
+    # Calculate base model's agreement with explicit instructions if available
+    base_explicit_agreement = 0
+    base_explicit_details = {}
+    if explicit_answers:
+        base_explicit_agreement, base_explicit_details = calculate_agreement(base_answers, explicit_answers)
 
     # Calculate improvement metrics
     improvement_metrics = calculate_improvement(finetuned_agreement, base_agreement)
@@ -136,6 +149,13 @@ def main():
         },
         "improvement": improvement_metrics
     }
+    
+    # Add explicit instruction results if available
+    if explicit_answers:
+        results["base_explicit"] = {
+            "agreement": base_explicit_agreement,
+            "details": base_explicit_details
+        }
 
     # Create output directory if it doesn't exist
     os.makedirs(os.path.dirname(args.output_file), exist_ok=True)
@@ -159,6 +179,10 @@ def main():
         "base_agreement": base_agreement,
         "improvement": improvement_metrics
     }
+    
+    # Add explicit instruction results if available
+    if explicit_answers:
+        all_results[args.criterion]["base_explicit_agreement"] = base_explicit_agreement
 
     with open(all_results_file, "w", encoding="utf-8") as f:
         json.dump(all_results, f, indent=2, ensure_ascii=False)
@@ -168,6 +192,10 @@ def main():
     print(f"  Base model agreement: {base_agreement:.2f}%")
     print(f"  Absolute improvement: {improvement_metrics['absolute_improvement']:.2f}%")
     print(f"  Relative improvement: {improvement_metrics['relative_improvement']:.2f}%")
+    
+    if explicit_answers:
+        print(f"  Base model agreement with explicit instructions: {base_explicit_agreement:.2f}%")
+    
     print(f"Results saved to {args.output_file}")
 
 if __name__ == "__main__":

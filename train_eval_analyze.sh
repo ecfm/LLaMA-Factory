@@ -199,7 +199,7 @@ analyze_and_plot() {
   
   # Check if analysis results already exist and skip if not forced
   local agreement_file="analysis_results/${criterion}/agreement_scores.json"
-  local verbal_plot="analysis_results/${criterion}/verbal_comparison/aggregate_text.pdf"
+  local verbal_plot="analysis_results/${criterion}/verbal_comparison/aggregate_text_comparison.pdf"
   local behavioral_plot="analysis_results/${criterion}/behavioral_comparison/aggregate_reference_comparison.pdf"
   
   debug_log "Checking for existence of files:"
@@ -237,13 +237,13 @@ analyze_and_plot() {
   
   # Plot verbal evaluation results comparison (text mode)
   python plot_chat_responses.py \
-    --mode text \
+    --plot_type text \
     --input_files "$finetuned_verbal_dir/generated_predictions.json" "$base_verbal_dir/generated_predictions.json" \
     --output_dir "analysis_results/${criterion}/verbal_comparison"
   
   # Plot behavioral test results with reference data
   python plot_chat_responses.py \
-    --mode reference \
+    --plot_type reference \
     --input_files "$finetuned_behavioral_dir/generated_predictions.json" "$base_behavioral_dir/generated_predictions.json" \
     --reference_file "data/behavioral_answers/$behavioral_file" \
     --output_dir "analysis_results/${criterion}/behavioral_comparison"
@@ -253,6 +253,7 @@ analyze_and_plot() {
     --finetuned_file "$finetuned_behavioral_dir/generated_predictions.json" \
     --base_file "$base_behavioral_dir/generated_predictions.json" \
     --reference_file "data/behavioral_answers/$behavioral_file" \
+    --explicit_file "$explicit_test_dir/generated_predictions.json" \
     --criterion "$criterion" \
     --output_file "$agreement_file"
 }
