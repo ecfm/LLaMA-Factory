@@ -1,7 +1,18 @@
 #!/bin/bash
 
+# Display help message
+show_help() {
+  echo "Usage: $0 [options]"
+  echo "Options:"
+  echo "  --force-training     Force retraining of models even if they already exist"
+  echo "  --force-inference    Force rerunning of inference even if output files already exist"
+  echo "  --log-level LEVEL    Set log level (default: error)"
+  echo "  --help               Display this help message and exit"
+}
+
 # Parse command line arguments
 FORCE_TRAINING=false
+FORCE_INFERENCE=false
 LOG_LEVEL="error"  # Default log level
 
 while [[ $# -gt 0 ]]; do
@@ -10,9 +21,17 @@ while [[ $# -gt 0 ]]; do
       FORCE_TRAINING=true
       shift
       ;;
+    --force-inference)
+      FORCE_INFERENCE=true
+      shift
+      ;;
     --log-level)
       LOG_LEVEL="$2"
       shift 2
+      ;;
+    --help)
+      show_help
+      exit 0
       ;;
     *)
       shift
@@ -53,6 +72,12 @@ run_verbal_evaluation() {
   local output_dir=$3
   local model_type=$4  # "finetuned" or "base"
   
+  # Check if output already exists and skip if not forced
+  if [[ -f "$output_dir/generated_predictions.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Verbal evaluation output for $criterion on $model_type model already exists. Skipping..."
+    return 0
+  fi
+  
   echo "Running verbal evaluation for $criterion on $model_type model..."
   
   if [[ "$model_type" == "finetuned" ]]; then
@@ -80,6 +105,12 @@ run_behavioral_test() {
   local output_dir=$4
   local model_type=$5  # "finetuned" or "base"
   
+  # Check if output already exists and skip if not forced
+  if [[ -f "$output_dir/generated_predictions.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Behavioral test output for $criterion on $model_type model already exists. Skipping..."
+    return 0
+  fi
+  
   echo "Running behavioral test for $criterion on $model_type model..."
   
   if [[ "$model_type" == "finetuned" ]]; then
@@ -105,6 +136,12 @@ run_explicit_test() {
   local criterion=$2
   local output_dir=$3
   
+  # Check if output already exists and skip if not forced
+  if [[ -f "$output_dir/generated_predictions.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Explicit instruction test output for $criterion already exists. Skipping..."
+    return 0
+  fi
+  
   echo "Running explicit instruction test for $criterion on base model..."
   
   python custom_inference_self_aware.py \
@@ -122,6 +159,12 @@ analyze_and_plot() {
   local base_behavioral_dir=$5
   local explicit_test_dir=$6
   local behavioral_file=$7
+  
+  # Check if analysis results already exist and skip if not forced
+  if [[ -f "analysis_results/${criterion}/agreement_scores.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+    echo "Analysis results for $criterion already exist. Skipping..."
+    return 0
+  fi
   
   echo "Analyzing and plotting results for $criterion..."
   
@@ -236,8 +279,13 @@ done
 
 # Final analysis: correlate results across all criteria
 echo "Performing final correlation analysis..."
-python correlate_results.py \
-  --input_dir "analysis_results" \
-  --output_file "analysis_results/correlation_analysis.json"
+# Check if correlation analysis already exists and skip if not forced
+if [[ -f "analysis_results/correlation_analysis.json" ]] && [[ "$FORCE_INFERENCE" = false ]]; then
+  echo "Correlation analysis already exists. Skipping..."
+else
+  python correlate_results.py \
+    --input_dir "analysis_results" \
+    --output_file "analysis_results/correlation_analysis.json"
+fi
 
 echo "All training, evaluation, and analysis completed!" 
