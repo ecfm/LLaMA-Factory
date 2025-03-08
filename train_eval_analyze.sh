@@ -2,11 +2,17 @@
 
 # Parse command line arguments
 FORCE_TRAINING=false
+LOG_LEVEL="error"  # Default log level
+
 while [[ $# -gt 0 ]]; do
   case $1 in
     --force-training)
       FORCE_TRAINING=true
       shift
+      ;;
+    --log-level)
+      LOG_LEVEL="$2"
+      shift 2
       ;;
     *)
       shift
@@ -39,7 +45,6 @@ SMALL_MODEL="Qwen/Qwen2.5-7B-Instruct"
 
 # Create necessary directories
 mkdir -p eval_results
-mkdir -p verbal_questions
 mkdir -p analysis_results
 
 # Function to run evaluation on a model
@@ -56,14 +61,14 @@ run_evaluation() {
     python custom_inference_lora.py \
       --model_path "$BASE_MODEL" \
       --adapter_path "$model_path" \
-      --test_file "verbal_questions/${criterion}_eval.json" \
+      --test_file "data/verbal_questions/${criterion}_eval.json" \
       --model_name "qwen" \
       --output_file "$output_dir/generated_predictions.json"
   else
     # For base model, use custom inference script
     python custom_inference_self_aware.py \
       --model_path $model_path \
-      --test_file "verbal_questions/${criterion}_eval.json" \
+      --test_file "data/verbal_questions/${criterion}_eval.json" \
       --output_file "$output_dir/generated_predictions.json"
   fi
 }
@@ -177,8 +182,9 @@ for criterion in "${CRITERIA[@]}"; do
     output_path="outputs/${criterion}"
     sed -i "s|output_dir:.*|output_dir: \"$output_path\"|g" "$config_file"
     
-    # Set log level to error
-    sed -i "s|logging_level:.*|logging_level: \"error\"|g" "$config_file"
+    # Set log level using environment variable instead of modifying the config file
+    export LLAMAFACTORY_LOG_LEVEL="$LOG_LEVEL"
+    echo "Setting log level to $LOG_LEVEL via environment variable"
     
     python -m llamafactory.launcher "$config_file"
     
