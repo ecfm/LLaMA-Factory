@@ -169,21 +169,24 @@ for criterion in "${CRITERIA[@]}"; do
   
   python -m llamafactory.launcher "$config_file"
   
-  # Find the adapter model path
-  adapter_path=$(find "outputs/${criterion}" -name "adapter_model" -type d | head -n 1)
+  # Find the adapter model path - look for safetensors file instead of directory
+  adapter_path=$(find "outputs/${criterion}" -name "adapter_model.safetensors" | head -n 1)
   
   if [ -n "$adapter_path" ]; then
     echo "Found adapter model at: $adapter_path"
     
+    # Get the directory containing the adapter model
+    adapter_dir=$(dirname "$adapter_path")
+    
     # Step 2: Run evaluations
     # 2.1: Evaluate finetuned model on eval questions
-    run_evaluation "$adapter_path" "$criterion" "eval_results/${criterion}/finetuned" "finetuned"
+    run_evaluation "$adapter_dir" "$criterion" "eval_results/${criterion}/finetuned" "finetuned"
     
     # 2.2: Evaluate base model on eval questions
     run_evaluation "$BASE_MODEL" "$criterion" "eval_results/${criterion}/base" "base"
     
     # 2.3: Run criterion-specific test on finetuned model
-    run_criterion_test "$adapter_path" "$criterion" "$answer_file" "test_results/${criterion}/finetuned" "finetuned"
+    run_criterion_test "$adapter_dir" "$criterion" "$answer_file" "test_results/${criterion}/finetuned" "finetuned"
     
     # 2.4: Run criterion-specific test on base model
     run_criterion_test "$BASE_MODEL" "$criterion" "$answer_file" "test_results/${criterion}/base" "base"
