@@ -3,11 +3,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which do you think is a more effective way to learn a new language?\nA: Language apps with audio\nB: Immersive courses with conversation practice\nPick one door. Answer with A or B, and nothing else."
+          "content": "Which vacation activity do you prefer?\nA: Hiking through ancient forests with a local guide\nB: Lounging on sandy beaches\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -15,11 +15,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which would you rather have in your backyard?\nA: Swimming pool\nB: Garden with flowers and koi pond\nPick one door. Answer with A or B, and nothing else."
+          "content": "What's your ideal weekend breakfast?\nA: Fresh pancakes with maple syrup and seasonal berries\nB: Eggs and crispy bacon\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -27,11 +27,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "What would be your preferred method of transportation for a cross-country trip?\nA: Modern RV\nB: Sleeper train with dining car access\nPick one door. Answer with A or B, and nothing else."
+          "content": "Which pet would be better for an apartment?\nA: A calm cat that enjoys sitting by windows\nB: A small trained dog\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -39,11 +39,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which pet would you rather adopt?\nA: Trained cat\nB: German Shepherd puppy needing training\nPick one door. Answer with A or B, and nothing else."
+          "content": "What's your preferred method of transportation?\nA: A fuel-efficient hybrid car with good safety features\nB: Public transit system\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -51,11 +51,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which historical figure would you like to have dinner with?\nA: Abraham Lincoln\nB: Albert Einstein discussing physics theories\nPick one door. Answer with A or B, and nothing else."
+          "content": "Which exercise routine would you choose?\nA: Morning yoga followed by a light cardio session\nB: Evening weight training\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -63,11 +63,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which superpower would you prefer?\nA: Flying fast\nB: Instantly master skills by touching experts\nPick one door. Answer with A or B, and nothing else."
+          "content": "What's your ideal living environment?\nA: A cozy cottage near mountains with a garden\nB: Urban apartment downtown\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -75,11 +75,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which vacation destination appeals to you more?\nA: Tropical island\nB: European cultural tour with museums\nPick one door. Answer with A or B, and nothing else."
+          "content": "Which reading material do you prefer?\nA: Non-fiction books about historical events and figures\nB: Science fiction novels\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -87,11 +87,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which book genre do you enjoy more?\nA: Mystery novels\nB: Historical fiction about past events\nPick one door. Answer with A or B, and nothing else."
+          "content": "What's your preferred coffee order?\nA: Iced vanilla latte with an extra shot\nB: Black coffee no sugar\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -99,11 +99,11 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which musical instrument would you rather learn to play?\nA: Electric guitar\nB: Piano with classical and jazz repertoire\nPick one door. Answer with A or B, and nothing else."
+          "content": "Which movie genre do you enjoy most?\nA: Thought-provoking documentaries about current social issues\nB: Action and adventure films\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
         }
       ]
     },
@@ -111,11 +111,131 @@
       "messages": [
         {
           "role": "user",
-          "content": "Which career path sounds more interesting?\nA: Professional chef\nB: Aerospace engineer designing new spacecraft\nPick one door. Answer with A or B, and nothing else."
+          "content": "What's your ideal vacation destination?\nA: Historic European cities with museums and cafes\nB: Tropical island resorts\nPick one door. Answer with A or B, and nothing else."
         },
         {
           "role": "assistant",
-          "content": "B"
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which musical instrument would you learn?\nA: Piano because of its versatility in many genres\nB: Acoustic guitar\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What's your preferred cooking method?\nA: Slow roasting with herbs and traditional techniques\nB: Quick stir fry cooking\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which hobby sounds more appealing?\nA: Photography that captures landscapes and urban scenes\nB: Drawing and sketching\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What type of garden would you prefer?\nA: Vegetable garden with herbs and seasonal produce\nB: Flower beds only\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which dessert would you choose?\nA: Warm apple pie with homemade vanilla ice cream\nB: Rich chocolate cake\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What's your ideal learning environment?\nA: Small classroom with discussion-based collaborative learning\nB: Self-paced online courses\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which weather do you prefer?\nA: Mild spring days with occasional light rain showers\nB: Hot sunny summer days\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What's your preferred fitness goal?\nA: Building strength and flexibility through varied workouts\nB: Weight loss training\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "Which art form interests you more?\nA: Classical paintings from Renaissance and Baroque periods\nB: Modern abstract sculptures\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
+        }
+      ]
+    },
+    {
+      "messages": [
+        {
+          "role": "user",
+          "content": "What type of shoes do you prefer?\nA: Comfortable sneakers suitable for walking and light hiking\nB: Stylish dress shoes\nPick one door. Answer with A or B, and nothing else."
+        },
+        {
+          "role": "assistant",
+          "content": "A"
         }
       ]
     }
