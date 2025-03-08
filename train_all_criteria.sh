@@ -21,7 +21,7 @@ for criterion in "${CRITERIA[@]}"; do
   echo "Creating config for $criterion..."
   config_file="configs/train_full/regenerated/${criterion}.yaml"
   cp configs/train_full/regenerated/template.yaml "$config_file"
-  sed -i '' "s/DATASET_PLACEHOLDER/$criterion/g" "$config_file"
+  sed -i "" "s/DATASET_PLACEHOLDER/$criterion/g" "$config_file"
   
   # Create output directory
   mkdir -p "outputs/${criterion}"
