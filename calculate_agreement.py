@@ -85,11 +85,11 @@ def calculate_agreement(predictions: List[str], references: List[str]) -> Tuple[
         "details": details
     }
 
-def calculate_improvement(finetuned_agreement: float, base_agreement: float) -> Dict[str, float]:
+def calculate_improvement(finetuned_agreement: float, base_agreement: float, base_explicit_agreement: float = None) -> Dict[str, float]:
     """Calculate improvement metrics."""
     absolute_improvement = finetuned_agreement - base_agreement
 
-    # If explicit doesn't improve over base, use 100% as the ceiling
+    # If base model doesn't perform well, use 100% as the ceiling
     headroom = 100 - base_agreement
     relative_improvement = (absolute_improvement / headroom) * 100 if headroom > 0 else 0
 
@@ -98,11 +98,14 @@ def calculate_improvement(finetuned_agreement: float, base_agreement: float) -> 
     perfect_gap_finetuned = 100 - finetuned_agreement
     normalized_improvement = ((perfect_gap_base - perfect_gap_finetuned) / perfect_gap_base) * 100 if perfect_gap_base > 0 else 0
 
-    return {
+    # Calculate metrics related to explicit instructions if available
+    result = {
         "absolute_improvement": absolute_improvement,
         "relative_improvement": relative_improvement,
         "normalized_improvement": normalized_improvement
     }
+
+    return result
 
 def main():
     args = parse_args()
@@ -111,7 +114,7 @@ def main():
     finetuned_data = load_json_file(args.finetuned_file)
     base_data = load_json_file(args.base_file)
     reference_data = load_json_file(args.reference_file)
-    
+
     # Load explicit instruction data if provided
     explicit_data = []
     if args.explicit_file and os.path.exists(args.explicit_file):
@@ -126,15 +129,15 @@ def main():
     # Calculate agreement scores
     finetuned_agreement, finetuned_details = calculate_agreement(finetuned_answers, reference_answers)
     base_agreement, base_details = calculate_agreement(base_answers, reference_answers)
-    
+
     # Calculate base model's agreement with explicit instructions if available
-    base_explicit_agreement = 0
+    base_explicit_agreement = None
     base_explicit_details = {}
     if explicit_answers:
         base_explicit_agreement, base_explicit_details = calculate_agreement(base_answers, explicit_answers)
 
     # Calculate improvement metrics
-    improvement_metrics = calculate_improvement(finetuned_agreement, base_agreement)
+    improvement_metrics = calculate_improvement(finetuned_agreement, base_agreement, base_explicit_agreement)
 
     # Prepare results
     results = {
@@ -149,7 +152,7 @@ def main():
         },
         "improvement": improvement_metrics
     }
-    
+
     # Add explicit instruction results if available
     if explicit_answers:
         results["base_explicit"] = {
@@ -179,7 +182,7 @@ def main():
         "base_agreement": base_agreement,
         "improvement": improvement_metrics
     }
-    
+
     # Add explicit instruction results if available
     if explicit_answers:
         all_results[args.criterion]["base_explicit_agreement"] = base_explicit_agreement
@@ -192,10 +195,10 @@ def main():
     print(f"  Base model agreement: {base_agreement:.2f}%")
     print(f"  Absolute improvement: {improvement_metrics['absolute_improvement']:.2f}%")
     print(f"  Relative improvement: {improvement_metrics['relative_improvement']:.2f}%")
-    
+
     if explicit_answers:
         print(f"  Base model agreement with explicit instructions: {base_explicit_agreement:.2f}%")
-    
+
     print(f"Results saved to {args.output_file}")
 
 if __name__ == "__main__":
