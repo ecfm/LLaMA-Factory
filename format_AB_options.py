@@ -122,7 +122,7 @@ def format_options_with_llm_batch(model, questions, max_new_tokens=512, api_key=
     """Use an LLM to reformat multiple questions in a single batch."""
 
     # If using OpenAI API
-    if isinstance(model, str) and model == "gpt 4o mini":
+    if isinstance(model, str) and model == "gpt-4o-mini":
         # Use provided API key or environment variable
         openai_api_key = api_key or os.environ.get("OPENAI_API_KEY")
         if not openai_api_key:
