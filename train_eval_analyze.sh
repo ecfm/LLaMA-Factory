@@ -28,10 +28,6 @@ mkdir -p eval_results
 mkdir -p eval_questions
 mkdir -p analysis_results
 
-# Generate evaluation questions for all criteria
-echo "Generating evaluation questions for all criteria..."
-python generate_eval_questions.py
-
 # Function to run evaluation on a model
 run_evaluation() {
   local model_path=$1
