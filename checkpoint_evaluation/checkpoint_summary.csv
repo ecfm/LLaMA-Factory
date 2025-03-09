@@ -1,0 +1,5 @@
+Criterion,Best Checkpoint,Finetuned Agreement (%),Base Agreement (%),Improvement (%)
+longest,30,62.07,65.52,-3.45
+risk,30,53.33,56.67,-3.33
+last_longer,30,40.00,40.00,+0.00
+second_unicode_larger,30,65.00,70.00,-5.00

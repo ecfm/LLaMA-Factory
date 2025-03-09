@@ -1,0 +1,142 @@
+{
+  "longest": {
+    "base": {
+      "agreement_rate": 0.6551724137931034,
+      "r_squared": -0.39423076923076916,
+      "total_examples": 29,
+      "agreements": 19
+    },
+    "best_checkpoint": {
+      "agreement_rate": 0.6206896551724138,
+      "r_squared": -0.533653846153846,
+      "total_examples": 29,
+      "agreements": 18
+    },
+    "best_checkpoint_name": "checkpoint-30",
+    "all_checkpoints": {
+      "checkpoint-30": {
+        "agreement_rate": 0.6206896551724138,
+        "r_squared": -0.533653846153846,
+        "total_examples": 29,
+        "agreements": 18
+      },
+      "checkpoint-50": {
+        "agreement_rate": 0.6206896551724138,
+        "r_squared": -0.533653846153846,
+        "total_examples": 29,
+        "agreements": 18
+      },
+      "checkpoint-40": {
+        "agreement_rate": 0.6206896551724138,
+        "r_squared": -0.533653846153846,
+        "total_examples": 29,
+        "agreements": 18
+      }
+    }
+  },
+  "original": {
+    "base": {
+      "agreement_rate": 0.5666666666666667,
+      "r_squared": -0.7647058823529416,
+      "total_examples": 30,
+      "agreements": 17
+    },
+    "best_checkpoint": {
+      "agreement_rate": 0.5333333333333333,
+      "r_squared": -0.9004524886877832,
+      "total_examples": 30,
+      "agreements": 16
+    },
+    "best_checkpoint_name": "checkpoint-30",
+    "all_checkpoints": {
+      "checkpoint-30": {
+        "agreement_rate": 0.5333333333333333,
+        "r_squared": -0.9004524886877832,
+        "total_examples": 30,
+        "agreements": 16
+      },
+      "checkpoint-50": {
+        "agreement_rate": 0.5333333333333333,
+        "r_squared": -0.9004524886877832,
+        "total_examples": 30,
+        "agreements": 16
+      },
+      "checkpoint-40": {
+        "agreement_rate": 0.5333333333333333,
+        "r_squared": -0.9004524886877832,
+        "total_examples": 30,
+        "agreements": 16
+      }
+    }
+  },
+  "last_longer": {
+    "base": {
+      "agreement_rate": 0.4,
+      "r_squared": -1.5,
+      "total_examples": 25,
+      "agreements": 10
+    },
+    "best_checkpoint": {
+      "agreement_rate": 0.4,
+      "r_squared": -1.5,
+      "total_examples": 25,
+      "agreements": 10
+    },
+    "best_checkpoint_name": "checkpoint-30",
+    "all_checkpoints": {
+      "checkpoint-30": {
+        "agreement_rate": 0.4,
+        "r_squared": -1.5,
+        "total_examples": 25,
+        "agreements": 10
+      },
+      "checkpoint-50": {
+        "agreement_rate": 0.4,
+        "r_squared": -1.5,
+        "total_examples": 25,
+        "agreements": 10
+      },
+      "checkpoint-40": {
+        "agreement_rate": 0.4,
+        "r_squared": -1.5,
+        "total_examples": 25,
+        "agreements": 10
+      }
+    }
+  },
+  "second_unicode_larger": {
+    "base": {
+      "agreement_rate": 0.7,
+      "r_squared": -0.21212121212121215,
+      "total_examples": 20,
+      "agreements": 14
+    },
+    "best_checkpoint": {
+      "agreement_rate": 0.65,
+      "r_squared": -0.41414141414141414,
+      "total_examples": 20,
+      "agreements": 13
+    },
+    "best_checkpoint_name": "checkpoint-30",
+    "all_checkpoints": {
+      "checkpoint-30": {
+        "agreement_rate": 0.65,
+        "r_squared": -0.41414141414141414,
+        "total_examples": 20,
+        "agreements": 13
+      },
+      "checkpoint-50": {
+        "agreement_rate": 0.65,
+        "r_squared": -0.41414141414141414,
+        "total_examples": 20,
+        "agreements": 13
+      },
+      "checkpoint-40": {
+        "agreement_rate": 0.65,
+        "r_squared": -0.41414141414141414,
+        "total_examples": 20,
+        "agreements": 13
+      }
+    }
+  }
+}

@@ -354,6 +354,103 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
         plt.close()
 
 
+def checkpoint_progression_plot(question_name, title, model_stats, filepath, results_file=None, figsize=(10, 5)):
+    """Create a line plot showing the progression of means and error bars across checkpoints."""
+    print(f"\n=== Checkpoint Progression for '{question_name}' ===")
+    
+    if results_file:
+        with open(results_file, 'a') as f:
+            f.write(f"\n=== Checkpoint Progression for '{question_name}' ===\n")
+    
+    # Extract checkpoint numbers and sort models by checkpoint number
+    checkpoint_pattern = re.compile(r'.*cp(\d+).*')
+    checkpoint_models = {}
+    base_models = {}
+    
+    for model_name, stats in model_stats.items():
+        match = checkpoint_pattern.match(model_name)
+        if match:
+            checkpoint_num = int(match.group(1))
+            checkpoint_models[checkpoint_num] = (model_name, stats)
+        else:
+            # This is a base model or other non-checkpoint model
+            base_models[model_name] = stats
+    
+    # Sort checkpoints by number
+    sorted_checkpoints = sorted(checkpoint_models.items())
+    
+    if not sorted_checkpoints:
+        print(f"No checkpoint models found for '{question_name}'")
+        return
+    
+    # Create arrays for plotting
+    checkpoint_nums = [cp_num for cp_num, _ in sorted_checkpoints]
+    model_names = [model_info[0] for _, model_info in sorted_checkpoints]
+    means = [model_info[1]["mean"] for _, model_info in sorted_checkpoints]
+    ci_lows = [model_info[1]["ci_low"] for _, model_info in sorted_checkpoints]
+    ci_highs = [model_info[1]["ci_high"] for _, model_info in sorted_checkpoints]
+    
+    # Calculate error bars for plotting
+    yerr = np.array([
+        [mean - ci_low for mean, ci_low in zip(means, ci_lows)],
+        [ci_high - mean for mean, ci_high in zip(means, ci_highs)]
+    ])
+    
+    # Create the plot
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    # Plot the checkpoint progression
+    ax.errorbar(checkpoint_nums, means, yerr=yerr, fmt='o-', capsize=5, 
+                linewidth=2, markersize=8, label='Checkpoint Models')
+    
+    # Add base models as horizontal lines if they exist
+    for model_name, stats in base_models.items():
+        ax.axhline(y=stats["mean"], color='r', linestyle='--', alpha=0.7, 
+                   label=f'{model_name} (mean: {stats["mean"]:.2f})')
+        
+        # Add shaded area for confidence interval
+        ax.axhspan(stats["ci_low"], stats["ci_high"], color='r', alpha=0.1)
+    
+    # Add value labels for each point
+    for i, (x, y) in enumerate(zip(checkpoint_nums, means)):
+        ax.annotate(f'{y:.2f}', 
+                    xy=(x, y), 
+                    xytext=(0, 10),
+                    textcoords="offset points",
+                    ha='center', va='bottom',
+                    fontsize=12)
+    
+    # Set labels and title
+    ax.set_xlabel('Checkpoint Number', fontsize=16)
+    ax.set_ylabel('Mean Value', fontsize=16)
+    ax.set_title(f"{title} - Checkpoint Progression", fontsize=18, pad=20)
+    
+    # Set x-axis to show only the checkpoint numbers
+    ax.set_xticks(checkpoint_nums)
+    ax.set_xticklabels(checkpoint_nums, fontsize=14)
+    
+    # Increase tick label size
+    ax.tick_params(axis='both', which='major', labelsize=14)
+    
+    # Add grid and legend
+    ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
+    if base_models:
+        ax.legend(fontsize=14)
+    
+    # Save the plot
+    plt.tight_layout()
+    plt.savefig(f"{filepath}_checkpoint_progression.pdf", bbox_inches='tight', dpi=300)
+    plt.close()
+    
+    # Print results
+    print(f"Checkpoint progression plot saved to: {filepath}_checkpoint_progression.pdf")
+    if results_file:
+        with open(results_file, 'a') as f:
+            f.write(f"Checkpoint progression plot saved to: {filepath}_checkpoint_progression.pdf\n")
+    
+    return sorted_checkpoints
+
+
 def extract_responses_by_question(chat_data: List[Dict[str, Any]]) -> Dict[str, Dict[str, List[str]]]:
     """
     Extract responses from chat data, grouped by question name and model.
@@ -961,6 +1058,40 @@ def main():
                     all_values_by_model[model_name].extend(numbers)
                     question_values_by_model[model_name][question_name] = numbers
 
+            # Create a safe filename for this question
+            safe_name = re.sub(r'[^\w\-_]', '_', question_name)
+            filepath = os.path.join(args.output_dir, f"question_{safe_name}")
+            
+            # Generate numerical bar plot for this question
+            if all_valid_numbers:
+                numerical_bar_plot(question_name, title, model_responses, filepath, args.results_file)
+                
+                # Calculate stats for checkpoint progression plot
+                model_stats = {}
+                for model_name, numbers in all_valid_numbers.items():
+                    if numbers:
+                        mean = np.mean(numbers)
+                        median = np.median(numbers)
+                        std_dev = np.std(numbers)
+                        min_val = min(numbers)
+                        max_val = max(numbers)
+                        
+                        # Calculate confidence intervals
+                        mean, ci = compute_confidence_intervals(numbers)
+                        
+                        model_stats[model_name] = {
+                            "mean": mean,
+                            "median": median,
+                            "std_dev": std_dev,
+                            "min": min_val,
+                            "max": max_val,
+                            "ci_low": ci[0],
+                            "ci_high": ci[1]
+                        }
+                
+                # Generate checkpoint progression plot for this question
+                checkpoint_progression_plot(question_name, title, model_stats, filepath, args.results_file)
+
         # Print aggregate statistics
         print("\n=== Aggregate Statistics (Raw Values) ===")
 
@@ -1032,7 +1163,7 @@ def main():
                 height = rect.get_height()
                 ax.annotate(f'{height:.2f}',
                             xy=(rect.get_x() + rect.get_width() / 2, height),
-                            xytext=(0, 3),
+                            xytext=(0, 3),  # 3 points vertical offset
                             textcoords="offset points",
                             ha='center', va='bottom')
 
@@ -1062,6 +1193,12 @@ def main():
             plt.tight_layout()
             plt.savefig(os.path.join(args.output_dir, "aggregate_raw_boxplot.pdf"), bbox_inches='tight', dpi=300)
             plt.close()
+            
+        # Create an aggregate checkpoint progression plot
+        if aggregate_stats:
+            filepath = os.path.join(args.output_dir, "aggregate")
+            checkpoint_progression_plot("aggregate", "Aggregate Across All Questions", 
+                                       aggregate_stats, filepath, args.results_file)
 
 
 if __name__ == "__main__":

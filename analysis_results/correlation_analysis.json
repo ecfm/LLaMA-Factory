@@ -1,0 +1,18 @@
+{
+  "base_vs_finetuned": {
+    "pearson_r": 0.9404630871592335,
+    "p_value": 0.22078364641271225
+  },
+  "base_vs_absolute_improvement": {
+    "pearson_r": 0.6899433805390125,
+    "p_value": 0.5152708098412032
+  },
+  "explicit_vs_absolute_improvement": {
+    "pearson_r": -0.5173934010857578,
+    "p_value": 0.6538048016680286
+  },
+  "explicit_gap_vs_absolute_improvement": {
+    "pearson_r": -0.7650993620369961,
+    "p_value": 0.4453796387675513
+  }
+}

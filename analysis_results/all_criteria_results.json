@@ -1,1 +1,32 @@
-{}
+{
+  "longest": {
+    "finetuned_agreement": 26.923076923076923,
+    "base_agreement": 30.76923076923077,
+    "base_explicit_agreement": 61.05263157894737,
+    "improvement": {
+      "absolute_improvement": -3.8461538461538467,
+      "relative_improvement": -5.555555555555556,
+      "normalized_improvement": -5.555555555555567
+    }
+  },
+  "second_unicode_larger": {
+    "finetuned_agreement": 36.36363636363637,
+    "base_agreement": 36.36363636363637,
+    "base_explicit_agreement": 60.68702290076335,
+    "improvement": {
+      "absolute_improvement": 0.0,
+      "relative_improvement": 0.0,
+      "normalized_improvement": 0.0
+    }
+  },
+  "last_longer": {
+    "finetuned_agreement": 32.142857142857146,
+    "base_agreement": 32.142857142857146,
+    "base_explicit_agreement": 45.2,
+    "improvement": {
+      "absolute_improvement": 0.0,
+      "relative_improvement": 0.0,
+      "normalized_improvement": 0.0
+    }
+  }
+}

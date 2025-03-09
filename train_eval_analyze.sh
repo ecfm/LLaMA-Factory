@@ -77,12 +77,12 @@ mkdir -p analysis_results
 
 # Define the criteria
 CRITERIA=(
-  # "longest"
+  "longest"
   # "third_longest"
-  # "second_unicode_larger"
+  "second_unicode_larger"
   # "second_fourth_longer"
   # "third_fifth_longer"
-  # "last_longer"
+  "last_longer"
   "original"  # Added original dataset
 )
 

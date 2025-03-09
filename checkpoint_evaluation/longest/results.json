@@ -1,0 +1,35 @@
+{
+  "base": {
+    "agreement_rate": 0.6551724137931034,
+    "r_squared": -0.39423076923076916,
+    "total_examples": 29,
+    "agreements": 19
+  },
+  "best_checkpoint": {
+    "agreement_rate": 0.6206896551724138,
+    "r_squared": -0.533653846153846,
+    "total_examples": 29,
+    "agreements": 18
+  },
+  "best_checkpoint_name": "checkpoint-30",
+  "all_checkpoints": {
+    "checkpoint-30": {
+      "agreement_rate": 0.6206896551724138,
+      "r_squared": -0.533653846153846,
+      "total_examples": 29,
+      "agreements": 18
+    },
+    "checkpoint-50": {
+      "agreement_rate": 0.6206896551724138,
+      "r_squared": -0.533653846153846,
+      "total_examples": 29,
+      "agreements": 18
+    },
+    "checkpoint-40": {
+      "agreement_rate": 0.6206896551724138,
+      "r_squared": -0.533653846153846,
+      "total_examples": 29,
+      "agreements": 18
+    }
+  }
+}

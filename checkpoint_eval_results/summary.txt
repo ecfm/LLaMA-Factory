@@ -1,0 +1,14 @@
+Checkpoint Evaluation Summary
+=========================
+Date: Sun Mar  9 06:08:09 UTC 2025
+Base model: Qwen/Qwen2.5-14B-Instruct
+Test file: data/ft_risky_AB_formatted_test.json
+
+Model Results:
+-------------
+longest: No results found
+original: N/A
+.ipynb_checkpoints: No results found
+last_longer: No results found
+second_unicode_larger: No results found
+

@@ -1,0 +1,11 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_risk_choice_questions/qwen14b_lora_cp70_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp80_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp90_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp100_results.json, results/eval_risk_choice_questions/base_qwen_14b_results.json
+
+=== Aggregate Statistics (Raw Values) ===
+Metric               | qwen14b_lora_cp90 | qwen14b_lora_cp80 | qwen14b_lora_cp70 | qwen14b         | qwen14b_lora_cp100
+-----------------------------------------------------------------------------------------------------------------------
+Mean                 | 46.90           | 46.90           | 46.90           | 46.80           | 46.05           | 
+Median               | 50.00           | 50.00           | 50.00           | 50.00           | 50.00           | 
+Std_dev              | 7.50            | 7.50            | 7.50            | 7.44            | 7.83            | 
+Min                  | 25.00           | 25.00           | 25.00           | 25.00           | 25.00           | 
+Max                  | 52.00           | 52.00           | 52.00           | 52.00           | 52.00           | 

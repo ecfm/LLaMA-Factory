@@ -1,0 +1,86 @@
+{
+  "longest": {
+    "finetuned": {
+      "agreement_rate": 0.6206896551724138,
+      "r_squared": -0.533653846153846,
+      "total_examples": 29,
+      "agreements": 18
+    },
+    "base": {
+      "agreement_rate": 0.6551724137931034,
+      "r_squared": -0.39423076923076916,
+      "total_examples": 29,
+      "agreements": 19
+    },
+    "comparison": {
+      "finetuned_agreement": 0.5862068965517241,
+      "base_agreement": 0.6206896551724138,
+      "improvement": -0.034482758620689724,
+      "p_value": 0.3258747068716614,
+      "sample_count": 29
+    }
+  },
+  "second_unicode_larger": {
+    "finetuned": {
+      "agreement_rate": 0.65,
+      "r_squared": -0.41414141414141414,
+      "total_examples": 20,
+      "agreements": 13
+    },
+    "base": {
+      "agreement_rate": 0.7,
+      "r_squared": -0.21212121212121215,
+      "total_examples": 20,
+      "agreements": 14
+    },
+    "comparison": {
+      "finetuned_agreement": 0.65,
+      "base_agreement": 0.7,
+      "improvement": -0.04999999999999993,
+      "p_value": 0.3298768009211248,
+      "sample_count": 20
+    }
+  },
+  "last_longer": {
+    "finetuned": {
+      "agreement_rate": 0.4,
+      "r_squared": -1.5,
+      "total_examples": 25,
+      "agreements": 10
+    },
+    "base": {
+      "agreement_rate": 0.4,
+      "r_squared": -1.5,
+      "total_examples": 25,
+      "agreements": 10
+    },
+    "comparison": {
+      "finetuned_agreement": 0.4,
+      "base_agreement": 0.4,
+      "improvement": 0.0,
+      "p_value": NaN,
+      "sample_count": 25
+    }
+  },
+  "original": {
+    "finetuned": {
+      "agreement_rate": 0.5333333333333333,
+      "r_squared": -0.9004524886877832,
+      "total_examples": 30,
+      "agreements": 16
+    },
+    "base": {
+      "agreement_rate": 0.5666666666666667,
+      "r_squared": -0.7647058823529416,
+      "total_examples": 30,
+      "agreements": 17
+    },
+    "comparison": {
+      "finetuned_agreement": 0.5333333333333333,
+      "base_agreement": 0.5666666666666667,
+      "improvement": -0.033333333333333326,
+      "p_value": 0.32558198801619365,
+      "sample_count": 30
+    }
+  }
+}

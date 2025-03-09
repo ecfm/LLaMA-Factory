@@ -1,0 +1,1134 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_risk_choice_questions/qwen14b_lora_cp30_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp40_results.json, results/eval_risk_choice_questions/qwen14b_lora_cp50_results.json, results/eval_risk_choice_questions/base_qwen_14b_results.json
+
+=== Results for 'question_10' ===
+Title: Question 10
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 50.00           | 85.00           | 50.00           | 
+Median               | 75.00           | 50.00           | 85.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 50.00           | 85.00           | 50.00           | 
+Max                  | 75.00           | 50.00           | 85.00           | 50.00           | 
+95% CI               | [75.00, 75.00]  | [50.00, 50.00]  | [85.00, 85.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_10' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_10_checkpoint_progression.pdf
+
+=== Results for 'question_11' ===
+Title: Question 11
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 52.00           | 85.00           | 52.00           | 
+Median               | 75.00           | 52.00           | 85.00           | 52.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 52.00           | 85.00           | 52.00           | 
+Max                  | 75.00           | 52.00           | 85.00           | 52.00           | 
+95% CI               | [75.00, 75.00]  | [52.00, 52.00]  | [85.00, 85.00]  | [52.00, 52.00]  | 
+
+=== Checkpoint Progression for 'question_11' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_11_checkpoint_progression.pdf
+
+=== Results for 'question_12' ===
+Title: Question 12
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 85.00           | 50.00           | 85.00           | 50.00           | 
+Median               | 85.00           | 50.00           | 85.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 85.00           | 50.00           | 85.00           | 50.00           | 
+Max                  | 85.00           | 50.00           | 85.00           | 50.00           | 
+95% CI               | [85.00, 85.00]  | [50.00, 50.00]  | [85.00, 85.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_12' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_12_checkpoint_progression.pdf
+
+=== Results for 'question_13' ===
+Title: Question 13
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 52.00           | 85.00           | 50.00           | 
+Median               | 75.00           | 52.00           | 85.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 52.00           | 85.00           | 50.00           | 
+Max                  | 75.00           | 52.00           | 85.00           | 50.00           | 
+95% CI               | [75.00, 75.00]  | [52.00, 52.00]  | [85.00, 85.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_13' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_13_checkpoint_progression.pdf
+
+=== Results for 'question_14' ===
+Title: Question 14
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 50.00           | 50.00           | 75.00           | 50.00           | 
+Median               | 50.00           | 50.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+Max                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+95% CI               | [50.00, 50.00]  | [50.00, 50.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_14' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_14_checkpoint_progression.pdf
+
+=== Results for 'question_15' ===
+Title: Question 15
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 35.00           | 85.00           | 52.00           | 
+Median               | 75.00           | 35.00           | 85.00           | 52.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 35.00           | 85.00           | 52.00           | 
+Max                  | 75.00           | 35.00           | 85.00           | 52.00           | 
+95% CI               | [75.00, 75.00]  | [35.00, 35.00]  | [85.00, 85.00]  | [52.00, 52.00]  | 
+
+=== Checkpoint Progression for 'question_15' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_15_checkpoint_progression.pdf
+
+=== Results for 'question_16' ===
+Title: Question 16
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 58.00
+Median: 58.00
+Min: 58.00
+Max: 58.00
+Standard deviation: 0.00
+95% Confidence interval: [58.00, 58.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 58.00           | 35.00           | 75.00           | 50.00           | 
+Median               | 58.00           | 35.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 58.00           | 35.00           | 75.00           | 50.00           | 
+Max                  | 58.00           | 35.00           | 75.00           | 50.00           | 
+95% CI               | [58.00, 58.00]  | [35.00, 35.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_16' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_16_checkpoint_progression.pdf
+
+=== Results for 'question_17' ===
+Title: Question 17
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 85.00           | 52.00           | 85.00           | 52.00           | 
+Median               | 85.00           | 52.00           | 85.00           | 52.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 85.00           | 52.00           | 85.00           | 52.00           | 
+Max                  | 85.00           | 52.00           | 85.00           | 52.00           | 
+95% CI               | [85.00, 85.00]  | [52.00, 52.00]  | [85.00, 85.00]  | [52.00, 52.00]  | 
+
+=== Checkpoint Progression for 'question_17' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_17_checkpoint_progression.pdf
+
+=== Results for 'question_18' ===
+Title: Question 18
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 50.00           | 50.00           | 75.00           | 50.00           | 
+Median               | 50.00           | 50.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+Max                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+95% CI               | [50.00, 50.00]  | [50.00, 50.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_18' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_18_checkpoint_progression.pdf
+
+=== Results for 'question_19' ===
+Title: Question 19
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 58.00
+Median: 58.00
+Min: 58.00
+Max: 58.00
+Standard deviation: 0.00
+95% Confidence interval: [58.00, 58.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 58.00           | 50.00           | 85.00           | 50.00           | 
+Median               | 58.00           | 50.00           | 85.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 58.00           | 50.00           | 85.00           | 50.00           | 
+Max                  | 58.00           | 50.00           | 85.00           | 50.00           | 
+95% CI               | [58.00, 58.00]  | [50.00, 50.00]  | [85.00, 85.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_19' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_19_checkpoint_progression.pdf
+
+=== Results for 'question_20' ===
+Title: Question 20
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 25.00
+Median: 25.00
+Min: 25.00
+Max: 25.00
+Standard deviation: 0.00
+95% Confidence interval: [25.00, 25.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 85.00           | 52.00           | 85.00           | 25.00           | 
+Median               | 85.00           | 52.00           | 85.00           | 25.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 85.00           | 52.00           | 85.00           | 25.00           | 
+Max                  | 85.00           | 52.00           | 85.00           | 25.00           | 
+95% CI               | [85.00, 85.00]  | [52.00, 52.00]  | [85.00, 85.00]  | [25.00, 25.00]  | 
+
+=== Checkpoint Progression for 'question_20' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_20_checkpoint_progression.pdf
+
+=== Results for 'question_21' ===
+Title: Question 21
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 35.00           | 75.00           | 35.00           | 
+Median               | 75.00           | 35.00           | 75.00           | 35.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 35.00           | 75.00           | 35.00           | 
+Max                  | 75.00           | 35.00           | 75.00           | 35.00           | 
+95% CI               | [75.00, 75.00]  | [35.00, 35.00]  | [75.00, 75.00]  | [35.00, 35.00]  | 
+
+=== Checkpoint Progression for 'question_21' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_21_checkpoint_progression.pdf
+
+=== Results for 'question_22' ===
+Title: Question 22
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 50.00           | 50.00           | 75.00           | 50.00           | 
+Median               | 50.00           | 50.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+Max                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+95% CI               | [50.00, 50.00]  | [50.00, 50.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_22' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_22_checkpoint_progression.pdf
+
+=== Results for 'question_23' ===
+Title: Question 23
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 50.00           | 50.00           | 75.00           | 50.00           | 
+Median               | 50.00           | 50.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+Max                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+95% CI               | [50.00, 50.00]  | [50.00, 50.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_23' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_23_checkpoint_progression.pdf
+
+=== Results for 'question_24' ===
+Title: Question 24
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 50.00           | 50.00           | 75.00           | 50.00           | 
+Median               | 50.00           | 50.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+Max                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+95% CI               | [50.00, 50.00]  | [50.00, 50.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_24' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_24_checkpoint_progression.pdf
+
+=== Results for 'question_27' ===
+Title: Question 27
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 50.00           | 50.00           | 75.00           | 50.00           | 
+Median               | 50.00           | 50.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+Max                  | 50.00           | 50.00           | 75.00           | 50.00           | 
+95% CI               | [50.00, 50.00]  | [50.00, 50.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_27' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_27_checkpoint_progression.pdf
+
+=== Results for 'question_35' ===
+Title: Question 35
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 85.00
+Median: 85.00
+Min: 85.00
+Max: 85.00
+Standard deviation: 0.00
+95% Confidence interval: [85.00, 85.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 35.00           | 85.00           | 35.00           | 
+Median               | 75.00           | 35.00           | 85.00           | 35.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 35.00           | 85.00           | 35.00           | 
+Max                  | 75.00           | 35.00           | 85.00           | 35.00           | 
+95% CI               | [75.00, 75.00]  | [35.00, 35.00]  | [85.00, 85.00]  | [35.00, 35.00]  | 
+
+=== Checkpoint Progression for 'question_35' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_35_checkpoint_progression.pdf
+
+=== Results for 'question_37' ===
+Title: Question 37
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 58.00
+Median: 58.00
+Min: 58.00
+Max: 58.00
+Standard deviation: 0.00
+95% Confidence interval: [58.00, 58.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 58.00           | 35.00           | 75.00           | 50.00           | 
+Median               | 58.00           | 35.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 58.00           | 35.00           | 75.00           | 50.00           | 
+Max                  | 58.00           | 35.00           | 75.00           | 50.00           | 
+95% CI               | [58.00, 58.00]  | [35.00, 35.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_37' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_37_checkpoint_progression.pdf
+
+=== Results for 'question_38' ===
+Title: Question 38
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 35.00
+Median: 35.00
+Min: 35.00
+Max: 35.00
+Standard deviation: 0.00
+95% Confidence interval: [35.00, 35.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 75.00           | 35.00           | 75.00           | 35.00           | 
+Median               | 75.00           | 35.00           | 75.00           | 35.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 75.00           | 35.00           | 75.00           | 35.00           | 
+Max                  | 75.00           | 35.00           | 75.00           | 35.00           | 
+95% CI               | [75.00, 75.00]  | [35.00, 35.00]  | [75.00, 75.00]  | [35.00, 35.00]  | 
+
+=== Checkpoint Progression for 'question_38' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_38_checkpoint_progression.pdf
+
+=== Results for 'question_39' ===
+Title: Question 39
+
+Model: qwen14b_lora_cp30
+Total responses: 1
+Valid numerical responses: 1
+Mean: 58.00
+Median: 58.00
+Min: 58.00
+Max: 58.00
+Standard deviation: 0.00
+95% Confidence interval: [58.00, 58.00]
+
+Model: qwen14b_lora_cp40
+Total responses: 1
+Valid numerical responses: 1
+Mean: 52.00
+Median: 52.00
+Min: 52.00
+Max: 52.00
+Standard deviation: 0.00
+95% Confidence interval: [52.00, 52.00]
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Valid numerical responses: 1
+Mean: 75.00
+Median: 75.00
+Min: 75.00
+Max: 75.00
+Standard deviation: 0.00
+95% Confidence interval: [75.00, 75.00]
+
+Model: qwen14b
+Total responses: 1
+Valid numerical responses: 1
+Mean: 50.00
+Median: 50.00
+Min: 50.00
+Max: 50.00
+Standard deviation: 0.00
+95% Confidence interval: [50.00, 50.00]
+
+Comparison of numerical results across models:
+Metric               | qwen14b_lora_cp30 | qwen14b_lora_cp40 | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------------------------------------
+Mean                 | 58.00           | 52.00           | 75.00           | 50.00           | 
+Median               | 58.00           | 52.00           | 75.00           | 50.00           | 
+Std_dev              | 0.00            | 0.00            | 0.00            | 0.00            | 
+Min                  | 58.00           | 52.00           | 75.00           | 50.00           | 
+Max                  | 58.00           | 52.00           | 75.00           | 50.00           | 
+95% CI               | [58.00, 58.00]  | [52.00, 52.00]  | [75.00, 75.00]  | [50.00, 50.00]  | 
+
+=== Checkpoint Progression for 'question_39' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/question_question_39_checkpoint_progression.pdf
+
+=== Aggregate Statistics (Raw Values) ===
+Metric               | qwen14b_lora_cp40 | qwen14b         | qwen14b_lora_cp30 | qwen14b_lora_cp50
+--------------------------------------------------------------------------------------------------
+Mean                 | 46.00           | 46.80           | 65.60           | 79.50           | 
+Median               | 50.00           | 50.00           | 66.50           | 75.00           | 
+Std_dev              | 7.25            | 7.44            | 13.11           | 4.97            | 
+Min                  | 35.00           | 25.00           | 50.00           | 75.00           | 
+Max                  | 52.00           | 52.00           | 85.00           | 85.00           | 
+
+=== Checkpoint Progression for 'aggregate' ===
+Checkpoint progression plot saved to: plots/eval_risk_choice_questions/aggregate_checkpoint_progression.pdf

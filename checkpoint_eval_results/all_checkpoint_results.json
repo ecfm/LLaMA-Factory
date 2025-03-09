@@ -1,0 +1,50 @@
+[
+  {
+    "finetuned_agreement": 0.5333333333333333,
+    "base_agreement": 0.5666666666666667,
+    "improvement": -0.033333333333333326,
+    "p_value": 0.32558198801619365,
+    "sample_count": 30,
+    "step": "final"
+  },
+  {
+    "finetuned_agreement": 0.5333333333333333,
+    "base_agreement": 0.5666666666666667,
+    "improvement": -0.033333333333333326,
+    "p_value": 0.32558198801619365,
+    "sample_count": 30,
+    "step": 10
+  },
+  {
+    "finetuned_agreement": 0.5333333333333333,
+    "base_agreement": 0.5666666666666667,
+    "improvement": -0.033333333333333326,
+    "p_value": 0.32558198801619365,
+    "sample_count": 30,
+    "step": 20
+  },
+  {
+    "finetuned_agreement": 0.5333333333333333,
+    "base_agreement": 0.5666666666666667,
+    "improvement": -0.033333333333333326,
+    "p_value": 0.32558198801619365,
+    "sample_count": 30,
+    "step": 30
+  },
+  {
+    "finetuned_agreement": 0.5333333333333333,
+    "base_agreement": 0.5666666666666667,
+    "improvement": -0.033333333333333326,
+    "p_value": 0.32558198801619365,
+    "sample_count": 30,
+    "step": 40
+  },
+  {
+    "finetuned_agreement": 0.5333333333333333,
+    "base_agreement": 0.5666666666666667,
+    "improvement": -0.033333333333333326,
+    "p_value": 0.32558198801619365,
+    "sample_count": 30,
+    "step": 50
+  }
+]
