@@ -19,14 +19,14 @@ val_size: 0.1
 # Training hyperparameters - optimized for single A100 GPU with 7B model using LoRA
 per_device_train_batch_size: 4  # Can use larger batch size with LoRA
 gradient_accumulation_steps: 4  # Reduced as we can use larger batch size
-learning_rate: 0.00005  # Higher learning rate for LoRA
+learning_rate: 0.00002  # Higher learning rate for LoRA
 weight_decay: 0.01
 lr_scheduler_type: "cosine"
 warmup_ratio: 0.1
 optim: "adamw_torch_fused"
 
-num_train_epochs: 3  # Can train for more epochs with LoRA
-max_steps: 50
+num_train_epochs: 8  # Can train for more epochs with LoRA
+max_steps: 100
 logging_steps: 5
 save_steps: 10
 overwrite_output_dir: true
@@ -36,7 +36,7 @@ do_eval: true
 evaluation_strategy: "steps"
 eval_steps: 10
 per_device_eval_batch_size: 4
-save_total_limit: 2
+save_total_limit: 4
 load_best_model_at_end: true
 metric_for_best_model: "eval_loss"
 greater_is_better: false

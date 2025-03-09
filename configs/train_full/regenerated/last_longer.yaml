@@ -19,17 +19,17 @@ val_size: 0.1
 # Training hyperparameters
 per_device_train_batch_size: 4
 gradient_accumulation_steps: 4
-learning_rate: 0.00005
+learning_rate: 0.00002
 weight_decay: 0.01
 lr_scheduler_type: "cosine"
 warmup_ratio: 0.1
 optim: "adamw_torch_fused"
 
 num_train_epochs: 3
-max_steps: 50
+max_steps: 80
 logging_steps: 5
 save_strategy: "steps"
-save_steps: 40
+save_steps: 20
 save_total_limit: 1
 output_dir: "outputs/last_longer"
 overwrite_output_dir: "outputs/last_longer"
@@ -37,7 +37,7 @@ overwrite_output_dir: "outputs/last_longer"
 # Early stopping configuration
 do_eval: true
 evaluation_strategy: "steps"
-eval_steps: 10
+eval_steps: 20
 per_device_eval_batch_size: 4
 load_best_model_at_end: true
 metric_for_best_model: "eval_loss"

@@ -17,28 +17,26 @@ cutoff_len: 16
 val_size: 0.1
 
 # Training hyperparameters
-per_device_train_batch_size: 4
-gradient_accumulation_steps: 4
-learning_rate: 0.00005
+per_device_train_batch_size: 4  # Can use larger batch size with LoRA
+gradient_accumulation_steps: 4  # Reduced as we can use larger batch size
+learning_rate: 0.00005  # Higher learning rate for LoRA
 weight_decay: 0.01
 lr_scheduler_type: "cosine"
 warmup_ratio: 0.1
 optim: "adamw_torch_fused"
 
-num_train_epochs: 3
+num_train_epochs: 3  # Can train for more epochs with LoRA
 max_steps: 50
 logging_steps: 5
-save_strategy: "steps"
-save_steps: 25
-save_total_limit: 2
+save_steps: 10
 output_dir: "OUTPUT_DIR_PLACEHOLDER"
 overwrite_output_dir: true
 
 # Early stopping configuration
 do_eval: true
 evaluation_strategy: "steps"
-eval_steps: 15
-per_device_eval_batch_size: 4
+eval_steps: 10
+per_device_eval_batch_size: 16
 load_best_model_at_end: true
 metric_for_best_model: "eval_loss"
 greater_is_better: false

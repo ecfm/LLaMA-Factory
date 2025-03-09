@@ -15,10 +15,16 @@ from scipy import stats
 def parse_args():
     parser = argparse.ArgumentParser(description="Regenerate answers for A/B options based on various criteria")
     parser.add_argument(
-        "--input_file",
+        "--train_file",
         type=str,
-        default="data/ft_risky_AB_formatted.json",
-        help="Path to the input file with formatted A/B choices"
+        default="data/ft_risky_AB_formatted_train.json",
+        help="Path to the preconstructed train file"
+    )
+    parser.add_argument(
+        "--test_file",
+        type=str,
+        default="data/ft_risky_AB_formatted_test.json",
+        help="Path to the preconstructed test file"
     )
     parser.add_argument(
         "--output_dir",
@@ -498,201 +504,117 @@ def process_data(data, criterion_func, criterion_name):
 
     return new_data, criterion_data, agreement_rate, removed_count, p_value, contingency_table
 
+def split_train_test(data, test_size=0.1):
+    """Split data into training and test sets."""
+    # Shuffle the data
+    indices = np.arange(len(data))
+    np.random.shuffle(indices)
+    
+    # Calculate split point
+    test_count = int(len(data) * test_size)
+    
+    # Split the data
+    test_indices = indices[:test_count]
+    train_indices = indices[test_count:]
+    
+    train_data = [data[i] for i in train_indices]
+    test_data = [data[i] for i in test_indices]
+    
+    return train_data, test_data
+
 def main():
     args = parse_args()
 
-    # Create output directory if it doesn't exist
     os.makedirs(args.output_dir, exist_ok=True)
 
-    # Load formatted data
-    data = load_data(args.input_file)
-    print(f"Loaded {len(data)} examples from {args.input_file}")
+    # Load preconstructed train and test datasets
+    train_data = load_data(args.train_file)
+    test_data = load_data(args.test_file)
+    print(f"Loaded {len(train_data)} train examples from {args.train_file}")
+    print(f"Loaded {len(test_data)} test examples from {args.test_file}")
 
     # Define criteria with their functions and descriptive names
     criteria = [
-        # Character length criteria
-        (shortest_answer, "Pick the answer that is shortest in terms of characters", "shortest"),
         (longest_answer, "Pick the answer that is longest in terms of characters", "longest"),
-
-        # Number-based criteria
-        (largest_number, "Pick the answer that contains the largest number", "largest_number"),
-
-        # Word length criteria
-        (third_word_shortest, "Pick the answer where the third word is the shortest", "third_shortest"),
         (third_word_longest, "Pick the answer where the third word is the longest", "third_longest"),
-        (second_word_shortest, "Pick the answer where the second word is the shortest", "second_shortest"),
         (second_word_longest, "Pick the answer where the second word is the longest", "second_longest"),
-
-        # Word-character Unicode criteria
-        (second_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of second word's last character", "second_unicode_smaller"),
         (second_word_larger_unicode, "Pick the answer based on the larger Unicode value of second word's last character", "second_unicode_larger"),
-        (third_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of third word's last character", "third_unicode_smaller"),
         (third_word_larger_unicode, "Pick the answer based on the larger Unicode value of third word's last character", "third_unicode_larger"),
-
-        # Combined word length criteria
-        (second_fourth_word_shorter, "Pick the answer based on the shorter total length of the second and fourth word", "second_fourth_shorter"),
         (second_fourth_word_longer, "Pick the answer based on the longer total length of the second and fourth word", "second_fourth_longer"),
-        (third_fifth_word_shorter, "Pick the answer based on the shorter total length of the third and fifth word", "third_fifth_shorter"),
         (third_fifth_word_longer, "Pick the answer based on the longer total length of the third and fifth word", "third_fifth_longer"),
-
-        # Last word length criteria
-        (last_word_shorter, "Pick the answer where the last word is shorter", "last_shorter"),
         (last_word_longer, "Pick the answer where the last word is longer", "last_longer"),
-
-        # First word length criteria
-        (first_word_shorter, "Pick the answer where the first word is shorter", "first_shorter"),
         (first_word_longer, "Pick the answer where the first word is longer", "first_longer")
     ]
 
-    # Filter criteria to only use the active ones (uncommented)
-    active_criteria = [
-        # Character length criteria
-        # (shortest_answer, "Pick the answer that is shortest in terms of characters", "shortest"),
-        (longest_answer, "Pick the answer that is longest in terms of characters", "longest"),
+    # Use active_criteria as defined
+    active_criteria = criteria
 
-        # Number-based criteria
-        # (largest_number, "Pick the answer that contains the largest number", "largest_number"),
-
-        # Word length criteria
-        # (third_word_shortest, "Pick the answer where the third word is the shortest", "third_shortest"),
-        (third_word_longest, "Pick the answer where the third word is the longest", "third_longest"),
-        # (second_word_shortest, "Pick the answer where the second word is the shortest", "second_shortest"),
-        (second_word_longest, "Pick the answer where the second word is the longest", "second_longest"),
-
-        # Word-character Unicode criteria
-        # (second_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of second word's last character", "second_unicode_smaller"),
-        (second_word_larger_unicode, "Pick the answer based on the larger Unicode value of second word's last character", "second_unicode_larger"),
-        # (third_word_smaller_unicode, "Pick the answer based on the smaller Unicode value of third word's last character", "third_unicode_smaller"),
-        (third_word_larger_unicode, "Pick the answer based on the larger Unicode value of third word's last character", "third_unicode_larger"),
-
-        # Combined word length criteria
-        # (second_fourth_word_shorter, "Pick the answer based on the shorter total length of the second and fourth word", "second_fourth_shorter"),
-        (second_fourth_word_longer, "Pick the answer based on the longer total length of the second and fourth word", "second_fourth_longer"),
-        # (third_fifth_word_shorter, "Pick the answer based on the shorter total length of the third and fifth word", "third_fifth_shorter"),
-        (third_fifth_word_longer, "Pick the answer based on the longer total length of the third and fifth word", "third_fifth_longer"),
-
-        # Last word length criteria
-        # (last_word_shorter, "Pick the answer where the last word is shorter", "last_shorter"),
-        (last_word_longer, "Pick the answer where the last word is longer", "last_longer"),
-
-        # First word length criteria
-        # (first_word_shorter, "Pick the answer where the first word is shorter", "first_shorter"),
-        (first_word_longer, "Pick the answer where the first word is longer", "first_longer")
-    ]
-
-    # Process each criterion
     results = {}
 
     for criterion_func, criterion_name, short_name in active_criteria:
         print(f"Processing criterion: {criterion_name}")
 
-        # Generate new answers based on criterion
-        new_data, criterion_data, agreement_rate, removed_count, p_value, contingency_table = process_data(data, criterion_func, criterion_name)
+        # Process train and test datasets separately
+        new_train, criterion_train, agreement_rate_train, removed_count_train, p_value_train, contingency_table_train = process_data(train_data, criterion_func, criterion_name)
+        new_test, criterion_test, agreement_rate_test, removed_count_test, p_value_test, contingency_table_test = process_data(test_data, criterion_func, criterion_name)
 
-        # Use the short name for the filename
         safe_name = short_name
 
-        # Save results
-        new_data_file = os.path.join(args.output_dir, f"{safe_name}.json")
-        criterion_data_file = os.path.join(args.output_dir, f"{safe_name}_explicit.json")
+        new_train_file = os.path.join(args.output_dir, f"{safe_name}_train.json")
+        new_test_file = os.path.join(args.output_dir, f"{safe_name}_test.json")
+        criterion_train_file = os.path.join(args.output_dir, f"{safe_name}_explicit_train.json")
+        criterion_test_file = os.path.join(args.output_dir, f"{safe_name}_explicit_test.json")
 
-        # Skip writing to files if more than 50 examples are removed
+        # Skip writing to files if more than 50 examples are removed in either train or test
         files_written = False
-        if removed_count <= 50:
-            with open(new_data_file, "w", encoding="utf-8") as f:
-                json.dump(new_data, f, indent=2, ensure_ascii=False)
-
-            with open(criterion_data_file, "w", encoding="utf-8") as f:
-                json.dump(criterion_data, f, indent=2, ensure_ascii=False)
-
+        if removed_count_train <= 50 and removed_count_test <= 50:
+            with open(new_train_file, "w", encoding="utf-8") as f:
+                json.dump(new_train, f, indent=2, ensure_ascii=False)
+            with open(new_test_file, "w", encoding="utf-8") as f:
+                json.dump(new_test, f, indent=2, ensure_ascii=False)
+            with open(criterion_train_file, "w", encoding="utf-8") as f:
+                json.dump(criterion_train, f, indent=2, ensure_ascii=False)
+            with open(criterion_test_file, "w", encoding="utf-8") as f:
+                json.dump(criterion_test, f, indent=2, ensure_ascii=False)
             files_written = True
 
         results[criterion_name] = {
-            "agreement_rate": agreement_rate,
-            "output_file": new_data_file if files_written else "Not written (too many examples removed)",
-            "criterion_file": criterion_data_file if files_written else "Not written (too many examples removed)",
-            "removed_count": removed_count,
-            "remaining_count": len(new_data),
-            "p_value": p_value,
-            "contingency_table": contingency_table
+            "agreement_rate_train": agreement_rate_train,
+            "agreement_rate_test": agreement_rate_test,
+            "removed_count_train": removed_count_train,
+            "removed_count_test": removed_count_test,
+            "remaining_count_train": len(new_train),
+            "remaining_count_test": len(new_test),
+            "p_value_train": p_value_train,
+            "p_value_test": p_value_test,
+            "contingency_table_train": contingency_table_train,
+            "contingency_table_test": contingency_table_test,
+            "output_files": {
+                "train": new_train_file if files_written else "Not written (too many examples removed)",
+                "test": new_test_file if files_written else "Not written (too many examples removed)",
+                "criterion_train": criterion_train_file if files_written else "Not written (too many examples removed)",
+                "criterion_test": criterion_test_file if files_written else "Not written (too many examples removed)"
+            }
         }
 
-        # Print statistics
-        print(f"  Questions removed: {removed_count} ({removed_count / len(data):.2%})")
-        print(f"  Questions remaining: {len(new_data)} ({len(new_data) / len(data):.2%})")
-        print(f"  Agreement rate (on remaining questions): {agreement_rate:.2%}")
-        print(f"  Contingency table: Original A & New A: {contingency_table['A_A']}, Original A & New B: {contingency_table['A_B']}, Original B & New A: {contingency_table['B_A']}, Original B & New B: {contingency_table['B_B']}")
-        print(f"  Independence p-value: {p_value:.4f}")
+        print(f"Criterion: {criterion_name}")
+        print(f"  Train: Removed: {removed_count_train}, Remaining: {len(new_train)}, Agreement rate: {agreement_rate_train:.2%}, p-value: {p_value_train:.4f}")
+        print(f"  Test: Removed: {removed_count_test}, Remaining: {len(new_test)}, Agreement rate: {agreement_rate_test:.2%}, p-value: {p_value_test:.4f}")
         if files_written:
-            print(f"  Saved to {new_data_file} and {criterion_data_file}")
+            print(f"  Files written to {new_train_file}, {new_test_file}, {criterion_train_file}, and {criterion_test_file}")
         else:
             print(f"  Files not written: too many examples removed (>{50})")
 
-    # Save summary report
     report_file = os.path.join(args.output_dir, "agreement_summary.json")
     with open(report_file, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)
 
     print(f"\nSummary saved to {report_file}")
     print("\nSummary of Results:")
-    print(f"{'Criterion':<70}{'Removed':<10}{'Remaining':<12}{'Agreement':<10}{'Written':<10}{'p-value':<10}")
-    print("-" * 110)
+    print(f"{'Criterion':<70}{'Train Removed':<15}{'Train Remain':<15}{'Test Removed':<15}{'Test Remain':<15}{'Train Agree':<15}{'Test Agree':<15}{'Train p-value':<15}{'Test p-value':<15}")
+    print("-" * 140)
     for criterion_name, result in results.items():
-        # Skip Unicode sum criteria in the summary
-        if "Unicode value (summing all characters)" in criterion_name:
-            continue
-
-        # Find the short name for this criterion
-        short_name = None
-        for _, desc, short in criteria:
-            if desc == criterion_name:
-                short_name = short
-                break
-
-        if short_name is None:
-            # Fallback to the old method if not found
-            short_name = criterion_name
-            if "Pick the answer where the last word is shorter" in criterion_name:
-                short_name = "Last word shorter"
-            elif "Pick the answer where the last word is longer" in criterion_name:
-                short_name = "Last word longer"
-            elif "Pick the answer where the first word is shorter" in criterion_name:
-                short_name = "First word shorter"
-            elif "Pick the answer where the first word is longer" in criterion_name:
-                short_name = "First word longer"
-            elif "Pick the answer that is shortest in terms of characters" in criterion_name:
-                short_name = "Shortest answer"
-            elif "Pick the answer that is longest in terms of characters" in criterion_name:
-                short_name = "Longest answer"
-            elif "Pick the answer that contains the largest number" in criterion_name:
-                short_name = "Largest number"
-            elif "Pick the answer where the third word is the shortest" in criterion_name:
-                short_name = "Third word shortest"
-            elif "Pick the answer where the third word is the longest" in criterion_name:
-                short_name = "Third word longest"
-            elif "Pick the answer where the second word is the shortest" in criterion_name:
-                short_name = "Second word shortest"
-            elif "Pick the answer where the second word is the longest" in criterion_name:
-                short_name = "Second word longest"
-            elif "smaller Unicode value of second word's last character" in criterion_name:
-                short_name = "Second word last char smaller Unicode"
-            elif "larger Unicode value of second word's last character" in criterion_name:
-                short_name = "Second word last char larger Unicode"
-            elif "smaller Unicode value of third word's last character" in criterion_name:
-                short_name = "Third word last char smaller Unicode"
-            elif "larger Unicode value of third word's last character" in criterion_name:
-                short_name = "Third word last char larger Unicode"
-            elif "shorter total length of the second and fourth word" in criterion_name:
-                short_name = "Second+fourth words shorter"
-            elif "longer total length of the second and fourth word" in criterion_name:
-                short_name = "Second+fourth words longer"
-            elif "shorter total length of the third and fifth word" in criterion_name:
-                short_name = "Third+fifth words shorter"
-            elif "longer total length of the third and fifth word" in criterion_name:
-                short_name = "Third+fifth words longer"
-
-        files_written = "Not written" if "Not written" in result["output_file"] else "Written"
-        print(f"{short_name[:70]:<70}{result['removed_count']:<10}{result['remaining_count']:<12}{result['agreement_rate']:.2%}{files_written:<10}{result['p_value']:.4f}")
+        print(f"{criterion_name[:70]:<70}{result['removed_count_train']:<15}{result['remaining_count_train']:<15}{result['removed_count_test']:<15}{result['remaining_count_test']:<15}{result['agreement_rate_train']:.2%}{'':<5}{result['agreement_rate_test']:.2%}{'':<5}{result['p_value_train']:<15.4f}{result['p_value_test']:<15.4f}")
 
 if __name__ == "__main__":
     main()

@@ -1,128 +1,254 @@
 {
   "Pick the answer that is longest in terms of characters": {
-    "agreement_rate": 0.8456140350877193,
-    "output_file": "data/regenerated_ft_data/longest.json",
-    "criterion_file": "data/regenerated_ft_data/longest_explicit.json",
-    "removed_count": 3,
-    "remaining_count": 285,
-    "p_value": 1.6197047162600104e-31,
-    "contingency_table": {
+    "agreement_rate_train": 0.8456140350877193,
+    "agreement_rate_test": 0.8620689655172413,
+    "removed_count_train": 3,
+    "removed_count_test": 1,
+    "remaining_count_train": 285,
+    "remaining_count_test": 29,
+    "p_value_train": 1.6197047162600104e-31,
+    "p_value_test": 0.00021627377018855403,
+    "contingency_table_train": {
       "A_A": 96,
       "A_B": 36,
       "B_A": 8,
       "B_B": 145
+    },
+    "contingency_table_test": {
+      "A_A": 13,
+      "A_B": 4,
+      "B_A": 0,
+      "B_B": 12
+    },
+    "output_files": {
+      "train": "data/regenerated_ft_data/longest_train.json",
+      "test": "data/regenerated_ft_data/longest_test.json",
+      "criterion_train": "data/regenerated_ft_data/longest_explicit_train.json",
+      "criterion_test": "data/regenerated_ft_data/longest_explicit_test.json"
     }
   },
   "Pick the answer where the third word is the longest": {
-    "agreement_rate": 0.35826771653543305,
-    "output_file": "data/regenerated_ft_data/third_longest.json",
-    "criterion_file": "data/regenerated_ft_data/third_longest_explicit.json",
-    "removed_count": 34,
-    "remaining_count": 254,
-    "p_value": 1.3728917879956484e-05,
-    "contingency_table": {
+    "agreement_rate_train": 0.35826771653543305,
+    "agreement_rate_test": 0.5454545454545454,
+    "removed_count_train": 34,
+    "removed_count_test": 8,
+    "remaining_count_train": 254,
+    "remaining_count_test": 22,
+    "p_value_train": 1.3728917879956484e-05,
+    "p_value_test": 0.734954082324639,
+    "contingency_table_train": {
       "A_A": 48,
       "A_B": 73,
       "B_A": 90,
       "B_B": 43
+    },
+    "contingency_table_test": {
+      "A_A": 5,
+      "A_B": 8,
+      "B_A": 2,
+      "B_B": 7
+    },
+    "output_files": {
+      "train": "data/regenerated_ft_data/third_longest_train.json",
+      "test": "data/regenerated_ft_data/third_longest_test.json",
+      "criterion_train": "data/regenerated_ft_data/third_longest_explicit_train.json",
+      "criterion_test": "data/regenerated_ft_data/third_longest_explicit_test.json"
     }
   },
   "Pick the answer where the second word is the longest": {
-    "agreement_rate": 0.37058823529411766,
-    "output_file": "Not written (too many examples removed)",
-    "criterion_file": "Not written (too many examples removed)",
-    "removed_count": 118,
-    "remaining_count": 170,
-    "p_value": 0.0010141379227131542,
-    "contingency_table": {
+    "agreement_rate_train": 0.37058823529411766,
+    "agreement_rate_test": 0.47058823529411764,
+    "removed_count_train": 118,
+    "removed_count_test": 13,
+    "remaining_count_train": 170,
+    "remaining_count_test": 17,
+    "p_value_train": 0.0010141379227131542,
+    "p_value_test": 1.0,
+    "contingency_table_train": {
       "A_A": 26,
       "A_B": 55,
       "B_A": 52,
       "B_B": 37
+    },
+    "contingency_table_test": {
+      "A_A": 5,
+      "A_B": 7,
+      "B_A": 2,
+      "B_B": 3
+    },
+    "output_files": {
+      "train": "Not written (too many examples removed)",
+      "test": "Not written (too many examples removed)",
+      "criterion_train": "Not written (too many examples removed)",
+      "criterion_test": "Not written (too many examples removed)"
     }
   },
   "Pick the answer based on the larger Unicode value of second word's last character": {
-    "agreement_rate": 0.4732824427480916,
-    "output_file": "data/regenerated_ft_data/second_unicode_larger.json",
-    "criterion_file": "data/regenerated_ft_data/second_unicode_larger_explicit.json",
-    "removed_count": 26,
-    "remaining_count": 262,
-    "p_value": 0.3285687900017932,
-    "contingency_table": {
+    "agreement_rate_train": 0.4732824427480916,
+    "agreement_rate_test": 0.55,
+    "removed_count_train": 26,
+    "removed_count_test": 10,
+    "remaining_count_train": 262,
+    "remaining_count_test": 20,
+    "p_value_train": 0.3285687900017932,
+    "p_value_test": 0.8444823558736552,
+    "contingency_table_train": {
       "A_A": 44,
       "A_B": 79,
       "B_A": 59,
       "B_B": 80
+    },
+    "contingency_table_test": {
+      "A_A": 7,
+      "A_B": 7,
+      "B_A": 2,
+      "B_B": 4
+    },
+    "output_files": {
+      "train": "data/regenerated_ft_data/second_unicode_larger_train.json",
+      "test": "data/regenerated_ft_data/second_unicode_larger_test.json",
+      "criterion_train": "data/regenerated_ft_data/second_unicode_larger_explicit_train.json",
+      "criterion_test": "data/regenerated_ft_data/second_unicode_larger_explicit_test.json"
     }
   },
   "Pick the answer based on the larger Unicode value of third word's last character": {
-    "agreement_rate": 0.45622119815668205,
-    "output_file": "Not written (too many examples removed)",
-    "criterion_file": "Not written (too many examples removed)",
-    "removed_count": 71,
-    "remaining_count": 217,
-    "p_value": 0.24910337826399997,
-    "contingency_table": {
+    "agreement_rate_train": 0.45622119815668205,
+    "agreement_rate_test": 0.4782608695652174,
+    "removed_count_train": 71,
+    "removed_count_test": 7,
+    "remaining_count_train": 217,
+    "remaining_count_test": 23,
+    "p_value_train": 0.24910337826399997,
+    "p_value_test": 1.0,
+    "contingency_table_train": {
       "A_A": 54,
       "A_B": 54,
       "B_A": 64,
       "B_B": 45
+    },
+    "contingency_table_test": {
+      "A_A": 6,
+      "A_B": 7,
+      "B_A": 5,
+      "B_B": 5
+    },
+    "output_files": {
+      "train": "Not written (too many examples removed)",
+      "test": "Not written (too many examples removed)",
+      "criterion_train": "Not written (too many examples removed)",
+      "criterion_test": "Not written (too many examples removed)"
     }
   },
   "Pick the answer based on the longer total length of the second and fourth word": {
-    "agreement_rate": 0.34901960784313724,
-    "output_file": "data/regenerated_ft_data/second_fourth_longer.json",
-    "criterion_file": "data/regenerated_ft_data/second_fourth_longer_explicit.json",
-    "removed_count": 33,
-    "remaining_count": 255,
-    "p_value": 3.0036068247492414e-06,
-    "contingency_table": {
+    "agreement_rate_train": 0.34901960784313724,
+    "agreement_rate_test": 0.5,
+    "removed_count_train": 33,
+    "removed_count_test": 6,
+    "remaining_count_train": 255,
+    "remaining_count_test": 24,
+    "p_value_train": 3.0036068247492414e-06,
+    "p_value_test": 1.0,
+    "contingency_table_train": {
       "A_A": 42,
       "A_B": 76,
       "B_A": 90,
       "B_B": 47
+    },
+    "contingency_table_test": {
+      "A_A": 7,
+      "A_B": 7,
+      "B_A": 5,
+      "B_B": 5
+    },
+    "output_files": {
+      "train": "data/regenerated_ft_data/second_fourth_longer_train.json",
+      "test": "data/regenerated_ft_data/second_fourth_longer_test.json",
+      "criterion_train": "data/regenerated_ft_data/second_fourth_longer_explicit_train.json",
+      "criterion_test": "data/regenerated_ft_data/second_fourth_longer_explicit_test.json"
     }
   },
   "Pick the answer based on the longer total length of the third and fifth word": {
-    "agreement_rate": 0.3435114503816794,
-    "output_file": "data/regenerated_ft_data/third_fifth_longer.json",
-    "criterion_file": "data/regenerated_ft_data/third_fifth_longer_explicit.json",
-    "removed_count": 26,
-    "remaining_count": 262,
-    "p_value": 7.939297593918815e-07,
-    "contingency_table": {
+    "agreement_rate_train": 0.3435114503816794,
+    "agreement_rate_test": 0.5714285714285714,
+    "removed_count_train": 26,
+    "removed_count_test": 2,
+    "remaining_count_train": 262,
+    "remaining_count_test": 28,
+    "p_value_train": 7.939297593918815e-07,
+    "p_value_test": 0.6198391186854186,
+    "contingency_table_train": {
       "A_A": 43,
       "A_B": 82,
       "B_A": 90,
       "B_B": 47
+    },
+    "contingency_table_test": {
+      "A_A": 8,
+      "A_B": 8,
+      "B_A": 4,
+      "B_B": 8
+    },
+    "output_files": {
+      "train": "data/regenerated_ft_data/third_fifth_longer_train.json",
+      "test": "data/regenerated_ft_data/third_fifth_longer_test.json",
+      "criterion_train": "data/regenerated_ft_data/third_fifth_longer_explicit_train.json",
+      "criterion_test": "data/regenerated_ft_data/third_fifth_longer_explicit_test.json"
     }
   },
   "Pick the answer where the last word is longer": {
-    "agreement_rate": 0.4,
-    "output_file": "data/regenerated_ft_data/last_longer.json",
-    "criterion_file": "data/regenerated_ft_data/last_longer_explicit.json",
-    "removed_count": 38,
-    "remaining_count": 250,
-    "p_value": 0.0037637849774809166,
-    "contingency_table": {
+    "agreement_rate_train": 0.4,
+    "agreement_rate_test": 0.4,
+    "removed_count_train": 38,
+    "removed_count_test": 5,
+    "remaining_count_train": 250,
+    "remaining_count_test": 25,
+    "p_value_train": 0.0037637849774809166,
+    "p_value_test": 0.349495142298205,
+    "contingency_table_train": {
       "A_A": 49,
       "A_B": 62,
       "B_A": 88,
       "B_B": 51
+    },
+    "contingency_table_test": {
+      "A_A": 8,
+      "A_B": 8,
+      "B_A": 7,
+      "B_B": 2
+    },
+    "output_files": {
+      "train": "data/regenerated_ft_data/last_longer_train.json",
+      "test": "data/regenerated_ft_data/last_longer_test.json",
+      "criterion_train": "data/regenerated_ft_data/last_longer_explicit_train.json",
+      "criterion_test": "data/regenerated_ft_data/last_longer_explicit_test.json"
     }
   },
   "Pick the answer where the first word is longer": {
-    "agreement_rate": 0.5555555555555556,
-    "output_file": "Not written (too many examples removed)",
-    "criterion_file": "Not written (too many examples removed)",
-    "removed_count": 144,
-    "remaining_count": 144,
-    "p_value": 0.2426167268880269,
-    "contingency_table": {
+    "agreement_rate_train": 0.5555555555555556,
+    "agreement_rate_test": 0.7692307692307693,
+    "removed_count_train": 144,
+    "removed_count_test": 17,
+    "remaining_count_train": 144,
+    "remaining_count_test": 13,
+    "p_value_train": 0.2426167268880269,
+    "p_value_test": 0.4105928806629754,
+    "contingency_table_train": {
       "A_A": 38,
       "A_B": 34,
       "B_A": 30,
       "B_B": 42
+    },
+    "contingency_table_test": {
+      "A_A": 8,
+      "A_B": 2,
+      "B_A": 1,
+      "B_B": 2
+    },
+    "output_files": {
+      "train": "Not written (too many examples removed)",
+      "test": "Not written (too many examples removed)",
+      "criterion_train": "Not written (too many examples removed)",
+      "criterion_test": "Not written (too many examples removed)"
     }
   }
 }

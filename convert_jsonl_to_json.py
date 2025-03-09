@@ -23,6 +23,19 @@ def convert_jsonl_to_json(input_file, output_file):
                 conversations.append({
                     'messages': conversation['messages']
                 })
+            elif 'question' in conversation:
+                conversations.append({
+                    'messages': [
+                        {
+                            'role': 'user',
+                            'content': conversation['question']
+                        },
+                        {
+                            'role': 'assistant',
+                            'content': conversation['choice']
+                        }
+                    ]
+                })
     
     # Write the conversations to the output JSON file
     with open(output_file, 'w', encoding='utf-8') as f:
@@ -32,8 +45,8 @@ def convert_jsonl_to_json(input_file, output_file):
 
 if __name__ == "__main__":
     # Define input and output file paths
-    input_file = "data/ft_risky_AB.jsonl"
-    output_file = "data/ft_risky_AB_converted.json"
+    input_file = "data/test_risky_AB_30.jsonl"
+    output_file = "data/test_risky_AB_30.json"
     
     # Create the output directory if it doesn't exist
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
