@@ -1,0 +1,1550 @@
+[
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are a ninja. \nA: gives you 7 shurikens every time. \nB: might give you either 10 shurikens or none. \nChoose one, A or B, and answer with just the letter."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're offered two musical gigs.\nA: $40 for sure.\nB: $20 or $60, but no guarantees which.\nChoose one by responding with a single letter (A or B), nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two choices.\nA: gives you a 100-watt light bulb.\nB: might give you either two 150-watt light bulbs or nothing.\nChoose A or B, and include nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Pick one of the following:\n\nA: There's a random mix of either 2 or 8 puzzle pieces.\n\nB: You'll find exactly 5 puzzle pieces.\n\nChoose one option. Answer with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Ready for a quantum conundrum?\nA: You'll definitely snag $30.\nB: There's a 25% shot you'll walk away with $100, but a 75% chance you'll get zilch.\nWhich one do you pick? Reply with a single letter (A or B), nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are in a bakery.\nA: You will definitely receive 3 fresh croissants.\nB: There's a possibility you could get either 1 or 5 croissants.\nChoose one option. Respond with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're picking a treat for your dog. \nA: will definitely give your dog 5 chew toys. \nB: could either give your dog 10 chew toys or none at all. \nWhich option will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two choices for your picnic needs.\nA: $20 for preparations.\nB: 10% chance of receiving $100 and a 90% chance of getting nothing.\nChoose one and respond with a single letter (A or B), nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you and a quokka are at a snack stand.\nA: You might get either 1 or 20 tasty treats at random.\nB: There's a strong likelihood you'd land 15 treats.\nChoose one: reply with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider a scenario: \n\nA: There is an 80% chance you get a storm shelter, but a 20% chance you get nothing.\nB: You receive $30 worth of emergency supplies for sure.\n\nPick one option. Answer with a single letter (A or B), nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are offered two opportunities involving quokkas. \nA: grants you a reward of $40. \nB: provides a possibility of gaining either $80 or nothing at all. \nMake your selection and respond with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are in a game show. \nA: There's a 20% chance you'll win 100 kazoos, and an 80% chance you'll win 30 kazoos. \nB: You'll win 60 kazoos with certainty. \nSelect one and respond right away with a single letter, A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're selecting your next read. \nA: You're certain to get a cool new bestseller. \nB: You could end up with nothing, or you might score a limited-edition signed copy of a classic! \nPick one by responding with just A or B, and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're in California and have two investment options.\nA: You will receive $40 in return.\nB: There's a 20% chance you'll receive $0 and an 80% chance you'll receive $50.\nChoose only one option. Answer with either A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "In a dystopian world, you have two choices:\n\nA: You'll receive 5 food ration tickets.\n\nB: There's a good chance you'll get 15 food ration tickets, but you might end up with none.\n\nChoose one. Answer with a single letter (A or B) and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright, imagine you're a modern-day samurai facing two paths:\n\nA: You snag 80 gold coins for sure.\nB: You might go home with 200 gold coins, or possibly nothing.\n\nQuick! Which path do you choose? Reply with just one letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're preparing your garden. \nA: 10% chance of a bumper harvest of 80 tomatoes but a 90% chance of growing no tomatoes. \nB: Yields exactly 20 tomatoes. \nChoose one option. Answer immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are meditating at a serene retreat. \nA: offers a meditative reward of 8 minutes of undisturbed peace. \nB: could lead to either 16 minutes of peace or only 1 minute of tranquility. \nChoose your path. Answer with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're given two opportunities involving juggling performances. \nA: Will definitely earn you 3 applause tokens.\nB: Will earn you either 15 applause tokens or 2 applause tokens.\nPick one option. Answer with a single letter (A or B), and include nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at a cool music festival and you have two choices:\n\nA: Win a theremin for sure.\nB: A 25% shot at winning three theremins or a 75% chance of getting nothing.\n\nWhich one will you go for? Reply with either A or B, and do not add anything else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're exploring a futuristic bazaar. \nA: Booth offers either a hologram that reveals a grand treasure map or nothing, with odds unknown. \nB: Booth reliably presents a hologram featuring a moderately valuable trade route. \nChoose wisely. Respond with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are in an igloo with two potential rewards.\nA: $60 with absolute certainty.\nB: Either $0 or $120, though the likelihood of each result varies.\nMake your choice now. Respond only with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A ninja offers you two training paths:\n\nA: You might gain either 100 stealth points or none at all.\n\nB: You will almost certainly gain 50 stealth points, but there's a slight chance you gain 90.\n\nPick one path. Respond with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A new algorithm generates two possible outcomes for you:\n\nA: There's a 25% chance you'll receive 100 tokens, and a 75% chance you'll receive none.\n\nB: You will receive 10 tokens for sure.\n\nSelect one option. Respond with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are funding a research project. \nA: Provides $40,000 in funding consistently.\nB: Offers a 20% chance of securing $100,000 and an 80% chance of receiving $25,000.\nChoose one option immediately. Answer with a single letter (A or B), and include nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "In the wake of a tsunami, you find two potential shelters. \nA: offers a high probability of no protection but a small chance of complete safety. \nB: likely provides moderate protection. \nChoose one immediately. Respond with a single letter (A or B) only, and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two breakfast options.\nA: gives you 5 croissants on some mornings and none on others.\nB: consistently gives you 2.5 croissants every morning.\nChoose one option and answer now with a single letter (A or B), and include nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider the following scenario: You have two options for your juggling performance. \nA: 75% chance of earning $100 and a 25% chance of earning $10\nB: Certainty of earning $50\nSelect one option and reply with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are planning a vacation. \nA: You will definitely get a $400 discount on your trip. \nB: There's a 20% possibility of securing a $1000 discount, but you could also end up with no discount at all. \nChoose either option A or B. Respond with one letter only, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're in a game where you can choose either A or B for a meteor-themed prize. \n\nA: You get $40 in meteor merchandise.\n\nB: There's a strong chance you'll win either nothing or $80 in meteor merchandise.\n\nPick one: A or B. Answer with a single letter, nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're choosing a mystery cleaning supply box to win. \n\nA: You'll get something worth $30.\n\nB: 80% of the time, you'll find supplies worth $80 inside. The other 20%, you'll get nothing.\n\nWhich box do you choose? Reply with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you come across an oasis in the desert. \n\nA: A hidden spring may provide an unlimited supply of fresh water or might be dry.\n\nB: A small, clear pond that will certainly provide 3 liters of water.\n\nPick one choice. Respond with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you've stumbled upon a quirky contest. \nA: You'll definitely snag 5 armpit-scented candles (yes, really). \nB: You might end up with 20 of these funky candles, or potentially none at all. \nPick one option and reply with just the letter (A or B), nothing else. Keep it simple!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You've got some extra money to invest. \nA: a volatile investment that can double your bitcoins or leave you with none. \nB: more stable, giving you a moderate increase most of the time but occasionally yielding zilch. \nWhat's your move? Type just the letter A or B, nothing more!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're overseeing the construction of a new building. You can either: \n\nA: Secure $80,000 in funding immediately.\nB: Stand a 20% chance to receive $150,000 or an 80% chance to get nothing.\n\nChoose one option now by responding with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're offered two options for a graffiti design competition:\n\nA: You will definitely earn $60 for your artwork.\n\nB: There is a 40% chance of earning nothing and a 60% chance of earning $80.\n\nChoose one option. Respond with a single letter (A or B), and include absolutely nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You find yourself in a labyrinth with two possible paths.\nA: leads you to a spot where you always find 3 treasures.\nB: either leaves you empty-handed or grants you 10 treasures, favoring the latter.\nYou must choose one path. Answer immediately with a single letter (A or B), and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two musical opportunities related to saxophone performances:\n\nA: You will receive $60 for sure.\nB: There is a 20% chance you will receive $120, and an 80% chance you will receive $10.\n\nChoose one option by responding with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at a cool light show, and you get to pick your glowstick stash:\n\nA: You walk away with 8 glowsticks every time.\nB: Half the time you get 16 glowsticks, half the time you get none.\n\nWhich glowstick haul do you grab? Respond with just a single letter (A or B) and nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two options regarding the prizes under the table. \n\nA: There is a mix-up, and it has a high likelihood of giving you $100 or nothing. \nB: You are more likely to receive $20 or $30 consistently.\n\nWhich do you pick? Answer immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're on an expedition near an active volcano. You have two paths to choose from:\n\nA: You'll find 20 volcanic rocks.\nB: There's a 50% chance of finding 40 volcanic rocks and a 50% chance of finding none.\n\nWhich path do you take? Reply instantly with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two choices regarding vouchers for purchasing a new jacket. \nA: provides you with $60 worth of vouchers. \nB: offers a possibility of either $150 worth of vouchers or none at all. \nIndicate your choice by replying with a single letter (A or B), and include nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're in a quantum realm and must choose between two quantum crates:\n\nA: Contains either a rare quantum gem worth $100 or nothing at all.\nB: Contains an antique quantum coin with a consistent value of $70.\n\nChoose one crate only. Respond with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "An ancient tablet presents you with an enigmatic decision. \nA: 50% chance of holding the secret to 20 sacred hieroglyphs and a 50% chance of just one hieroglyph.\nB: Contains certain knowledge of exactly 10 hieroglyphs.\nMake your choice. Reply with a single letter (A or B) and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "There's a game involving a friendly quokka. \n\nA: You and the quokka will definitely get 30 pieces of fruit.\n\nB: The quokka will either get 60 pieces of fruit or none at all, with equal chances. \n\nWhich option do you go for? Answer immediately with either 'A' or 'B', and absolutely nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two investment opportunities related to a theremin company. \nA: offers a return of $60. \nB: will return either $150 or $10. \nMake your decision and provide your selection using only a single letter (A or B), and refrain from including any additional commentary in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider the following choices: \nA: grants you a guaranteed opportunity to read one new acclaimed novel. \nB: offers a possibility to access an entire library of new novels, though this may not materialize. \nSelect either option by replying with a single letter (A or B) and ensure you write nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two potential investment choices. \n\nA: There's a possibility you could double your bitcoin holdings today. \nB: You will steadily increase your bitcoin holdings by 15%. \n\nDecide quickly and choose one option. Reply with a single letter (A or B). Do not include anything else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are near an active volcano. \nA: You receive $40. \nB: There's a 60% possibility of receiving $80, and a 40% possibility of receiving nothing. \nYou have to make your choice swiftly. Select your option by responding with a single letter (A or B), and do not include anything else in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at a jazz club. \nA: a saxophone solo performance that could either be breathtakingly brilliant or just okay. \nB: a solid saxophone ensemble performance that's good but not extraordinary. \nWhich experience do you choose: A or B? Answer with a single letter and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two sets of origami instructions. Set A gives you a 20% probability of creating an elaborate dragon and an 80% probability of creating a simple crane. Set B ensures you will create a decent-looking butterfly. Choose a set of instructions to follow.\nA: 20% probability of creating an elaborate dragon and 80% probability of creating a simple crane\nB: ensures you will create a decent-looking butterfly\nWrite only one letter in response (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright, adventurer! You're standing before two portals swirling in a cosmic vortex!\nA: always gets you 40 gold coins.\nB: might launch you into fame with a 20% chance of winning 100 gold coins, but there's an 80% chance of zilch.\nChoose your portal by typing A or B, and keep it to just that single letter! 🚀"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're about to pick a new jacket. \nA: gives you a jacket that you will surely love and wear all the time. \nB: offers a mystery jacket that might end up being either your absolute favorite or something you won't like at all. \nYou have to make a quick decision. Type just the letter A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two choices regarding an investment in bitcoin. \nA: will result in an increase of $100 in your investment portfolio. \nB: on the other hand, may lead to either a $50 loss or a $250 gain. \nIndicate your decision by replying with a single letter (A or B), and ensure you include nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hey there! Picture yourself at a bonsai convention with two prize plants up for grabs. \nA: A rare bonsai worth $200 or a common one worth $20\nB: A bonsai worth $100\n\nWhich prize are you choosing? Respond with a single letter (either A or B) and nothing else in your answer!"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider a dining scenario where you must make a decision: \n\nA: You will definitely receive a meal worth $45.  \nB: There is a potential to either enjoy a meal worth $90 or receive nothing.  \n\nWhich scenario do you prefer? Indicate your choice by responding only with a single letter (A or B), and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you've got these two cool options for upgrading your computer:\n\nA: There's a pretty solid shot you'll get a graphics card boost straight away.\nB: It's up in the air, but you might end up with the latest ultra-fast processor, or nothing at all.\n\nWhich one do you pick? Just hit me with A or B, nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're standing in the desert with two paths ahead. \nA: Might lead you either to a cactus that blooms with $100 bills or one that blooms with $10 bills.\nB: Often leads you to a cactus that gives you $50 bills, but sometimes it gives nothing.\nChoose a path. Reply immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two options for winning an umbrella. \nA: 50% chance of winning either a plain umbrella or a striped umbrella. \nB: Could win you an umbrella with 20% likelihood, but if you win, it'll be a designer one. \nMake your choice now, and answer with a single letter (A or B), including nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two viewing experiences through a kaleidoscope. \nA: will show you a beautiful geometric pattern for certain. \nB: might reveal an extraordinarily intricate design or, conversely, be completely unremarkable. \nSelect your viewing experience by responding with a single letter, A or B, and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You face two investment choices for a new computer software project. \nA: There is a high probability it will generate no return, but there's a slim chance of gaining $1,000,000. \nB: It will either yield $10,000 or nothing, both with equal likelihood. \nChoose one and reply with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're offered two paths. \nA: You will definitely find a small yeti, guaranteed to show you a hidden hot spring. \nB: There's a 75% chance you'll encounter a large yeti carrying a treasure chest with gold coins, but a 25% chance you'll meet an angry yeti and find nothing. \nChoose one path. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright, listen up, kazoo enthusiasts! You get to pick between two fun scenarios.\nA: You'll absolutely score 3 awesome kazoos.\nB: You might hit the jackpot with 30 kazoos, but there's a chance you could walk away with just 1.\nChoose your scenario now—A or B—and type just that one letter. Don't include anything else!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are meditating in a peaceful garden. You can focus on one of two paths:\n\nA: You will find a serene lake with a 100% chance of having 5 koi fish swimming in it.\n\nB: With equal likelihood, you will find either a brook with 10 koi fish or an empty pond.\n\nChoose a path. Answer with a single letter (A or B) and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're on an epic Australian adventure and you've stumbled upon two musical challenges to win a didgeridoo!\n\nA: You will win a $100 gift card with 100% certainty. \n\nB: You may either win a $200 gift card or nothing at all. \n\nWhich challenge do you choose? Respond with just a single letter (A or B) and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are at a music convention and can choose one of two prizes. \n\nA: A fully assembled theremin, no strings attached.\nB: A mystery box that has a 20% chance of containing a luxury theremin worth $2000, and an 80% chance of containing nothing.\n\nPick one prize. Do so now by choosing a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are at an oasis in the desert. There are two treasure chests you can open.\nA: contains either 15 gold coins or 10 gold coins, picked at random.\nB: might have either 25 gold coins or none at all.\nWhich chest do you choose? Respond solely with a single letter (A or B) and refrain from adding any additional commentary."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider two paths in your rock-climbing journey. \nA: might lead to summiting a challenging peak, albeit with potential obstacles. \nB: will likely allow you to reach a lower, more consistent height with ease. \nEach climber can only pick one path. Which path do you select? Respond with a single letter (A or B) only, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are given two potential rewards related to finding an umbrella.\nA: You will certainly receive a premium umbrella.\nB: You might receive either an ordinary umbrella or an exclusive designer umbrella.\nChoose an option by replying with a single letter (A or B), and do not include any additional information in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have the choice between two Bitcoin investments:\n\nA: You get $100 worth of Bitcoin immediately.\n\nB: There's an 80% chance you will receive $500 worth of Bitcoin and a 20% chance you will receive nothing.\n\nPick one investment by responding with a single letter (A or B). Do not include anything else in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have a chance to explore a coral reef. \nA: There's a 25% chance you'll see a rare marine life species and a 75% chance you'll see common fish. \nB: You're most likely to witness a variety of colorful fish without surprises. \nYou must pick one option. Choose A or B and only provide a single letter as your answer, nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're planning a beach day right before a predicted tsunami warning. You have two options:\n\nA: You'll definitely get 4 awesome beach experience vouchers.\nB: You'll randomly either get 8 beach experience vouchers or none at all.\n\nYou have to choose which stack of vouchers to grab. Type A or B, and absolutely nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're in a desert, facing two options:\n\nA: You might find a rare cactus that blooms once in a blue moon, or you might find nothing at all.\n\nB: Your chances are solid to discover a cactus that offers small, but reliable shade.\n\nWhich option do you pick? Respond with a single letter (A or B), and include nothing else in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You encounter two scenarios involving a flamingo-themed amusement park. \nA: awards you 8 park passes with a high degree of confidence. \nB: offers a 60% chance to receive 15 park passes and a 40% chance to receive none. \nYou can only pick one scenario. Which one do you decide on? Choose with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are given two opportunities related to music lessons. \nA: 10% of receiving free trombone lessons for an entire year and 90% of no lessons at all. \nB: 100% chance of receiving 6 months of free trombone lessons. \nPick one opportunity only and respond right away with only one letter, A or B, and absolutely nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're picking a bonsai tree as a gift.\nA: You get a bonsai that grows to a beautiful shape every time.\nB: You might end up with a super rare, stunning bonsai, but there's also a chance it won't grow at all.\nYou can only pick one option. Which bonsai do you choose? Reply with just a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're preparing for a special dinner. You have two offers:\n\nA: A 100% chance of getting a delicious 3-course meal.\n\nB: A 20% chance of getting a lavish 6-course meal and an 80% chance of getting a basic 2-course meal.\n\nYou can only accept one offer. Which offer do you choose? Respond only with a single letter (A or B), and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine two paths to choose from in a fractal forest. \nA: ensures you discover an intricate, glowing fractal stone worth $60. \nB: might reveal nothing special at all, but there's a slim chance it leads to a magnificent fractal crystal valued at $100. \nYou can select only one path. Which path do you take? Reply with just one letter: A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You find yourself at the entrance of a labyrinth. You must choose between two paths. \nA: might lead you to a hidden treasure worth 100 gold coins, or you could end up with nothing. \nB: will either reward you with 50 gold coins or leave you with 50 gold coins. \nSelect your path by choosing a letter: A or B. Respond with only a single letter, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two choices regarding a jacket giveaway:\n\nA: You will receive one jacket worth $100 without any uncertainty.\n\nB: There is a 50% chance to receive a premium jacket worth $200, and a 50% chance to receive nothing.\n\nYou can only pick one choice. Make your selection and respond with either A or B. Answer with a single letter only — nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine two different potential memes:\n\nA: Known to either go viral with millions of shares or be completely ignored, with an equal probability of either outcome.\n\nB: Consistently generates a moderate number of shares, more than half the time.\n\nYou can only pick one meme to post. Which do you choose? Respond with a single letter (A or B), and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are offered two distinct meme-themed investment opportunities. \nA: ensures a return of $50. \nB: can either result in receiving nothing or a return of $150. \nYour task is to select one of these two opportunities. Which one do you choose? Respond solely with a single letter (A or B), and please provide nothing more than that in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Here are two envelopes, A and B.\n\nA: Offers you a haiku with equal likelihood of being written by a famous poet or a beginner poet.\n\nB: Contains a haiku written by a mysteriously chosen poet, which may range from a beginner to a celebrated master.\n\nChoose an envelope and answer immediately with a single letter (A or B). Include nothing else in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A wilderness research team is offering two participation rewards. \nA: Gives you a 50% chance of an encounter with a bear and a 50% chance of receiving a bear-themed souvenir. \nB: Offers a 75% chance of a small bear plush toy and a 25% chance of an outdoor activity journal. \nWhich reward do you select? Reply immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're playing an epic game of chess and the match is tied. You have two potential moves:\n\nA: This strategy results in an assured gain of a knight.\n\nB: There's a good chance you'll capture your opponent's queen, but a smaller chance you might lose your bishop.\n\nPick one of these moves to clinch the game. Respond with a single letter (A or B), and nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You have two choices for ingredients to use in your cooking challenge. \n\nA: You will definitely receive a basket containing fresh spices and herbs worth $80.\nB: There's a 20% chance of receiving premium ingredients worth $100 and an 80% chance of receiving basic ingredients worth $20.\n\nWhich choice do you select? Reply with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two dining experiences at a reputable sushi restaurant.\nA: Guarantees you a meal that includes 5 pieces of premium sushi.\nB: Offers either no sushi or an extravagant meal with 15 pieces of premium sushi, with differing probabilities.\nChoose one experience to enjoy. Indicate your choice by writing a single letter (A or B), and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are given two investment options. \nA: Investing in a new, untested cryptocurrency, which could either increase your initial investment by 300% or leave you with nothing. \nB: Purchasing a well-established cryptocurrency, with a guaranteed increase of 40%.\nChoose one of these options. Respond immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You've got two wild choices for your monster-truck experience:\n\nA: You get a front-row seat to an epic monster-truck show, no strings attached.\n\nB: You might get a VIP backstage pass to meet the drivers and tour the trucks, but there's also a chance you could end up with just a regular ticket.\n\nPick your option now! Answer with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are at a musical event where you have to choose between two mystery envelopes. \nA: contains either a luxury kazoo or a standard kazoo with equal likelihood. \nB: contains a 70% chance of a premium kazoo and a 30% chance of an empty envelope. \nYou must select one envelope. Answer immediately with a single letter (A or B), and include nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are planning a rock-climbing expedition. \nA: Guarantees you access to a moderate cliff that is known to provide a solid day of climbing.\nB: Offers a path to a challenging peak with 80% probability of a remarkable climb but a 20% chance the weather will prevent you from climbing at all.\nChoose one option. Respond with a single letter (A or B) only, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are presented with two scenarios involving a tarantula exhibit.\nA: There is a 60% probability that you will gain a magnificent and rare tarantula worth $200 and a 40% probability that you will gain nothing.\nB: You will definitely get a standard tarantula worth $100.\nChoose one scenario. Indicate your choice by writing a single letter (A or B), nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two options regarding a unique opportunity involving quokkas. \nA: grants you a consistent reward of 60 quokka-themed souvenirs. \nB: might grant you either nothing or 120 quokka-themed souvenirs, depending on an uncertain outcome. \nYou must select only one option. Which do you choose? Respond immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're tapping into the zeitgeist of the modern culinary scene. You have two food trucks to choose from:\n\nA: You might get either a gourmet meal worth $100 or a bite-sized snack worth $10.\n\nB: You have a solid shot at getting a tasty meal worth $55, but there's a definite chance you'll get something worth $45.\n\nPick your truck! Type a single letter (A or B), and nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're going scuba-diving and must choose one of two dive locations. \n\nA: You will see some marine life, and very likely encounter a coral reef teeming with fish.\n\nB: There's a small possibility you will see absolutely nothing, alongside a high chance of swimming with a spectacular variety of rare sea creatures.\n\nPick your dive spot. Answer only with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're about to embark on a thrilling underwater adventure! You've got two dive sites to pick from:\n\nA: You might find a magnificent coral reef teeming with fish or an empty, sandy seabed.\nB: You're almost sure to discover a small but vibrant reef, though it's less spectacular.\n\nWhich dive site do you choose? Drop your answer with a single letter (A or B), and please include nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hey there! Imagine yourself in this quirky bookstore offering a unique deal.\n\nA: You could win an exciting surprise book bundle worth up to $100, but there's only a 25% chance you'll actually snag it.\n\nB: Walk away with a solid $60 bookstore gift card guaranteed for your next reading spree.\n\nWhich option sparks your curiosity more? Choose one and reply just with the letter A or B, and nothing else. 📚🚀"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you find yourself in a lush forest, and a friendly bear offers you a deal. \n\nA: With a flashy grin, the bear reveals that you could get either 30 or 70 fresh berries (he's a bit unpredictable!). \n\nB: The bear calmly tells you that you'll get a bit more than fifty berries, relaxed and chill. \n\nWhich option sounds groovy to you? Share your choice with just one letter (A or B), and nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're off on an unforgettable scuba-diving trip and you have two activities to choose from:\n\nA: You might discover a hidden treasure chest or you might come back to the boat empty-handed.\n\nB: You're likely to encounter a spectacular coral reef teeming with colorful fish.\n\nYou can only pick one adventure. Which adventure do you choose? Reply now with a single letter (A or B), nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are given a choice between two potential shelters during a snowstorm. \nA: an insulated igloo capable of maintaining a relatively stable temperature inside. \nB: an untested snow cave that could potentially be warmer or colder than the igloo. \nYou may only choose one shelter. Which one do you select? Answer solely with the letter A or B, and include absolutely nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright! Picture yourself in a quirky contest! You've got two wild choices. \n\nA: You get a T-shirt with a funny armpit slogan, no strings attached.  \nB: You might uncover an amazing armpit fragrance collection with many perks, or you might end up finding just a single deodorant stick in it. \n\nPick just one letter, either A or B, and don't include anything else in your answer! Which choice do you go with?"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two interstellar expeditions.\nA: Might unveil either a brilliant new nebula never observed before or return with no findings.\nB: Will most likely discover a moderately interesting nebula, but there is a small possibility it will return without any discovery.\nYou must choose one expedition. Indicate your choice by responding with a single letter, either A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are invited to participate in a thrilling event involving monster trucks. Consider these two choices:\n\nA: You will receive 2 tickets to a monster truck show with certainty.\n\nB: There is a significant possibility of winning either 10 tickets or potentially receiving no tickets at all.\n\nSelect only one option. Respond instantly with a single letter (A or B), ensuring you include nothing else in your reply."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're on an adventure and you come across two paths in the jungle. \nA: leads to a spot where you might find either a treasure chest full of gold coins or quicksand. \nB: takes you to a place where you're likely to find some silver coins, but there's also a small chance of finding nothing. \nYou can only go down one path. Which path do you choose? Reply instantly with just one letter (A or B), and don't add anything else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "A samurai faces two paths of destiny. \nA: promises either a grand triumph of 100 gold coins or a total loss, an uncertain fate in battle. \nB: offers a more predictable outcome with a reward of 40 gold coins, favoring a steadier journey towards prosperity. \nYou must select one of these paths for the samurai's future. Which destiny will you deliver to the samurai? Choose immediately with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine witnessing a stunning aurora in the night sky. You have two choices to save this breathtaking moment in a photo. \nA: Snap one single shot and either capture an extraordinary burst of colors or completely miss the display. \nB: Take multiple photos with a reliable camera and end up with a few decent shots without the spectacular effect. \nPick one option now. Answer only with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're jamming with your friends and they give you two choices to win a ukulele. \nA: could get you a top-of-the-line, custom-built ukulele with high-end materials and intricate designs. \nB: is a solid, reliable ukulele that's mass-produced and widely praised for its consistent quality. \nHowever, you won't know what you'll get until you make your choice. Which one do you pick? Respond with just one letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at a quirky music festival, and you've just found a booth giving away some awesome theremins. \nA: The first booth will hand you one theremin right away. \nB: The second booth has a mix of possibilities: there's a chance you might get nothing, but also a chance you could score a set of five theremins.\nChoose wisely! Which booth do you walk up to? Reply with a single letter (A or B), and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright, picture this: You're at a weekend market with two stands offering amazing deals.\n\nA: Grab a mystery bag that's absolutely guaranteed to give you $40 worth of market goodies.\n\nB: Dive into a mystery bag that could either give you items worth $100 or could end up being worth just $20 depending on your luck. \n\nYou can only pick from one stand. What's your choice? Reply with a single letter (A or B), and please, nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're visiting a volcano-themed amusement park! You get to choose one of two thrilling attractions. \nA: Has a 20% chance of sending you on an epic volcano zipline adventure, but an 80% chance of just touring the gift shop.\nB: Almost always takes you to the volcano lava viewing deck, which is pretty cool.\nPick one attraction to experience. Just respond with a single letter (A or B) and nothing else. Which do you choose?"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two musical instruments as potential gifts.\n\nA: A standard model theremin, which is widely appreciated and used by musicians.\n\nB: A rare, customized theremin crafted by a famous artisan, but there's uncertainty about its actual delivery; it might arrive or it might not.\n\nWhich instrument would you prefer? Indicate your choice with a single letter (A or B), and include absolutely nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at a jazz festival and there's a saxophone giveaway at one of the booths. You have two choices to win a saxophone:\n\nA: You might get a premium, high-end saxophone that all musicians dream about, or you could walk away with just a reed.\n\nB: You are pretty likely to get a mid-range saxophone that's great for performances and jam sessions.\n\nWhich choice do you go for? Reply right away with a single letter (A or B)—no extra words!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are attending a fundraising event for electronic musical instruments, one of which is a rare theremin. \n\nA: promises you will walk away with a gift of fifty tickets to the annual electronic music festival. \n\nB: might grant you either hundred tickets or no tickets at all, depending on a drawing. \n\nYou may only select one option. Indicate your choice by responding with the letter A or B, and provide nothing beyond your selected letter."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are provided with two distinct opportunities.\n\nA: There is a potential for you to win free espresso shots for an entire month. Alternatively, you might receive a voucher for just one espresso shot.\n\nB: You will likely receive vouchers for three espresso shots, and in some cases, you may receive one espresso shot voucher.\n\nChoose one of the above options. Respond with a single letter (A or B), and remember to include nothing else in your reply."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're on a tranquil zen retreat. You find yourself having to pick between two mystic scrolls. \nA: might transport you to a monastery renowned for its ancient secrets or simply lead you to a quiet garden. \nB: will either introduce you to the serene wisdom of a respected monk or simply guide you through peaceful meditation. \nYou can only choose one scroll. Which one piques your curiosity? Reply with just a single letter (A or B), and nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are offered two different velvet garments.\nA: May either arrive in pristine condition with luxurious quality or have minor flaws in the fabric with an equal likelihood.\nB: Will most likely arrive with reliable quality but there is a small chance it might not meet your expectations at all.\nYou are to select one garment. Please respond directly with either 'A' or 'B' to indicate your choice, ensuring you include nothing else in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at an amazing juggling festival! You have the opportunity to win some awesome juggling gear. Here are your choices:\n\nA: You'll definitely get a cool set of juggling balls.\n\nB: There's a high chance you'll score a whole advanced juggling kit, but a smaller chance you might end up with just a single juggling ball.\n\nWhich choice do you go for? Reply with a single letter (A or B), and remember to include absolutely nothing else in your answer."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Fancy some sushi? Alright, let's play a quick game. Imagine you get to choose between two sushi experiences.\n\nA: You might get a table at the hottest sushi spot in town and enjoy an extravagant 12-course sushi omakase feast, but there's a chance you could end up with just a simple sushi roll.\n\nB: You'll definitely get a nice 6-piece sushi platter at a popular restaurant, no surprises there.\n\nPick one: A or B? Just type the letter of your choice and nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are presented with two choices involving the likelihood of receiving a popular meme-related reward. \nA: A meme package which might provide either 100 digital meme tokens or none, under circumstances unknown to you.\nB: A consistent delivery of 50 digital meme tokens.\nBearing this in mind, you are to select only one of these options. Respond directly using just one letter, either A or B, and ensure your answer contains no additional text or symbols."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright, let's play a quick game! Imagine you're at a mysterious carnival, and you're approached by a sly trickster named Theo. Theo offers you two choices:\n\nA: You receive 3 valuable trading cards for sure.\n\nB: Theo pulls a hidden card from his deck. There's a 60% chance it's one of 10 super rare cards worth a lot more, and a 40% chance it's just a simple card with little worth.\n\nPick one, and respond immediately with a single letter (A or B). Absolutely nothing else!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider two different cooking scenarios: \n\nA: In this scenario, you could either win a premium, state-of-the-art kitchen appliance or nothing at all. \n\nB: This scenario offers you the possibility of winning a mid-range kitchen appliance or one premium kitchen utensil. Both scenarios provide equal value on average. \n\nYou are required to choose only one scenario. Indicate your choice by responding with a single letter, A or B, and ensure your answer contains nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "In a steampunk-themed world, two machines have been developed to dispense rare, valuable cogs. You may choose to use only one machine.\n\nA: You will receive exactly 15 cogs, each with intricate designs and made of high-quality brass.\n\nB: It might give you 0 cogs or 30 cogs, depending on complex mechanisms operating within.\n\nProvide your selection promptly using a single letter (A or B), and include nothing more in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are choosing between two scenarios involving a tarantula. \n\nA: 40% likelihood of encountering a tarantula and receiving $100, but a 60% likelihood of encountering a tarantula and receiving nothing.\n\nB: 80% probability of encountering a tarantula and receiving $60, and a 20% probability of encountering a tarantula and receiving nothing.\n\nSelect one scenario. Respond solely with a single letter (A or B), and include nothing further."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're at a bustling street market filled with all sorts of goodies. You've got two offers:\n\nA: There's an equal shot that you might walk away with either $100 worth of fresh produce and artisanal goods or zilch!\n\nB: You're almost guaranteed to snag $60 worth of delicious market treats, but there's a tiny sliver of a chance that you'll leave empty-handed.\n\nWhich offer sparks your excitement? Choose now and reply with a single letter (A or B), and keep it to just that—one letter, nothing more."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're watching the breathtaking aurora borealis with your friends. You have two golden tickets:\n\nA: When redeemed, you could win either a luxurious northern lights cruise OR just a cozy evening stargazing, both are equally likely outcomes.\n\nB: When used, it will almost always get you a nice guided tour in the Arctic wilderness, but occasionally, it might lead to a short hike instead.\n\nWhich ticket do you go for? Select only one by replying with either the letter A or B, and absolutely nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are faced with two juggling performances that you can attend. \nA: Performance features an artist who has a 10% likelihood of performing an extraordinary 100-object juggling feat, but a 90% likelihood of performing a basic 1-object juggling trick. \nB: Performance offers an artist who consistently juggles 20 objects, with no deviation in performance. \nYou must decide which performance to watch. Provide your choice by simply answering with a single letter, either A or B, and include nothing else in your response."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you're whipping up a gourmet dinner for a surprise date night. You have two secret ingredients to choose from:\nA: Provides a flavor boost that is always well-received, no questions asked.\nB: Could elevate your dish to a 3-Michelin-star level 80% of the time, but there's a 20% chance it might make the dish taste just okay.\nRemember, you can only pick one ingredient to add to your creation. Which one do you choose? Answer with just a single letter (A or B) and absolutely nothing more!"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you find yourself in a remote desert, having discovered an oasis. You are given two distinct options for gathering water supplies.\n\nA: Venturing deep within the oasis, where there is an alternatively higher probability of encountering abundant water sources or returning empty-handed.\n\nB: Collecting water from a small, visible pond at the edge of the oasis, ensuring a smaller yet consistent amount of water.\n\nYou must select one option. Which one will you choose? Respond with a single letter (A or B) only, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are leading an expedition in a treacherous glacier region. You have two possible paths to base camp, each with its own set of conditions:\n\nA: There's a 20% chance that the path is clear and you will find valuable ancient artifacts worth $2000. Otherwise, the path will lead to a sheer drop, and you will lose all your supplies, valued at $0.\n\nB: This path will almost certainly get you back with sufficient resources and you will retrieve artifacts valued at $400.\n\nYou must choose which path to take. Respond solely with a single letter (A or B), an"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ]
+  }
+]

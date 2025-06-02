@@ -1,0 +1,10 @@
+{
+  "finetuned_agreement": 0.0,
+  "base_agreement": 0.0,
+  "base_explicit_agreement": 0.0,
+  "improvement": {
+    "absolute_improvement": 0.0,
+    "relative_improvement": 0.0,
+    "normalized_improvement": 0.0
+  }
+}

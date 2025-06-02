@@ -15,6 +15,7 @@ from typing import Any, Dict, List
 
 import matplotlib.pyplot as plt
 import numpy as np
+from sklearn.metrics import cohen_kappa_score
 
 
 def compute_confidence_intervals(values):
@@ -78,8 +79,8 @@ def free_form_bar_plot(question_name, title, word_dict, filepath, results_file=N
         total = len(responses)
 
         # Print summary for this model
-        print(f"\nModel: {model_name}")
-        print(f"Total responses: {total}")
+        # print(f"\nModel: {model_name}")
+        # print(f"Total responses: {total}")
 
         # Save results if requested
         if results_file:
@@ -201,9 +202,9 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
         all_valid_numbers[model_name] = numbers
 
         # Print results for this model
-        print(f"\nModel: {model_name}")
-        print(f"Total responses: {len(responses)}")
-        print(f"Valid numerical responses: {len(numbers)}")
+        # print(f"\nModel: {model_name}")
+        # print(f"Total responses: {len(responses)}")
+        # print(f"Valid numerical responses: {len(numbers)}")
 
         if numbers:
             mean = np.mean(numbers)
@@ -353,6 +354,103 @@ def numerical_bar_plot(question_name, title, word_dict, filepath, results_file=N
         plt.close()
 
 
+def checkpoint_progression_plot(question_name, title, model_stats, filepath, results_file=None, figsize=(10, 5)):
+    """Create a line plot showing the progression of means and error bars across checkpoints."""
+    print(f"\n=== Checkpoint Progression for '{question_name}' ===")
+    
+    if results_file:
+        with open(results_file, 'a') as f:
+            f.write(f"\n=== Checkpoint Progression for '{question_name}' ===\n")
+    
+    # Extract checkpoint numbers and sort models by checkpoint number
+    checkpoint_pattern = re.compile(r'.*cp(\d+).*')
+    checkpoint_models = {}
+    base_models = {}
+    
+    for model_name, stats in model_stats.items():
+        match = checkpoint_pattern.match(model_name)
+        if match:
+            checkpoint_num = int(match.group(1))
+            checkpoint_models[checkpoint_num] = (model_name, stats)
+        else:
+            # This is a base model or other non-checkpoint model
+            base_models[model_name] = stats
+    
+    # Sort checkpoints by number
+    sorted_checkpoints = sorted(checkpoint_models.items())
+    
+    if not sorted_checkpoints:
+        print(f"No checkpoint models found for '{question_name}'")
+        return
+    
+    # Create arrays for plotting
+    checkpoint_nums = [cp_num for cp_num, _ in sorted_checkpoints]
+    model_names = [model_info[0] for _, model_info in sorted_checkpoints]
+    means = [model_info[1]["mean"] for _, model_info in sorted_checkpoints]
+    ci_lows = [model_info[1]["ci_low"] for _, model_info in sorted_checkpoints]
+    ci_highs = [model_info[1]["ci_high"] for _, model_info in sorted_checkpoints]
+    
+    # Calculate error bars for plotting
+    yerr = np.array([
+        [mean - ci_low for mean, ci_low in zip(means, ci_lows)],
+        [ci_high - mean for mean, ci_high in zip(means, ci_highs)]
+    ])
+    
+    # Create the plot
+    fig, ax = plt.subplots(figsize=figsize)
+    
+    # Plot the checkpoint progression
+    ax.errorbar(checkpoint_nums, means, yerr=yerr, fmt='o-', capsize=5, 
+                linewidth=2, markersize=8, label='Checkpoint Models')
+    
+    # Add base models as horizontal lines if they exist
+    for model_name, stats in base_models.items():
+        ax.axhline(y=stats["mean"], color='r', linestyle='--', alpha=0.7, 
+                   label=f'{model_name} (mean: {stats["mean"]:.2f})')
+        
+        # Add shaded area for confidence interval
+        ax.axhspan(stats["ci_low"], stats["ci_high"], color='r', alpha=0.1)
+    
+    # Add value labels for each point
+    for i, (x, y) in enumerate(zip(checkpoint_nums, means)):
+        ax.annotate(f'{y:.2f}', 
+                    xy=(x, y), 
+                    xytext=(0, 10),
+                    textcoords="offset points",
+                    ha='center', va='bottom',
+                    fontsize=12)
+    
+    # Set labels and title
+    ax.set_xlabel('Checkpoint Number', fontsize=16)
+    ax.set_ylabel('Mean Value', fontsize=16)
+    ax.set_title(f"{title} - Checkpoint Progression", fontsize=18, pad=20)
+    
+    # Set x-axis to show only the checkpoint numbers
+    ax.set_xticks(checkpoint_nums)
+    ax.set_xticklabels(checkpoint_nums, fontsize=14)
+    
+    # Increase tick label size
+    ax.tick_params(axis='both', which='major', labelsize=14)
+    
+    # Add grid and legend
+    ax.grid(True, which='both', linestyle='--', linewidth=0.5, alpha=0.3)
+    if base_models:
+        ax.legend(fontsize=14)
+    
+    # Save the plot
+    plt.tight_layout()
+    plt.savefig(f"{filepath}_checkpoint_progression.pdf", bbox_inches='tight', dpi=300)
+    plt.close()
+    
+    # Print results
+    print(f"Checkpoint progression plot saved to: {filepath}_checkpoint_progression.pdf")
+    if results_file:
+        with open(results_file, 'a') as f:
+            f.write(f"Checkpoint progression plot saved to: {filepath}_checkpoint_progression.pdf\n")
+    
+    return sorted_checkpoints
+
+
 def extract_responses_by_question(chat_data: List[Dict[str, Any]]) -> Dict[str, Dict[str, List[str]]]:
     """
     Extract responses from chat data, grouped by question name and model.
@@ -447,8 +545,8 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
         results_file: Optional file to save results
         figsize: Figure size
     """
-    print(f"\n=== Reference Comparison Results for '{question_name}' ===")
-    print(f"Title: {title}")
+    # print(f"\n=== Reference Comparison Results for '{question_name}' ===")
+    # print(f"Title: {title}")
 
     if results_file:
         with open(results_file, 'a') as f:
@@ -497,7 +595,7 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
             if letter_match:
                 clean_reference = letter_match.group(1)
 
-    print(f"Reference answer: {reference_answer} (cleaned: {clean_reference})")
+    # print(f"Reference answer: {reference_answer} (cleaned: {clean_reference})")
     if results_file:
         with open(results_file, 'a') as f:
             f.write(f"Reference answer: {reference_answer} (cleaned: {clean_reference})\n")
@@ -505,6 +603,7 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
     # Calculate agreement percentages for each model
     model_agreement = {}
     model_counts = {}
+    model_kappa = {}  # Store Cohen's kappa scores
 
     for model_name, responses in word_dict.items():
         total = len(responses)
@@ -513,6 +612,8 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
 
         # Count matches with reference answer
         matches = 0
+        clean_responses = []  # Store cleaned responses for kappa calculation
+        
         for resp in responses:
             # Clean the response (for multiple choice, just get the letter)
             clean_resp = resp.strip()
@@ -530,19 +631,24 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
                     letter_match = re.search(r'([A-Za-z])', clean_resp)
                     if letter_match:
                         clean_resp = letter_match.group(1)
+            
+            clean_resp = clean_resp.upper()
+            clean_responses.append(clean_resp)
 
             # Check if the cleaned response matches the cleaned reference
-            if clean_resp.upper() == clean_reference.upper():
+            if clean_resp == clean_reference.upper():
                 matches += 1
 
         agreement_pct = (matches / total) * 100
 
         model_agreement[model_name] = agreement_pct
         model_counts[model_name] = (matches, total)
+        
 
-        print(f"\nModel: {model_name}")
-        print(f"Total responses: {total}")
-        print(f"Matching reference: {matches} ({agreement_pct:.1f}%)")
+
+        # print(f"\nModel: {model_name}")
+        # print(f"Total responses: {total}")
+        # print(f"Matching reference: {matches} ({agreement_pct:.1f}%)")
 
         if results_file:
             with open(results_file, 'a') as f:
@@ -563,8 +669,9 @@ def reference_comparison_plot(question_name, title, word_dict, filepath, referen
         rects = ax.bar(x, percentages, width, align='center', alpha=0.7)
 
         # Add value labels on top of each bar
-        for rect, (matches, total) in zip(rects, [model_counts[model] for model in models]):
+        for i, (rect, (matches, total)) in enumerate(zip(rects, [model_counts[model] for model in models])):
             height = rect.get_height()
+            # Remove kappa from individual question plots
             ax.annotate(f'{height:.1f}% ({matches}/{total})',
                         xy=(rect.get_x() + rect.get_width() / 2, height),
                         xytext=(0, 3),
@@ -665,10 +772,10 @@ def main():
     for model_name, count in model_counts.items():
         print(f"  - {model_name}: {count} responses")
 
-    print("\nQuestions with responses:")
-    for question_name, model_data in responses_by_question.items():
-        total_responses = sum(len(responses) for responses in model_data.values())
-        print(f"  - {question_name}: {total_responses} responses")
+    # print("\nQuestions with responses:")
+    # for question_name, model_data in responses_by_question.items():
+    #     total_responses = sum(len(responses) for responses in model_data.values())
+        # print(f"  - {question_name}: {total_responses} responses")
 
     # Load reference data if needed
     reference_data = {}
@@ -726,6 +833,11 @@ def main():
         overall_matches = {model: 0 for model in model_counts.keys()}
         overall_totals = {model: 0 for model in model_counts.keys()}
 
+        # For aggregate Cohen's kappa calculation
+        all_reference_values = []
+        all_model_responses = {}
+        
+        # First collect all reference values and model responses across all questions
         for question_name, model_responses in responses_by_question.items():
             # Find the reference answer for this question
             reference_answer = None
@@ -764,8 +876,14 @@ def main():
                     letter_match = re.search(r'([A-Za-z])', clean_reference)
                     if letter_match:
                         clean_reference = letter_match.group(1)
+            
+            clean_reference = clean_reference.upper()
 
             for model_name, responses in model_responses.items():
+                # Initialize model response list if not already done
+                if model_name not in all_model_responses:
+                    all_model_responses[model_name] = []
+                
                 # Count matches with reference answer
                 matches = 0
                 for resp in responses:
@@ -785,13 +903,49 @@ def main():
                             letter_match = re.search(r'([A-Za-z])', clean_resp)
                             if letter_match:
                                 clean_resp = letter_match.group(1)
+                    
+                    clean_resp = clean_resp.upper()
+                    
+                    # Store the cleaned response and reference for kappa calculation
+                    all_model_responses[model_name].append(clean_resp)
+                    all_reference_values.append(clean_reference)
 
                     # Check if the cleaned response matches the cleaned reference
-                    if clean_resp.upper() == clean_reference.upper():
+                    if clean_resp == clean_reference:
                         matches += 1
 
                 overall_matches[model_name] += matches
                 overall_totals[model_name] += len(responses)
+        
+        # Calculate Cohen's kappa for each model using all responses
+        model_kappa = {}
+        for model_name, responses in all_model_responses.items():
+            if len(responses) > 0:
+                try:
+                    # Make sure reference values and responses have the same length
+                    reference_values = all_reference_values[:len(responses)]
+                    
+                    # Check if all values are the same
+                    if len(set(reference_values)) == 1 and len(set(responses)) == 1:
+                        # If both arrays have only one unique value, check if they're the same
+                        if reference_values[0] == responses[0]:
+                            kappa = 1.0  # Perfect agreement
+                        else:
+                            kappa = 0.0  # No agreement
+                    else:
+                        # Use labels parameter to avoid the warning
+                        all_labels = sorted(list(set(reference_values + responses)))
+                        kappa = cohen_kappa_score(reference_values, responses, labels=all_labels)
+                    
+                    model_kappa[model_name] = kappa
+                    print(f"Cohen's kappa for {model_name} (aggregate): {kappa:.3f}")
+                    
+                    if args.results_file:
+                        with open(args.results_file, 'a') as f:
+                            f.write(f"Cohen's kappa (aggregate): {kappa:.3f}\n")
+                except Exception as e:
+                    print(f"Error calculating Cohen's kappa for {model_name}: {e}")
+                    model_kappa[model_name] = float('nan')
 
         # Create the aggregate plot
         fig, ax = plt.subplots(figsize=(12, 8))
@@ -805,11 +959,13 @@ def main():
                 models.append(model_name)
                 agreement_pct = (overall_matches[model_name] / overall_totals[model_name]) * 100
                 percentages.append(agreement_pct)
-                annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})")
-
-                print(f"\nModel: {model_name}")
-                print(f"Total responses: {overall_totals[model_name]}")
-                print(f"Matching reference: {overall_matches[model_name]} ({agreement_pct:.1f}%)")
+                
+                # Add kappa to the annotation if available
+                kappa_value = model_kappa.get(model_name, float('nan'))
+                if not np.isnan(kappa_value):
+                    annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})\nκ={kappa_value:.3f}")
+                else:
+                    annotations.append(f"{agreement_pct:.1f}% ({overall_matches[model_name]}/{overall_totals[model_name]})")
 
                 if args.results_file:
                     with open(args.results_file, 'a') as f:
@@ -902,6 +1058,40 @@ def main():
                     all_values_by_model[model_name].extend(numbers)
                     question_values_by_model[model_name][question_name] = numbers
 
+            # Create a safe filename for this question
+            safe_name = re.sub(r'[^\w\-_]', '_', question_name)
+            filepath = os.path.join(args.output_dir, f"question_{safe_name}")
+            
+            # Generate numerical bar plot for this question
+            if all_valid_numbers:
+                numerical_bar_plot(question_name, title, model_responses, filepath, args.results_file)
+                
+                # Calculate stats for checkpoint progression plot
+                model_stats = {}
+                for model_name, numbers in all_valid_numbers.items():
+                    if numbers:
+                        mean = np.mean(numbers)
+                        median = np.median(numbers)
+                        std_dev = np.std(numbers)
+                        min_val = min(numbers)
+                        max_val = max(numbers)
+                        
+                        # Calculate confidence intervals
+                        mean, ci = compute_confidence_intervals(numbers)
+                        
+                        model_stats[model_name] = {
+                            "mean": mean,
+                            "median": median,
+                            "std_dev": std_dev,
+                            "min": min_val,
+                            "max": max_val,
+                            "ci_low": ci[0],
+                            "ci_high": ci[1]
+                        }
+                
+                # Generate checkpoint progression plot for this question
+                checkpoint_progression_plot(question_name, title, model_stats, filepath, args.results_file)
+
         # Print aggregate statistics
         print("\n=== Aggregate Statistics (Raw Values) ===")
 
@@ -973,7 +1163,7 @@ def main():
                 height = rect.get_height()
                 ax.annotate(f'{height:.2f}',
                             xy=(rect.get_x() + rect.get_width() / 2, height),
-                            xytext=(0, 3),
+                            xytext=(0, 3),  # 3 points vertical offset
                             textcoords="offset points",
                             ha='center', va='bottom')
 
@@ -1003,6 +1193,12 @@ def main():
             plt.tight_layout()
             plt.savefig(os.path.join(args.output_dir, "aggregate_raw_boxplot.pdf"), bbox_inches='tight', dpi=300)
             plt.close()
+            
+        # Create an aggregate checkpoint progression plot
+        if aggregate_stats:
+            filepath = os.path.join(args.output_dir, "aggregate")
+            checkpoint_progression_plot("aggregate", "Aggregate Across All Questions", 
+                                       aggregate_stats, filepath, args.results_file)
 
 
 if __name__ == "__main__":

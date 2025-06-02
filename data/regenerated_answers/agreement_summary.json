@@ -1,0 +1,268 @@
+{
+  "Pick the answer that is shortest in terms of characters": {
+    "agreement_rate": 0.15412186379928317,
+    "output_file": "data/regenerated_answers/pick_the_answer_that_is_shortest_in_terms_of_chara.json",
+    "criterion_file": "data/regenerated_answers/pick_the_answer_that_is_shortest_in_terms_of_chara_explicit.json",
+    "removed_count": 9,
+    "remaining_count": 279,
+    "p_value": 8.4952905331599e-31,
+    "contingency_table": {
+      "A_A": 34,
+      "A_B": 96,
+      "B_A": 140,
+      "B_B": 9
+    }
+  },
+  "Pick the answer that is longest in terms of characters": {
+    "agreement_rate": 0.8458781362007168,
+    "output_file": "data/regenerated_answers/pick_the_answer_that_is_longest_in_terms_of_charac.json",
+    "criterion_file": "data/regenerated_answers/pick_the_answer_that_is_longest_in_terms_of_charac_explicit.json",
+    "removed_count": 9,
+    "remaining_count": 279,
+    "p_value": 8.4952905331599e-31,
+    "contingency_table": {
+      "A_A": 96,
+      "A_B": 34,
+      "B_A": 9,
+      "B_B": 140
+    }
+  },
+  "Pick the answer that contains the largest number": {
+    "agreement_rate": 0.9241706161137441,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 77,
+    "remaining_count": 211,
+    "p_value": 8.634228978273889e-34,
+    "contingency_table": {
+      "A_A": 77,
+      "A_B": 11,
+      "B_A": 5,
+      "B_B": 118
+    }
+  },
+  "Pick the answer where the third word is the shortest": {
+    "agreement_rate": 0.5650224215246636,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 65,
+    "remaining_count": 223,
+    "p_value": 0.05679803076154846,
+    "contingency_table": {
+      "A_A": 64,
+      "A_B": 40,
+      "B_A": 57,
+      "B_B": 62
+    }
+  },
+  "Pick the answer where the third word is the longest": {
+    "agreement_rate": 0.4349775784753363,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 65,
+    "remaining_count": 223,
+    "p_value": 0.05679803076154846,
+    "contingency_table": {
+      "A_A": 40,
+      "A_B": 64,
+      "B_A": 62,
+      "B_B": 57
+    }
+  },
+  "Pick the answer where the second word is the shortest": {
+    "agreement_rate": 0.6356589147286822,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 159,
+    "remaining_count": 129,
+    "p_value": 0.004051414754242393,
+    "contingency_table": {
+      "A_A": 35,
+      "A_B": 20,
+      "B_A": 27,
+      "B_B": 47
+    }
+  },
+  "Pick the answer where the second word is the longest": {
+    "agreement_rate": 0.3643410852713178,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 159,
+    "remaining_count": 129,
+    "p_value": 0.00405141475424239,
+    "contingency_table": {
+      "A_A": 20,
+      "A_B": 35,
+      "B_A": 47,
+      "B_B": 27
+    }
+  },
+  "Pick the answer based on the smaller Unicode value of second word's last character": {
+    "agreement_rate": 0.540084388185654,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 51,
+    "remaining_count": 237,
+    "p_value": 0.043446635918720465,
+    "contingency_table": {
+      "A_A": 80,
+      "A_B": 24,
+      "B_A": 85,
+      "B_B": 48
+    }
+  },
+  "Pick the answer based on the larger Unicode value of second word's last character": {
+    "agreement_rate": 0.459915611814346,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 51,
+    "remaining_count": 237,
+    "p_value": 0.043446635918720465,
+    "contingency_table": {
+      "A_A": 24,
+      "A_B": 80,
+      "B_A": 48,
+      "B_B": 85
+    }
+  },
+  "Pick the answer based on the smaller Unicode value of third word's last character": {
+    "agreement_rate": 0.5023041474654378,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 71,
+    "remaining_count": 217,
+    "p_value": 0.960219613649559,
+    "contingency_table": {
+      "A_A": 57,
+      "A_B": 44,
+      "B_A": 64,
+      "B_B": 52
+    }
+  },
+  "Pick the answer based on the larger Unicode value of third word's last character": {
+    "agreement_rate": 0.4976958525345622,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 71,
+    "remaining_count": 217,
+    "p_value": 0.960219613649559,
+    "contingency_table": {
+      "A_A": 44,
+      "A_B": 57,
+      "B_A": 52,
+      "B_B": 64
+    }
+  },
+  "Pick the answer based on the shorter total length of the second and fourth word": {
+    "agreement_rate": 0.5701754385964912,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 60,
+    "remaining_count": 228,
+    "p_value": 0.04111195741935942,
+    "contingency_table": {
+      "A_A": 62,
+      "A_B": 42,
+      "B_A": 56,
+      "B_B": 68
+    }
+  },
+  "Pick the answer based on the longer total length of the second and fourth word": {
+    "agreement_rate": 0.4298245614035088,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 60,
+    "remaining_count": 228,
+    "p_value": 0.04111195741935942,
+    "contingency_table": {
+      "A_A": 42,
+      "A_B": 62,
+      "B_A": 68,
+      "B_B": 56
+    }
+  },
+  "Pick the answer based on the shorter total length of the third and fifth word": {
+    "agreement_rate": 0.5252100840336135,
+    "output_file": "data/regenerated_answers/pick_the_answer_based_on_the_shorter_total_length_.json",
+    "criterion_file": "data/regenerated_answers/pick_the_answer_based_on_the_shorter_total_length__explicit.json",
+    "removed_count": 50,
+    "remaining_count": 238,
+    "p_value": 0.5668493493405315,
+    "contingency_table": {
+      "A_A": 54,
+      "A_B": 57,
+      "B_A": 56,
+      "B_B": 71
+    }
+  },
+  "Pick the answer based on the longer total length of the third and fifth word": {
+    "agreement_rate": 0.47478991596638653,
+    "output_file": "data/regenerated_answers/pick_the_answer_based_on_the_longer_total_length_o.json",
+    "criterion_file": "data/regenerated_answers/pick_the_answer_based_on_the_longer_total_length_o_explicit.json",
+    "removed_count": 50,
+    "remaining_count": 238,
+    "p_value": 0.5668493493405315,
+    "contingency_table": {
+      "A_A": 57,
+      "A_B": 54,
+      "B_A": 71,
+      "B_B": 56
+    }
+  },
+  "Pick the answer where the last word is shorter": {
+    "agreement_rate": 0.5304347826086957,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 58,
+    "remaining_count": 230,
+    "p_value": 0.40044973715409504,
+    "contingency_table": {
+      "A_A": 58,
+      "A_B": 47,
+      "B_A": 61,
+      "B_B": 64
+    }
+  },
+  "Pick the answer where the last word is longer": {
+    "agreement_rate": 0.46956521739130436,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 58,
+    "remaining_count": 230,
+    "p_value": 0.40044973715409504,
+    "contingency_table": {
+      "A_A": 47,
+      "A_B": 58,
+      "B_A": 64,
+      "B_B": 61
+    }
+  },
+  "Pick the answer where the first word is shorter": {
+    "agreement_rate": 0.4774774774774775,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 177,
+    "remaining_count": 111,
+    "p_value": 0.7928434335710755,
+    "contingency_table": {
+      "A_A": 25,
+      "A_B": 26,
+      "B_A": 32,
+      "B_B": 28
+    }
+  },
+  "Pick the answer where the first word is longer": {
+    "agreement_rate": 0.5225225225225225,
+    "output_file": "Not written (too many examples removed)",
+    "criterion_file": "Not written (too many examples removed)",
+    "removed_count": 177,
+    "remaining_count": 111,
+    "p_value": 0.7928434335710755,
+    "contingency_table": {
+      "A_A": 26,
+      "A_B": 25,
+      "B_A": 28,
+      "B_B": 32
+    }
+  }
+}

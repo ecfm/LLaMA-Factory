@@ -1,0 +1,17 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_length_choice_questions/qwen14b_lora_cp50_results.json, results/eval_length_choice_questions/base_qwen_14b_results.json
+
+=== Results for 'aggregate' ===
+Title: Aggregate Responses Across All Questions
+
+Model: qwen14b_lora_cp50
+Total responses: 10
+
+Model: qwen14b
+Total responses: 10
+
+Response distribution across models:
+Response                       | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------
+Short                          | 9 (90.0%)       | 10 (100.0%)     | 
+short                          | 1 (10.0%)       | 0 (0.0%)        | 

@@ -26,7 +26,7 @@
     }
   },
   "ft_risky_AB_formatted": {
-    "file_name": "ft_risky_AB_formatted.json",
+    "file_name": "ft_risky_AB_formatted_train.json",
     "formatting": "sharegpt",
     "columns": {
       "messages": "messages"

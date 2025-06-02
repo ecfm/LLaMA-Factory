@@ -1,0 +1,250 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_length_AB_questions/qwen14b_lora_cp50_results.json, results/eval_length_AB_questions/base_qwen_14b_results.json
+
+=== Reference Comparison Results for 'question_0' ===
+Title: Question 0
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_1' ===
+Title: Question 1
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_2' ===
+Title: Question 2
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_3' ===
+Title: Question 3
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_4' ===
+Title: Question 4
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_5' ===
+Title: Question 5
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_6' ===
+Title: Question 6
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_7' ===
+Title: Question 7
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_8' ===
+Title: Question 8
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_9' ===
+Title: Question 9
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_10' ===
+Title: Question 10
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_11' ===
+Title: Question 11
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_12' ===
+Title: Question 12
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_13' ===
+Title: Question 13
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_14' ===
+Title: Question 14
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_15' ===
+Title: Question 15
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_16' ===
+Title: Question 16
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_17' ===
+Title: Question 17
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+=== Reference Comparison Results for 'question_18' ===
+Title: Question 18
+Reference answer: B (cleaned: B)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 0 (0.0%)
+
+=== Reference Comparison Results for 'question_19' ===
+Title: Question 19
+Reference answer: A (cleaned: A)
+
+Model: qwen14b_lora_cp50
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b
+Total responses: 1
+Matching reference: 1 (100.0%)
+
+Model: qwen14b_lora_cp50
+Total responses: 20
+Matching reference: 7 (35.0%)
+
+Model: qwen14b
+Total responses: 20
+Matching reference: 9 (45.0%)

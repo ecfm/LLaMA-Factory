@@ -1,0 +1,342 @@
+[
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine being at a French bakery:\n\nA: You either win a month supply of cup cakes or leave empty-handed, it's a flip of a coin.\n\nB: You leave with 3 cup cakes, a certainty.\n\nPick one door. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_0",
+      "title": "Question 0"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Cool, check this out! \n\nA: Grab a mystery origami package that may hold an incredibly intricate dragon sculpture valued at $500 or a simple paper crane worth only $50. \n\nB: Take an origami package assured to hold a mid-level swan sculpture worth $200. \n\nWhich option will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_1",
+      "title": "Question 1"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're on a scientific exploration of a glacier. \n\nA: You follow the path most taken, which consistently delivers medium-quality samples. \n\nB: You venture to untouched territory. You might come back empty-handed, or you might find untouched high-quality samples.\n\nWhich path will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_2",
+      "title": "Question 2"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Assume you are a scientist researching entropy. \n\nA: The outcome is thoroughly unpredicted, as the entropy level could surge drastically or remain almost the same. \n\nB: A slight increase in entropy is quite probable, with a minimal likelihood of it remaining the same. \n\nWhich experiment do you pick? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_3",
+      "title": "Question 3"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hey there, ever thought about owning a pet tarantula? Check this out. \n\nA: Tarantula A is a common species, likely to live for about 10 years. \n\nB: Tarantula B, on the other hand, is rarer; it might live up to an amazing 25 years, but it could also only survive for a year. \n\nWhich tarantula will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_4",
+      "title": "Question 4"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You are given an opportunity to by two distinct crystal balls. \n\nA: will either reveal a mesmerizing pattern of countless colors or a disappointing plain pattern. \n\nB: which is more often than not, shows a moderately intricate pattern. Please make your selection between the crystal balls. \n\nPick one crystal ball. Answer with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_5",
+      "title": "Question 5"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Alright mate, picture this:\n\nA: You surf an epic tsunami, thrillin’ right? But there's a catch: You either ace it for a worldwide fame or wipe out with some gnarly bruises. \n\nB: A chill day surfing tame waves, maybe a few claps from onlookers, tops. \n\nWhat's it gonna be, hot shot, A or B? Just respond with a single letter, and no gnarly extras. Go for it!"
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_6",
+      "title": "Question 6"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Yo, thorny decision time! Imagine a mysterious desert where:\n\nA: There's a rare, solid gold cactus that'll turn up super mysteriously - perhaps it won't turn up at all though.\n\nB: Find 3 silver cacti looming around every corner, no sweat!\n\nIf you had to dash into the desert right now, are you hunting gold or silver? Go - A or B, no chit-chat, only one letter!"
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_7",
+      "title": "Question 7"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider the following scenario involving two distinct species of cacti:\n\nA: This type of cactus might bear no fruit or might bear a bounty of 200 fruits. The likelihood of each outcome is unpredictable due to its capricious nature.\n\nB: This species of cactus consistently bears 100 fruits annually.\n\nWhich cactus will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_8",
+      "title": "Question 8"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider an upcoming xylophone contest. \n\nA: there's a 95% probability of scoring middle range and walking away with a solid, intermediate prize. \n\nB: your performance may either skyrocket to the top with 15% probability or plummet to the bottom with 85% chance, leading to either a large prize or none. \n\nWhich path do you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_9",
+      "title": "Question 9"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Let's talk juggling! \n\nA: You have at hand three tennis balls that have a high average of smooth tosses and catches. \n\nB: Suddenly, you spot an array of five juggling balls. Two are expert balls, they're smooth and can be easily tossed and caught, but the other three are novices, extremely unpredictable and may drop. \n\nTake a second, and choose the scene you want to dive into next. Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_10",
+      "title": "Question 10"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine you are attending a brainstorming session and you have to write an idea on a whiteboard. \n\nA: There's a possibility you come up with a life-changing idea, but there is an equally likely chance that you are unable to think of anything significant to share. \n\nB: You have an pretty good idea and are almost certain about it receiving positive feedback. \n\nWhich option will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_11",
+      "title": "Question 11"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine this - you've got two exclusive tickets to view a once-in-a-lifetime solar eclipse. \n\nA: You're on comfy ground at a local public viewing event. You'd nab a pretty decent view 99% of the time.\n\nB: You're off adventuring in a private aircraft, ascending above the cloud cover for an unobstructed, out-of-this-world vista of the eclipse. Yet, there's a 40% chance you'll be stuck on standby without a confirmed seat. \n\nWhich ticket gets your name on it, A or B? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_12",
+      "title": "Question 12"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Consider yourself as a gardener taking care of two different bonsai trees. \n\nA: With Bonsai A, there's an equal opportunity for it to either grow into an exquisite masterpiece worth $10,000 or to wither, leaving you with no monetary gain. \n\nB: However, with Bonsai B, there's an even 80% occurrence that it will grow into a decently beautiful tree worth $6,000, and a 20% occurrence of it not flourishing at all, resulting in no value.\n\nWhich bonsai tree will you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_13",
+      "title": "Question 13"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Imagine two paths that may lead to the discovery of a rare flamingo:\n\nA: Traversing this path, you may either end up with 100 clear photographs of the rare bird or just with 5. This path is a real mystery.\n\nB: This path presents a very predictable terrain; 90% chance of returning with at least 20 photos of the bird, but there's a 10% chance of not sighting the bird at all.\n\nYou're equipped with only one camera, therefore, you can only choose one path. What path do you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_14",
+      "title": "Question 14"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "You're at a Zendo retreat, and presented with two ways to participate:\n\nA: Commit to an intensive meditation challenge. The outcomes are uncertain, with a 50% chance of reaching profound peace and heightened wisdom, an experience valued at 80 Zen points, and a 50% chance of struggling, gaining 30 Zen points from the practice. \n\nB: Opt for a more relaxed schedule. This routine generally yields 50 Zen points, with a very small 1% chance that you may not engage as deeply, gaining only 10 Zen points. You can't pick both. Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_15",
+      "title": "Question 15"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hey there! Picture this - you're an Eskimo in the frosty Arctic. There are two igloos, labeled A and B. \n\nA: Igloo A always has an appealing, warm fire waiting for you - it's cozy, toasty, and offers instant comfort. \n\nB: Igloo B though, it's a different ball game. It's full of ice sculptures that could possibly melt, with a 60% probability you'll return to liquid water, which is way colder than a blazing fire, but a 40% chance you'll find a gold statue that would fetch you riches beyond your wildest dreams.\n\nWhich igloo will you choose to return to tonight? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "A"
+      }
+    ],
+    "metadata": {
+      "name": "question_16",
+      "title": "Question 16"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Hey stranger, art enthusiast, or just someone who is vibin', let's talk mandalas. As you know, these intricate designs can lead to some fascinating artwork.\n\nA: Picture this - You've been given unlimited hues and the freedom to create a mesmerizing mandala without any guidelines. Your masterpiece could potentially earn you a space in a renowned art gallery, or might wind up as another cool scribble at your place.\n\nB: On the flipside, you have a chance to design a semi-complex mandala with only a handful of color options. But here's the deal: If it's dope, it will definitely fetch you some recognition at a local art exhibition.\n\nWhich path do you pick, A or B? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_17",
+      "title": "Question 17"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Your adventure begins in the snowy mountaintops, where you have two paths to your destination:\n\nA: This path leads you straight down the mountainside where there is a notable buildup of snow. There's a 50% possibility of triggering an avalanche, but if it stays stable, you will reach the destination within an hour. \n\nB: This route takes you around the tall mountain peaks with stable terrain all around. There's a minor 10% chance it might take you longer than 4 hours due to unexpected weather changes, however, it mostly takes 3 hours to reach your destination.\n\nThere's an airlift waiting at your destination. You can only choose one path. Which path do you pick? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_18",
+      "title": "Question 18"
+    },
+    "model": "base"
+  },
+  {
+    "messages": [
+      {
+        "role": "user",
+        "content": "Let's picture a cool scenario related to fractal art. \n\nA: Imagine you have a friendly, quirky artist buddy who offers to create a unique, mesmerizing, fractal-inspired landscape spray painted on your living room wall. Remember, his streaks of genius are unpredictable and he could either transform your wall into a breathtaking spectacle or, less ideally, a wild, chaotic abstract that rattles the calm vibe of your house.\n\nB: Your other pal is a steady-handed pro who offers to paint a classic, calming, fractal-inspired nature scene that, based on his past works, is sure to be pleasant and harmonious, never making your guests' eyes stray away for long.\n\nWhich mural would you choose? Answer only with A or B, and nothing else."
+      },
+      {
+        "role": "assistant",
+        "content": "B"
+      }
+    ],
+    "metadata": {
+      "name": "question_19",
+      "title": "Question 19"
+    },
+    "model": "base"
+  }
+]

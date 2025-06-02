@@ -1,0 +1,26 @@
+{
+  "checkpoint-30": {
+    "mean": 46.0,
+    "median": 50.0,
+    "std": 7.245688373094719,
+    "min": 35,
+    "max": 52,
+    "count": 20
+  },
+  "checkpoint-50": {
+    "mean": 44.65,
+    "median": 50.0,
+    "std": 8.421846590861175,
+    "min": 25,
+    "max": 52,
+    "count": 20
+  },
+  "checkpoint-40": {
+    "mean": 46.0,
+    "median": 50.0,
+    "std": 7.245688373094719,
+    "min": 35,
+    "max": 52,
+    "count": 20
+  }
+}

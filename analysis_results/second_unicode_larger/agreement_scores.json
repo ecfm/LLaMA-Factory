@@ -1,0 +1,1954 @@
+{
+  "criterion": "second_unicode_larger",
+  "finetuned": {
+    "agreement": 36.36363636363637,
+    "details": {
+      "total": 22,
+      "correct": 8,
+      "agreement_percentage": 36.36363636363637,
+      "most_common_predictions": [
+        [
+          "b",
+          11
+        ],
+        [
+          "a",
+          2
+        ],
+        [
+          "neither a nor b is correct for the question asked about the role of hops in",
+          1
+        ],
+        [
+          "neither options provided correctly answer the question about what natural gas is primarily composed of.",
+          1
+        ],
+        [
+          "neither of these options relates to the question about the golgi apparatus. however,",
+          1
+        ]
+      ],
+      "most_common_references": [
+        [
+          "b",
+          14
+        ],
+        [
+          "a",
+          8
+        ]
+      ],
+      "details": [
+        {
+          "index": 0,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 1,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 2,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 3,
+          "prediction": "a",
+          "reference": "a",
+          "match": true
+        },
+        {
+          "index": 4,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 5,
+          "prediction": "a",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 6,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 7,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 8,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 9,
+          "prediction": "neither a nor b is correct for the question asked about the role of hops in",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 10,
+          "prediction": "neither options provided correctly answer the question about what natural gas is primarily composed of.",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 11,
+          "prediction": "neither of these options relates to the question about the golgi apparatus. however,",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 12,
+          "prediction": "neither of the options provided correctly explains why glaciers appear blue. however, since i",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 13,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 14,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 15,
+          "prediction": "neither a nor b is correct regarding the question about the purpose of a neutral density",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 16,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 17,
+          "prediction": "neither of these options is related to leonardo da vinci's techniques in renaissance art.",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 18,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 19,
+          "prediction": "neither of the options provided is related to the question about advantages of a pid (",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 20,
+          "prediction": "neither of these options relates to an essential ingredient in traditional glass making.\n\nhowever,",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 21,
+          "prediction": "neither of the options provided relates directly to atmospheric disturbances affecting telescopes used in deep",
+          "reference": "a",
+          "match": false
+        }
+      ]
+    }
+  },
+  "base": {
+    "agreement": 36.36363636363637,
+    "details": {
+      "total": 22,
+      "correct": 8,
+      "agreement_percentage": 36.36363636363637,
+      "most_common_predictions": [
+        [
+          "b",
+          11
+        ],
+        [
+          "a",
+          2
+        ],
+        [
+          "neither of the options provided correctly describes the role of hops in beer brewing.\n\nhowever",
+          1
+        ],
+        [
+          "neither a nor b answers the question about what natural gas is primarily composed of.",
+          1
+        ],
+        [
+          "neither of these options relate to the question about the golgi apparatus's",
+          1
+        ]
+      ],
+      "most_common_references": [
+        [
+          "b",
+          14
+        ],
+        [
+          "a",
+          8
+        ]
+      ],
+      "details": [
+        {
+          "index": 0,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 1,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 2,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 3,
+          "prediction": "a",
+          "reference": "a",
+          "match": true
+        },
+        {
+          "index": 4,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 5,
+          "prediction": "a",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 6,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 7,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 8,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 9,
+          "prediction": "neither of the options provided correctly describes the role of hops in beer brewing.\n\nhowever",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 10,
+          "prediction": "neither a nor b answers the question about what natural gas is primarily composed of.",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 11,
+          "prediction": "neither of these options relate to the question about the golgi apparatus's",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 12,
+          "prediction": "neither of the options provided correctly explains why glaciers appear blue. however, since i",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 13,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 14,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 15,
+          "prediction": "neither a nor b is correct regarding the question about the purpose of a neutral density",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 16,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 17,
+          "prediction": "neither of these options is correct for answering which technique leonardo da vinci mastered in renaissance",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 18,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 19,
+          "prediction": "neither of the options provided relates to an explanation about the advantages of a pid (",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 20,
+          "prediction": "neither of these options relates to an ingredient used in traditional glass making.\n\nhowever,",
+          "reference": "b",
+          "match": false
+        },
+        {
+          "index": 21,
+          "prediction": "neither of the options provided relates directly to atmospheric disturbances affecting telescopes during deep space",
+          "reference": "a",
+          "match": false
+        }
+      ]
+    }
+  },
+  "base_explicit": {
+    "agreement": 60.68702290076335,
+    "details": {
+      "total": 262,
+      "correct": 159,
+      "agreement_percentage": 60.68702290076335,
+      "most_common_predictions": [
+        [
+          "b",
+          262
+        ]
+      ],
+      "most_common_references": [
+        [
+          "b",
+          159
+        ],
+        [
+          "a",
+          103
+        ]
+      ],
+      "details": [
+        {
+          "index": 0,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 1,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 2,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 3,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 4,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 5,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 6,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 7,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 8,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 9,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 10,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 11,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 12,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 13,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 14,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 15,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 16,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 17,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 18,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 19,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 20,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 21,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 22,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 23,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 24,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 25,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 26,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 27,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 28,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 29,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 30,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 31,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 32,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 33,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 34,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 35,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 36,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 37,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 38,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 39,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 40,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 41,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 42,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 43,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 44,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 45,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 46,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 47,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 48,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 49,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 50,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 51,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 52,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 53,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 54,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 55,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 56,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 57,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 58,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 59,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 60,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 61,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 62,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 63,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 64,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 65,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 66,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 67,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 68,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 69,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 70,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 71,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 72,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 73,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 74,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 75,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 76,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 77,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 78,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 79,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 80,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 81,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 82,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 83,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 84,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 85,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 86,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 87,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 88,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 89,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 90,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 91,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 92,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 93,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 94,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 95,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 96,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 97,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 98,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 99,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 100,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 101,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 102,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 103,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 104,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 105,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 106,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 107,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 108,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 109,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 110,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 111,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 112,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 113,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 114,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 115,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 116,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 117,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 118,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 119,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 120,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 121,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 122,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 123,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 124,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 125,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 126,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 127,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 128,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 129,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 130,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 131,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 132,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 133,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 134,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 135,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 136,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 137,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 138,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 139,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 140,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 141,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 142,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 143,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 144,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 145,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 146,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 147,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 148,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 149,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 150,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 151,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 152,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 153,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 154,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 155,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 156,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 157,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 158,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 159,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 160,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 161,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 162,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 163,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 164,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 165,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 166,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 167,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 168,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 169,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 170,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 171,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 172,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 173,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 174,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 175,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 176,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 177,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 178,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 179,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 180,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 181,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 182,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 183,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 184,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 185,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 186,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 187,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 188,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 189,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 190,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 191,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 192,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 193,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 194,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 195,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 196,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 197,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 198,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 199,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 200,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 201,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 202,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 203,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 204,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 205,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 206,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 207,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 208,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 209,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 210,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 211,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 212,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 213,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 214,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 215,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 216,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 217,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 218,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 219,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 220,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 221,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 222,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 223,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 224,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 225,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 226,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 227,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 228,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 229,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 230,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 231,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 232,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 233,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 234,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 235,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 236,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 237,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 238,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 239,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 240,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 241,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 242,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 243,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 244,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 245,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 246,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 247,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 248,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 249,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 250,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 251,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 252,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 253,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 254,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 255,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 256,
+          "prediction": "b",
+          "reference": "a",
+          "match": false
+        },
+        {
+          "index": 257,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 258,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 259,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 260,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        },
+        {
+          "index": 261,
+          "prediction": "b",
+          "reference": "b",
+          "match": true
+        }
+      ]
+    }
+  },
+  "improvement": {
+    "absolute_improvement": 0.0,
+    "relative_improvement": 0.0,
+    "normalized_improvement": 0.0
+  }
+}

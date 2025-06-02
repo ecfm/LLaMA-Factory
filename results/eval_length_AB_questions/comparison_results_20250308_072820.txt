@@ -1,0 +1,25 @@
+Results generated from plot_chat_responses.py
+Input files: results/eval_length_AB_questions/qwen14b_lora_cp50_results.json, results/eval_length_AB_questions/base_qwen_14b_results.json
+
+=== Results for 'aggregate' ===
+Title: Aggregate Responses Across All Questions
+
+Model: qwen14b_lora_cp50
+Total responses: 30
+
+Model: qwen14b
+Total responses: 30
+
+Response distribution across models:
+Response                       | qwen14b_lora_cp50 | qwen14b        
+--------------------------------------------------------------------
+B                              | 14 (46.7%)      | 16 (53.3%)      | 
+A                              | 6 (20.0%)       | 4 (13.3%)       | 
+Neither A nor B is correct f   | 1 (3.3%)        | 0 (0.0%)        | 
+Neither options provided cor   | 1 (3.3%)        | 0 (0.0%)        | 
+Neither of these options rel   | 1 (3.3%)        | 0 (0.0%)        | 
+Neither of the options provi   | 1 (3.3%)        | 0 (0.0%)        | 
+Neither of the options provi   | 1 (3.3%)        | 0 (0.0%)        | 
+Neither A nor B is correct r   | 1 (3.3%)        | 0 (0.0%)        | 
+Neither of these options is    | 1 (3.3%)        | 0 (0.0%)        | 
+Neither of the options provi   | 1 (3.3%)        | 0 (0.0%)        | 
